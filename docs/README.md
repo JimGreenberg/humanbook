@@ -1,5 +1,4 @@
-Development README
-# disgracebook
+# disgracebook - ###Development README
 disgracebook is a clone of the popular social media webapp 'facebook' implemented with a PostgreSQL-Ruby on Rails-React/Redux stack.
 
 ## Minimum Viable Product
@@ -24,11 +23,11 @@ Time permitting, the following features could be added to enhance the webapp (in
 - [ ] Photos/albums for users and/or posts
 
 ## Design Docs
-* [View Wireframes][wireframes]
-* [React Components][components]
-* [API endpoints][api-endpoints]
-* [DB schema][schema]
-* [Sample State][sample-state]
+* [View Wireframes][./wireframes]
+* [React Component Hierarchy][component-hierarchy.md]
+* [API endpoints][api-endpoints.md]
+* [DB schema][schema.md]
+* [Sample State][sample-state.md]
 
 ## Implementation Timeline
 ### Phase I:
