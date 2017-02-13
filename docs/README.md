@@ -34,27 +34,32 @@ Time permitting, the following features could be added to enhance the webapp (in
   - Functioning rails project with front end authentication
     + initial database and simple seeds
     + CSS styling to mimic facebook
+
 ### Phase II: User profiles (2 Days)
   - Blank profile set up on new account
     + Profile editable
       * Supports profile pic, cover photo as well as basic Information
   - CSS styling to mimic facebook
+
 ### Phase III: Friendships (1 Day)
   - Ability to friend another user
     + Creates an entry in the `friendships` join table with both users
   - Ability to defriend a friendships
     + Removes entry in above table
   - Friends viewable from profile
+
 ### Phase IV: Posting (3 Days)
-- Ability to create posts on own or other user's timeline
-  + From profile view
-- Ability to create posts from newsfeed
-- Newsfeed contains recent posts from self and friends
-- Scrolls infinitely, recent = up
-- CSS styling to mimic facebook
+  - Ability to create posts on own or other user's timeline
+    + From profile view
+  - Ability to create posts from newsfeed
+  - Newsfeed contains recent posts from self and friends
+  - Scrolls infinitely, recent = up
+  - CSS styling to mimic facebook
+
 ### Phase V: Comments (2 Days)
-- Ability to create comments on posts
-  + Agnostic of newsfeed post or timeline post
-- CSS styling to mimic facebook
+  - Ability to create comments on posts
+    + Agnostic of newsfeed post or timeline post
+  - CSS styling to mimic facebook
+
 ### Phase VI+: (? Days)
-- Decide upon and implement as many extension features as possible (see above)
+  - Decide upon and implement as many extension features as possible (see above)
