@@ -1,4 +1,5 @@
-# disgracebook Development README
+![disgracebook](./production_images/disgracebook logos-01.png)
+# Development README
 disgracebook is a clone of the popular social media webapp 'facebook' implemented with a PostgreSQL-Ruby on Rails-React/Redux stack.
 
 ## Minimum Viable Product
