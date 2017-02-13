@@ -3,6 +3,7 @@
 disgracebook is a clone of the popular social media webapp 'facebook' implemented with a PostgreSQL-Ruby on Rails-React/Redux stack.
 
 [Trello](https://trello.com/b/1XmsXMgk/facebook-clone-fullstack)
+
 [Heroku](https://www.heroku.com)
 
 ## Minimum Viable Product
