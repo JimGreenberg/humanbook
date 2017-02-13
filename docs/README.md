@@ -23,11 +23,11 @@ Time permitting, the following features could be added to enhance the webapp (in
 - [ ] Photos/albums for users and/or posts
 
 ## Design Docs
-* [View Wireframes][./wireframes]
-* [React Component Hierarchy][component-hierarchy.md]
-* [API endpoints][api-endpoints.md]
-* [DB schema][schema.md]
-* [Sample State][sample-state.md]
+* [View Wireframes](./wireframes)
+* [React Component Hierarchy](component-hierarchy.md)
+* [API endpoints](api-endpoints.md)
+* [DB schema](schema.md)
+* [Sample State](sample-state.md)
 
 ## Implementation Timeline
 ### Phase I:
