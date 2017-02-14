@@ -5,12 +5,12 @@ column name       | data type | details
 ------------------|-----------|--------------------------
 id                | integer   | not null, primary key
 username          | string    | not null, indexed, unique
-fname             | string    | not null, indexed, unique
-lname             | string    | not null, indexed, unique
+fname             | string    | not null, indexed
+lname             | string    | not null, indexed
 password_digest   | string    | not null
 session_token     | string    | not null, indexed, unique
 cover_photo       | string    |
-profile_photo     | string    |  
+profile_pic       | string    |  
 work              | string    |
 location          | string    |
 birthday          | string    |

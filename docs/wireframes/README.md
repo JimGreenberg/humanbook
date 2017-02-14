@@ -1,14 +1,14 @@
 ##mainsplash
-[mainsplash](./mainsplash.png)
+![mainsplash](./mainsplash.png)
 
 ##create acc
-[create acc](./create acc.png)
+![create acc](./create acc.png)
 
 ##log in
-[log in](./log in.png)
+![log in](./log in.png)
 
 ##newsfeed
-[newsfeed](./newsfeed.png)
+![newsfeed](./newsfeed.png)
 
 ##profile
-[profile](./profile.png)
+![profile](./profile.png)
