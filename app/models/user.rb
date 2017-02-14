@@ -2,19 +2,51 @@ class User < ApplicationRecord
   before_validation :ensure_session_token
   validates :username, :fname, :lname, :password_digest, presence: true
   validates :username, uniqueness: true
-  validates :password length{ minimum: 6, allow_nil: true}
+  validates :password, length: {minimum: 6, allow_nil: true}
 
   attr_reader :password
 
-  def friendships
-    #mutually symmetric association
-    Friendship.where("user1_id = #{self.id} OR user2_id = #{self.id}")
-  end
-  # ???
+  has_many :in_friendships,
+    class_name: :Friendship,
+    foreign_key: :receiver_id
 
+  has_many :out_friendships,
+    class_name: :Friendship,
+    foreign_key: :friender_id
+
+  has_many :in_friends,
+    through: :in_friendships,
+    source: :friender
+
+  has_many :out_friends,
+    through: :out_friendships,
+    source: :receiver
+
+  def friends
+    in_friends + out_friends
+  end
+
+  def make_friend(other_user)
+    return if is_friends?(other_user)
+    Friendship.create!(friender_id: self.id, receiver_id: other_user.id)
+  end
+
+  def defriend(other_user)
+    return unless is_friends?(other_user)
+    Friendship.where(friender_id: self.id, receiver_id: other_user.id).destroy_all!
+    Friendship.where(friender_id: other_user.id, receiver_id: self.id).destroy_all!
+  end
+
+  def is_friends?(other_user)
+    friends.include?(other_user)
+  end
+
+#-----------------#
+###### Auth ######
+#-----------------#
   def self.find_by_credentials(username, password)
     user = User.find_by_username(username)
-    return nil if !!user
+    return nil unless !!user
     user.is_password?(password) ? user : nil
   end
 
@@ -41,5 +73,4 @@ class User < ApplicationRecord
   def new_session_token
     SecureRandom.base64
   end
-
 end

@@ -19,8 +19,8 @@ birthday          | string    |
 column name       | data type | details
 ------------------|-----------|--------------
 id                | integer   | not null, primary key
-user1_id          | integer   | not null, foreign key (references users), indexed
-user2_id          | integer   | not null, foreign key (references users), indexed
+friender_id       | integer   | not null, foreign key (references users), indexed
+receiver_id       | integer   | not null, foreign key (references users), indexed
 
 ## posts
 column name         | data type | details

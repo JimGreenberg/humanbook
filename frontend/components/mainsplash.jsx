@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import {signOut} from '../actions/session_actions';
+import SessionForm from './session_form'
 
 const mapStateToProps = ({session}) => ({
   currentUser: session.currentUser
@@ -11,7 +12,7 @@ const mapDispatchToProps = dispatch => ({
   signOut: () => dispatch(signOut())
 });
 
-class Greeting extends React.Component {
+class MainSplash extends React.Component {
 
   isSignedIn() {
     return !!this.props.currentUser;
@@ -19,7 +20,7 @@ class Greeting extends React.Component {
 
   yesSignedIn() {
     return(
-      <div className='greeting'>
+      <div className='mainsplash'>
         <h2 className='welcome-text'>Welcome, {this.props.currentUser.username}</h2>
         <button className="logout-button" onClick={this.props.signOut}>Log Out</button>
       </div>
@@ -28,9 +29,12 @@ class Greeting extends React.Component {
 
   noSignedIn() {
     return(
-      <div className='greeting'>
-        <Link to="/login">Sign In</Link>
-        <Link to="/signup">Sign Up</Link>
+      <div className='mainsplash'>
+        <div className='topbar'>
+          <SessionForm />
+        </div>
+
+        <Link to="/signup">Create Account(WIP)</Link>
       </div>
     );
   }
@@ -48,4 +52,4 @@ class Greeting extends React.Component {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Greeting);
+)(MainSplash);

@@ -1,10 +1,9 @@
 import React from 'react';
-import Greeting from './greeting';
+import MainSplash from './mainsplash';
 
 const App = ({children}) => (
   <div className="app">
-    <h1>disgracebook</h1>
-    <Greeting />
+    <MainSplash />
     {children}
   </div>
 );

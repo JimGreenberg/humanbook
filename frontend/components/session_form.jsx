@@ -7,12 +7,11 @@ import {signIn, signUp, signOut} from '../actions/session_actions';
 
 const mapStateToProps = (state, ownProps) => ({
   signedIn: Boolean(state.session.currentUser),
-  errors: state.session.errors,
-  formType: ownProps.location.pathname
+  errors: state.session.errors
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  processForm: user => dispatch((ownProps.location.pathname === '/login') ? signIn(user) : signUp(user))
+  signIn: user => dispatch(signIn(user))
 });
 
 class SessionForm extends React.Component {
@@ -37,39 +36,33 @@ class SessionForm extends React.Component {
 
     event.preventDefault();
     const user = this.state;
-    this.props.processForm(user).then(() => this.props.router.push('/'));
+    this.props.signIn(user).then(() => this.props.router.push('/'));
   }
-
-  oppositeLink() {
-		return (this.props.formType === "/login") ?
-      <Link to="/signup">Signup</Link> :
-	    <Link to="/login">Login</Link>;
-	}
 
   render() {
 
     return(
       <div>
-        {this.props.formType[1].toUpperCase()+this.props.formType.slice(2)}
-        <nbsp/> here or <nbsp/>
-        {this.oppositeLink()}
-
         {this.props.errors}
         <form onSubmit={this.handleSubmit}>
-          <input
-            type="username"
-            value={this.state.username}
-            onChange={this.update("username")}
-            placeholder="Username"/>
-          <input
-            type="password"
-            value={this.state.password}
-            onChange={this.update("password")}
-            placeholder="Password"/>
-          <br/>
+          <label>Email or Phone
+            <input
+              type="username"
+              value={this.state.username}
+              onChange={this.update("username")}/>
+          </label>
+          <label>Password
+            <input
+              type="password"
+              value={this.state.password}
+              onChange={this.update("password")}/>
+          </label>
           <input
             type="submit"
-            value="Submit"/>
+            value="Log In"/>
+          <input
+            type="submit"
+            value="Demo"/>
         </form>
       </div>
     );
