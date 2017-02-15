@@ -1,8 +1,22 @@
+body {
+  background: #edf0f5;
+}
+
 .mainsplash {
   .topbar {
     background: linear-gradient(#4e69a2, #3b5998 50%);
     height: 82px;
-    border-bottom: 1px solid #29487d
+    border-bottom: 1px solid #29487d;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  img {
+    height: 120px;
+    position: relative;
+    top: -10px;
+    width: auto;
+    padding-left: 100px;
   }
 
   .field {
@@ -55,4 +69,59 @@
     background-color: #29487d;
     border-color: #29487d
   }
+
+  .main-wrapper {
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    width: 980px;
+
+  .fluff-wrapper {
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+
+    .fluff-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1 {
+      padding: 60px 0 25px;
+      font-size: 28px;
+      line-height: 36px;
+      font-weight: 600;
+    }
+
+    li {
+      display: flex;
+      padding: 20px 0 10px;
+      align-items: center;
+    }
+
+    li > * {
+      padding: 0px 10px 5px;
+    }
+
+    img {
+      width: 48px;
+      height: auto;
+      padding: 0 20px 0 0;
+    }
+
+    p {
+      font-size: 18px;
+    }
+
+    small {
+      font-size: 16px;
+      font-weight: 400;
+      color: #666;
+    }
+  }
+
+  .signup-wrapper {
+    width:0px;
+  }
+}
 }

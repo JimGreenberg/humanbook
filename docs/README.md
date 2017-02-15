@@ -1,6 +1,7 @@
-![disgracebook](./production_images/disgracebook logos-01.png)
+![humanbook](./production_images/humanbook logos-01.png)
 # Development README
-disgracebook is a clone of the popular social media webapp 'facebook' implemented with a PostgreSQL-Ruby on Rails-React/Redux stack.
+### humanbook: social media for people
+humanbook is a clone of the popular social media webapp 'facebook' implemented with a PostgreSQL-Ruby on Rails-React/Redux stack.
 
 [Trello](https://trello.com/b/1XmsXMgk/facebook-clone-fullstack)
 

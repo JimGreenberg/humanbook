@@ -3,5 +3,9 @@
     window.currentUser = <%= render("api/users/user.json.jbuilder",
       user: current_user).html_safe %>
   <% end %>
+  window.images = {
+    humanbookLogo: "<%= image_path("text-logo.png") %>",
+    logoIcon: "<%= image_path("favicon_xl.png") %>"
+  }
 </script>
 <main id="root"></main>
