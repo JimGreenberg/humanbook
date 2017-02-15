@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import {signIn, signUp, signOut} from '../actions/session_actions';
-
+import Tooltip from './tooltip';
 
 
 const mapStateToProps = (state, ownProps) => ({
@@ -23,7 +23,24 @@ class SessionForm extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
+    this.disabled = false;
+  }
 
+  logInAs(username, password) {
+    this.disabled = true;
+    this.typeValue(username, "username", function () {
+      this.typeValue(password, "password", function () {
+        this.props.signIn(this.state).then(() => this.props.router.push('/'));
+      }.bind(this));
+    }.bind(this));
+  }
+
+  typeValue(value, name, cb) {
+    if (!value) return cb();
+    this.setState({ [name]: this.state[name] + value[0] });
+    setTimeout(function () {
+      this.typeValue(value.slice(1), name, cb);
+    }.bind(this), 75);
   }
 
   update(field) {
@@ -42,15 +59,15 @@ class SessionForm extends React.Component {
   render() {
 
     return(
-      <div className="mainsplash">
-        {this.props.errors}
         <form onSubmit={this.handleSubmit}>
+          <fieldset disabled={this.disabled}>
           <div className="form-wrapper">
 
             <div className="field-grp">
             <label>Email or Phone</label>
             <input
               type="username"
+
               value={this.state.username}
               className="field"
               onChange={this.update("username")}/>
@@ -60,23 +77,23 @@ class SessionForm extends React.Component {
             <label>Password</label>
             <input
               type="password"
+
               value={this.state.password}
               className="field"
               onChange={this.update("password")}/>
-            </div>
+            <button onClick={() => {this.logInAs("jerry@seinfeld.com", 'asdfasdf');}}>Demo Log In</button>
+
+          </div>
 
           <input
             className='button'
             type="submit"
-            value="Log In"/>
-          <input
-            className='button'
-            type="submit"
-            value="Demo"/>
+            value="Log In"
+            />
 
         </div>
+        </fieldset>
         </form>
-      </div>
     );
   }
 }

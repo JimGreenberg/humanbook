@@ -28,8 +28,6 @@ export const signIn = user => {
   };
 };
 
-window.signIn = signIn;
-
 export const signOut = () => {
   return (dispatch) => {
     return APIUtil.signOut()

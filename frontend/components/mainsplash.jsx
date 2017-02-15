@@ -3,6 +3,9 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import {signOut} from '../actions/session_actions';
 import SessionForm from './session_form'
+import SignUpForm from './signup_form'
+import Newsfeed from './newsfeed_container'
+
 
 const mapStateToProps = ({session}) => ({
   currentUser: session.currentUser
@@ -20,11 +23,7 @@ class MainSplash extends React.Component {
 
   yesSignedIn() {
     return(
-      // gunna be a redirect soon
-      <div className='mainsplash'>
-        <h2 className='welcome-text'>Welcome, {this.props.currentUser.username}</h2>
-        <button className="logout-button" onClick={this.props.signOut}>Log Out</button>
-      </div>
+      <Newsfeed />
     );
   }
 
@@ -56,9 +55,7 @@ class MainSplash extends React.Component {
               </li>
             </ul>
           </div>
-          <div className='signup-wrapper'>
-            <Link to="/signup">Create Account(WIP)</Link>
-          </div>
+          <SignUpForm />
         </div>
       </div>
     );
