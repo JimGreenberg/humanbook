@@ -22,7 +22,10 @@ class NavBar extends React.Component {
     this.props.router.push('/');
   }
 
-  redirectToProfile
+  redirectToProfile() {
+
+  }
+
 
   render(){
 
@@ -30,7 +33,7 @@ class NavBar extends React.Component {
       <div className="navBar">
         <img onClick={this.redirectToHome} src={window.images.logoIcon}/>
           <input type='text' className='search-bar' placeholder={this.props.currentUser.username}/>
-          <span className = ></span>
+          <span className='profile-top-btn' ></span>
           <span></span>
           <img></img>
           <img></img>
