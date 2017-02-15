@@ -1,0 +1,36 @@
+body {
+  background: #e9ebee
+}
+.navbar {
+  background: #4267b2;
+  display: flex;
+  align-items: center;
+  height: 42px;
+
+  * {
+    font-family: Helvetica;
+  }
+
+  .logo {
+    width: 26px;
+    height: 26px;
+    padding: 3px;
+  }
+
+  .search-bar {
+    font-size: 14px;
+    text-overflow: ellipsis;
+    height: 26px;
+    border: 1px solid #3b5998;
+    border-radius: 3px;
+    box-sizing: border-box;
+    padding: 3px;
+  }
+
+  label {
+
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+  }
+}

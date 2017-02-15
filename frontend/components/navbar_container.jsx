@@ -15,6 +15,7 @@ const mapDispatchToProps = dispatch => ({
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
+    this.currentUser = this.props.currentUser;
     this.redirectToHome = this.redirectToHome.bind(this);
   }
 
@@ -23,21 +24,25 @@ class NavBar extends React.Component {
   }
 
   redirectToProfile() {
-
+    this.props.router.push(`/users/${id}`);
   }
 
 
   render(){
-
     return (
-      <div className="navBar">
-        <img onClick={this.redirectToHome} src={window.images.logoIcon}/>
-          <input type='text' className='search-bar' placeholder={this.props.currentUser.username}/>
-          <span className='profile-top-btn' ></span>
-          <span></span>
-          <img></img>
-          <img></img>
-          <img></img>
+      <div className="navbar">
+        <img className='logo' onClick={this.redirectToHome} src={window.images.logoIcon}/>
+          <input type='text' className='search-bar' placeholder={this.currentUser.username}/>
+          <span className='profile-top-btn'>
+            <img className='profile-micro'/>
+              <label>{this.currentUser.fname}</label>
+          </span>
+          <span className='home-top-btn'>
+            <label>Home</label>
+          </span>
+          <img className='friends-top-btn'></img>
+          <img className='messages-top-btn'></img>
+          <img className='global-top-btn'></img>
           <button className="logout-button" onClick={this.props.signOut}>Log Out</button>
       </div>
     );
