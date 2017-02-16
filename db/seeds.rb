@@ -14,10 +14,29 @@ kramer = User.create!(username: "kramer@kramer.co", fname: "Cosmo", lname: "Kram
 newman = User.create!(username: "newman@usps.gov", fname: "Newman", lname: "Newman", password:"asdfasdf")
 jpeterman = User.create!(username: "ceo@jpeterman.com", fname: "J.", lname: "Peterman", password:"asdfasdf")
 bob = User.create!(username: "bsacomano@mafia.org", fname: "Bob", lname: "Sacamano", password:"asdfasdf")
-dave = User.create!(username: "puddy@davesgarage.com", fname: "Dave", lname: "Puddy", password:"asdfasdf")
+puddy = User.create!(username: "puddy@davesgarage.com", fname: "Dave", lname: "Puddy", password:"asdfasdf")
 frank = User.create!(username: "fcostanza@roadrunner.co", fname: "Frank", lname: "Costanza", password:"asdfasdf")
 tim = User.create!(username: "toothd3cay@shalom.net", fname: "Tim", lname: "Whatley", password:"asdfasdf")
 art = User.create!(username: "vandelay@architect.us", fname: "Art", lname: "Vandelay", password:"asdfasdf")
 pennypacker = User.create!(username: "he@pennypa.ck", fname: "H.E.", lname: "Pennypacker", password:"asdfasdf")
 
+Friendship.destroy_all
+
 jerry.make_friend(george)
+elaine.make_friend(jerry)
+tim.make_friend(art)
+jerry.make_friend(kramer)
+frank.make_friend(jerry)
+art.make_friend(jerry)
+pennypacker.make_friend(jerry)
+jerry.make_friend(puddy)
+george.make_friend(kramer)
+elaine.make_friend(george)
+
+Post.destroy_all
+Post.create!(body: "asdfasef", author_id: george.id, wall_user_id: jerry.id)
+Post.create!(body: "asdfasef", author_id: elaine.id, wall_user_id: jerry.id)
+Post.create!(body: "asdfasef", author_id: kramer.id, wall_user_id: jerry.id)
+Post.create!(body: "asdfasopdfja[psiodfjasef", author_id: george.id, wall_user_id: jerry.id)
+Post.create!(body: "asdfasef", author_id: bob.id, wall_user_id: jerry.id)
+Post.create!(body: "NEWMAN", author_id: newman.id, wall_user_id: art.id)

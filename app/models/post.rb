@@ -11,7 +11,7 @@
 #
 
 class Post < ApplicationRecord
-  validates :body, :author_id, :user_wall_id, presence: true
+  validates :body, :author_id, :wall_user_id, presence: true
 
   belongs_to :author,
     class_name: :User,
@@ -20,4 +20,6 @@ class Post < ApplicationRecord
   belongs_to :wall_owner,
     class_name: :User,
     foreign_key: :wall_user_id
+
+
 end

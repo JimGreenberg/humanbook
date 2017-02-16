@@ -9,10 +9,15 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-
+  fetchPosts: id => dispatch(fetchPosts(id))
 });
 
 class PostList extends React.Component {
+
+  componentDidMount() {
+    this.props.fetchPosts(this.props.currentUser.id);
+  }
+
   render() {
     return (
       <div className='postlist-wrapper'>

@@ -22,6 +22,10 @@ class User < ApplicationRecord
 
   attr_reader :password
 
+  has_many :newsfeed_posts,
+    through: :friends,
+    source: :wall_posts
+
   has_many :authored_posts,
     class_name: :Post,
     foreign_key: :author_id
@@ -46,7 +50,56 @@ class User < ApplicationRecord
     through: :out_friendships,
     source: :receiver
 
-  def friends
+def friends
+  User
+  .joins("INNER JOIN friendships ON friender_id = users.id OR receiver_id = users.id")
+  .where("users.id != ? AND (friender_id = ? OR receiver_id = ?)", self.id, self.id, self.id)
+end
+
+#---------------#
+####SQL Query####
+#---------------#
+
+#
+# select
+# users.*
+# from(
+# select
+# case myfships.friender_id
+# when 61 then myfships.receiver_id
+#   else myfships.friender_id
+# end as id
+# from(
+#   select friendships.id, friender_id, receiver_id from friendships
+#   join users as frienders on friender_id = frienders.id
+#   join users as receivers on receiver_id = receivers.id
+#   where receiver_id != 61 AND friender_id != 61) as myfships) as friends
+# join users on users.id = friends.id
+#
+
+# select
+# *
+# from users
+# where
+# users.id
+# from(
+#   select friendships.id, friender_id, receiver_id from friendships
+#   join users as frienders on friender_id = frienders.id
+#   join users as receivers on receiver_id = receivers.id
+#   where receiver_id != 61 AND friender_id != 61) as myNfships
+
+
+# select
+# *
+# from
+# (select friendships.id, friender_id, receiver_id from friendships
+#   join users as frienders on friender_id = frienders.id
+#   join users as receivers on receiver_id = receivers.id
+#   where receiver_id = 49 or friender_id = 49) as myfships
+# join users as friendies on friender_id=users.id
+# join users on receivies receiver_id=users.id
+
+  def friends_array
     in_friends + out_friends
   end
 
@@ -62,7 +115,7 @@ class User < ApplicationRecord
   end
 
   def is_friends?(other_user)
-    friends.include?(other_user)
+    friends_array.include?(other_user)
   end
 
 #-----------------#
