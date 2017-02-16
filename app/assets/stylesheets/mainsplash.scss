@@ -138,11 +138,46 @@ body {
     }
 
   }
+  .error-wrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .error {
+    background-color: #be4b49;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px rgba(139, 3, 0, .75), 0 1px 10px rgba(0, 0, 0, .35);
+    color: #fff;
+    position: relative;
+
+  }
+
+  .e0 {
+    top: 160px;
+  }
+
+  .e1 {
+    top: 60px;
+  }
+
+  .e2 {
+    top: 60px;
+    right: -140px;
+  }
+
+  .e3 {
+    top: 260px;
+  }
+
 
   .signup-wrapper {
     display: flex;
     flex-direction: column;
     width: 400px;
+
+
 
   * {
     margin: 5px 10px 5px 0;
@@ -212,14 +247,7 @@ body {
   .dob-wrapper {
     display: flex;
 
-    @keyframes fade {
-      0% {opacity:0;}
-      100% {opacity:100;}
-    }
-    .tooltip {
-      position: absolute;
-      animation: fade 500ms;
-      animation-timing-function: ease;
+
 
     .birthday-tt {
       position: relative;
@@ -280,11 +308,11 @@ body {
         height: 10px;
         transform: rotate(45deg);
         position: relative;
-        bottom: 70px !important;
-        right: -195px !important;
+        bottom: 70px;
+        right: -195px;
         border-top: inherit;
         border-right: inherit;
-      }}}
+      }}
   }
 
   .question {

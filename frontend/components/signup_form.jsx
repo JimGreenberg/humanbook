@@ -22,12 +22,9 @@ class SignUpForm extends React.Component {
       username: "",
       usernameTwo: "",
       password: "",
-      day: "",
-      month: "",
-      year: "",
-      sex: ""
+      sex: "",
+      bdayFlag: false
     };
-    this.tooltipVisible = false;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
   }
@@ -41,6 +38,11 @@ class SignUpForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const user = this.state;
+    debugger
+    if (this.props.errors.length !== 0 || this.state.username !== this.state.usernameTwo) {
+      this.setState({errorFlag: true, usernameTwo: ""});
+
+    }
     this.props.createAccount(user).then(() => this.props.router.push('/'));
   }
 
@@ -60,15 +62,20 @@ class SignUpForm extends React.Component {
     return arr;
   }
 
-  placeTooltip(message, className, buttonText="") {
-    if (this.state.tooltipVisible) {
+  defaultCallback() {
+    this.setState({[visibleFlag]: !visibleFlag});
+  }
+
+  placeTooltip(message, className, id='none', visibleFlag=true, buttonText="", callback=this.defaultCallback) {
+    if (visibleFlag) {
     return (
       <div className='tooltip' >
         <Tooltip
+          id={id}
           tooltipMessage={message}
           tooltipClassName={className}
           buttonText={buttonText}
-          callback={() => this.setState({ tooltipVisible: !this.state.tooltipVisible })}/>
+          callback={callback.bind(this)}/>
       </div>
     );
 }}
@@ -76,13 +83,10 @@ class SignUpForm extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <div>
-          <Tooltip
-            className='errors'
-            tooltipMessage={this.props.errors}
-            tooltipClassName={ this.props.errors.length > 1 ? "tooltip" : "hidden" }
-            buttonText=""
-          />
+        <div className='error-wrapper'>
+          {this.props.errors.map(
+            (error) => (this.placeTooltip(error, "error", this.props.errors.indexOf(error)))
+          )}
         </div>
       <div className='signup-wrapper'>
         <h1>Sign Up</h1>
@@ -128,29 +132,32 @@ class SignUpForm extends React.Component {
               <select
                 selected
                 id='month'
-                className='dropdown'>
+                className='dropdown'
+                onChange={this.update('month')}>
                 <option value="0" >Month</option><option value='Jan'>Jan</option><option value='Feb'>Feb</option><option value='Mar'>Mar</option><option value='Apr'>Apr</option><option value='May'>May</option><option value='Jun'>Jun</option><option value='Jul'>Jul</option><option value='Aug'>Aug</option><option value='Sep'>Sep</option><option value='Oct'>Oct</option><option value='Nov'>Nov</option><option value='Dec'>Dec</option>
               </select>
               <select
                 selected
                 id='day'
-                className='dropdown'>
+                className='dropdown'
+                onChange={this.update('day')}>
                 <option value="0">Day</option>
                 {this.dayHelper()}
               </select>
               <select
                 selected
                 id='year'
-                className='dropdown'>
+                className='dropdown'
+                onChange={this.update('year')}>
                 <option value="0">Year</option>
                 {this.yearHelper()}
               </select>
               <small
                 className='question tooltip-container'
-                onClick={() => this.setState({ tooltipVisible: !this.state.tooltipVisible })}>
+                onClick={() => this.setState({ bdayFlag: !this.state.bdayFlag })}>
                   Why do I need to provide my birthday?
                 </small>
-                {this.placeTooltip("it's so we know how old you are", "birthday-tt", "Okay")}
+                {this.placeTooltip("it's so we know how old you are", "birthday-tt",'key' ,this.state.bdayFlag, "Okay")}
             </div>
             <div className='tuple-wrapper'>
             <label>
@@ -158,6 +165,7 @@ class SignUpForm extends React.Component {
                 type='radio'
                 name='sex'
                 value='Female'
+                onChange={this.update('sex')}
                 className='radio'
                 />Female
             </label>
@@ -166,6 +174,7 @@ class SignUpForm extends React.Component {
                 type='radio'
                 name='sex'
                 value='Male'
+                onChange={this.update('sex')}
                 className='radio'
                 />Male
             </label>

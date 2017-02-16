@@ -65,7 +65,16 @@
    user-select: none;
 
  }
- 
+
+ @keyframes fade {
+   0% {opacity:0;}
+   100% {opacity:100;}
+ }
+ .tooltip {
+   position: absolute;
+   animation: fade 500ms;
+   animation-timing-function: ease;
+ }
  button {
    user-select: none;
  }

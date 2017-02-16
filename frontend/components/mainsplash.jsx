@@ -56,14 +56,12 @@ class MainSplash extends React.Component {
               </li>
             </ul>
           </div>
+          
           <SignUpForm />
         </div>
       </div>
     );
   }
-  // <div className='errors'>
-  //   {this.props.errors}
-  // </div>
 
   render() {
     return(
