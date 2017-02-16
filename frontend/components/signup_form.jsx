@@ -38,9 +38,8 @@ class SignUpForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const user = this.state;
-    debugger
     if (this.props.errors.length !== 0 || this.state.username !== this.state.usernameTwo) {
-      this.setState({errorFlag: true, usernameTwo: ""});
+      this.setState({usernameTwo: ""});
 
     }
     this.props.createAccount(user).then(() => this.props.router.push('/'));

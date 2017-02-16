@@ -20,7 +20,6 @@ class NavBar extends React.Component {
   }
 
   redirectToHome() {
-    debugger
     this.props.router.push('/');
   }
 
@@ -32,8 +31,12 @@ class NavBar extends React.Component {
   render(){
     return (
       <div className="navbar">
-        <img className='logo' onClick={this.redirectToHome} src={window.images.logoIcon}/>
+        <div className="nav-grp left">
+        <img className='logo' onClick={this.redirectToHome} src={window.images.negLogo}/>
           <input type='text' className='search-bar' placeholder={this.currentUser.username}/>
+        </div>
+
+        <div className="nav-grp right">
           <span className='profile-top-btn'>
             <img className='profile-micro'/>
               <label>{this.currentUser.fname}</label>
@@ -45,6 +48,7 @@ class NavBar extends React.Component {
           <img className='messages-top-btn'></img>
           <img className='global-top-btn'></img>
           <button className="logout-button" onClick={this.props.signOut}>Log Out</button>
+        </div>
       </div>
     );
   }

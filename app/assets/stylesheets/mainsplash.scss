@@ -146,29 +146,85 @@ body {
 
   .error {
     background-color: #be4b49;
-    border: 0;
     border-radius: 2px;
     box-shadow: 0 0 0 1px rgba(139, 3, 0, .75), 0 1px 10px rgba(0, 0, 0, .35);
     color: #fff;
     position: relative;
-
+    padding: 7px;
+    * {
+      color: white;
+    }
   }
 
   .e0 {
-    top: 160px;
+    top: 150px;
+    right: 210px;
+
+    .tt-nib {
+      background-color: inherit;
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      z-index: 3;
+      left: 186px;
+      bottom: 10px;
+      transform: rotate(45deg);
+      border-top: 0.5px rgba(139, 3, 0, 0.75) solid;
+      border-right: 0.5px rgba(139, 3, 0, 0.75) solid;
+    }
   }
 
   .e1 {
-    top: 60px;
+    top: 50px;
+    left: 10px;
+
+    .tt-nib {
+      background-color: inherit;
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      z-index: 3;
+      left: 80px;
+      top: 26px;
+      transform: rotate(135deg);
+      border-top: 0.5px rgba(139, 3, 0, 0.75) solid;
+      border-right: 0.5px rgba(139, 3, 0, 0.75) solid;
+    }
   }
 
   .e2 {
-    top: 60px;
-    right: -140px;
+    top: 50px;
+    left: 210px;
+
+    .tt-nib {
+      background-color: inherit;
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      z-index: 3;
+      left: 80px;
+      top: 26px;
+      transform: rotate(135deg);
+      border-top: 0.5px rgba(139, 3, 0, 0.75) solid;
+      border-right: 0.5px rgba(139, 3, 0, 0.75) solid;
+    }
   }
 
   .e3 {
-    top: 260px;
+    top: 300px;
+
+    .tt-nib {
+      background-color: inherit;
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      z-index: 3;
+      left: 80px;
+      bottom: 25px;
+      transform: rotate(-45deg);
+      border-top: 0.5px rgba(139, 3, 0, 0.75) solid;
+      border-right: 0.5px rgba(139, 3, 0, 0.75) solid;
+    }
   }
 
 
@@ -176,7 +232,6 @@ body {
     display: flex;
     flex-direction: column;
     width: 400px;
-
 
 
   * {
@@ -330,7 +385,6 @@ body {
     .signup-button {
       color: white;
       background: linear-gradient(#67ae55, #578843);
-      background-color: #69a74e;
       box-shadow: inset 0 1px 1px #a4e388;
       border: 1px solid;
       border-color: #3b6e22 #3b6e22 #2c5115;
@@ -345,7 +399,8 @@ body {
     }
 
     .signup-button:active {
-      border: red solid 5px;
+    margin-top: 12px;
+    background: #69a74e;
     }
   }
 }

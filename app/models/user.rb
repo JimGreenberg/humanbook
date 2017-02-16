@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer          not null, primary key
+#  username        :string           not null
+#  fname           :string           not null
+#  lname           :string           not null
+#  password_digest :string           not null
+#  session_token   :string           not null
+#  cover_photo     :string
+#  profile_pic     :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 class User < ApplicationRecord
   before_validation :ensure_session_token
   validates :username, :fname, :lname, :password_digest, presence: true
@@ -5,6 +21,14 @@ class User < ApplicationRecord
   validates :password, length: {minimum: 6, allow_nil: true}
 
   attr_reader :password
+
+  has_many :authored_posts,
+    class_name: :Post,
+    foreign_key: :author_id
+
+  has_many :wall_posts,
+    class_name: :Post,
+    foreign_key: :wall_user_id
 
   has_many :in_friendships,
     class_name: :Friendship,

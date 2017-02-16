@@ -56,7 +56,7 @@ class MainSplash extends React.Component {
               </li>
             </ul>
           </div>
-          
+
           <SignUpForm />
         </div>
       </div>
