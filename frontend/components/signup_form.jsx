@@ -1,10 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router';
+import {Link, withRouter} from 'react-router';
 import {signUp} from '../actions/session_actions';
 import Tooltip from './tooltip';
 
 const mapStateToProps = state => ({
+  currentUser: state.session.currentUser,
   errors: state.session.errors
 });
 
@@ -25,9 +26,10 @@ class SignUpForm extends React.Component {
       month: "",
       year: "",
       sex: ""
-
     };
     this.tooltipVisible = false;
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.update = this.update.bind(this);
   }
 
   update(field) {
@@ -58,9 +60,30 @@ class SignUpForm extends React.Component {
     return arr;
   }
 
+  placeTooltip(message, className, buttonText="") {
+    if (this.state.tooltipVisible) {
+    return (
+      <div className='tooltip' >
+        <Tooltip
+          tooltipMessage={message}
+          tooltipClassName={className}
+          buttonText={buttonText}
+          callback={() => this.setState({ tooltipVisible: !this.state.tooltipVisible })}/>
+      </div>
+    );
+}}
+
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
+        <div>
+          <Tooltip
+            className='errors'
+            tooltipMessage={this.props.errors}
+            tooltipClassName={ this.props.errors.length > 1 ? "tooltip" : "hidden" }
+            buttonText=""
+          />
+        </div>
       <div className='signup-wrapper'>
         <h1>Sign Up</h1>
         <h2>It's free and always will be.</h2>
@@ -127,12 +150,7 @@ class SignUpForm extends React.Component {
                 onClick={() => this.setState({ tooltipVisible: !this.state.tooltipVisible })}>
                   Why do I need to provide my birthday?
                 </small>
-                  <Tooltip
-                    tooltipMessage="it's so we know how old you are"
-                    tooltipClassName={ this.state.tooltipVisible ? "tooltip" : "hidden" }
-                    buttonText="Okay"
-                    callback={() => this.setState({ tooltipVisible: !this.state.tooltipVisible })}
-                  />
+                {this.placeTooltip("it's so we know how old you are", "birthday-tt", "Okay")}
             </div>
             <div className='tuple-wrapper'>
             <label>
@@ -168,4 +186,4 @@ class SignUpForm extends React.Component {
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignUpForm));

@@ -50,7 +50,7 @@ class SessionForm extends React.Component {
   	}
 
   handleSubmit(event) {
-
+    return () =>
     event.preventDefault();
     const user = this.state;
     this.props.signIn(user).then(() => this.props.router.push('/'));

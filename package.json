@@ -1,7 +1,7 @@
 {
-  "name": "benchbnb",
+  "name": "humanbook",
   "version": "1.0.0",
-  "description": "This README would normally document whatever steps are necessary to get the application up and running.",
+  "description": "humanbook: social media for people",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -16,15 +16,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JimGreenberg/BenchBnB.git"
+    "url": "git+https://github.com/JimGreenberg/facebook-clone-fullstack.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/JimGreenberg/BenchBnB/issues"
+    "url": "https://github.com/JimGreenberg/facebook-clone-fullstack/issues"
   },
-  "homepage": "https://github.com/JimGreenberg/BenchBnB#readme",
+  "homepage": "https://github.com/JimGreenberg/facebook-clone-fullstack#readme",
   "dependencies": {
     "babel-core": "^6.22.1",
     "babel-loader": "^6.2.10",

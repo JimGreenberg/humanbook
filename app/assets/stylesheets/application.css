@@ -60,17 +60,12 @@
  }
  .hidden {
    opacity: 0;
+   visibility: hidden;
    position: fixed;
    user-select: none;
 
  }
- .tooltip {
-   z-index: 2;
-   position: relative;
-   user-select: none;
-
- }
-
+ 
  button {
    user-select: none;
  }

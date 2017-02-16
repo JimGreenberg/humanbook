@@ -20,6 +20,7 @@ class NavBar extends React.Component {
   }
 
   redirectToHome() {
+    debugger
     this.props.router.push('/');
   }
 

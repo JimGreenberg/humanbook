@@ -8,7 +8,8 @@ import Newsfeed from './newsfeed_container'
 
 
 const mapStateToProps = ({session}) => ({
-  currentUser: session.currentUser
+  currentUser: session.currentUser,
+  errors: session.errors
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -60,6 +61,9 @@ class MainSplash extends React.Component {
       </div>
     );
   }
+  // <div className='errors'>
+  //   {this.props.errors}
+  // </div>
 
   render() {
     return(

@@ -60,7 +60,6 @@ body {
   .form-wrapper {
     display: flex;
     flex-direction: row;
-    // justify-content: flex-start;
     padding: 10px 145px;
     align-items: flex-start;
   }
@@ -175,34 +174,6 @@ body {
     line-height: 134%;
   }
 
-  .tooltip {
-    user-select: none;
-    width: 200px;
-    transition: opacity 400ms;
-    padding: 10px;
-    font-size: 12px;
-    font-weight: 600;
-    height: auto;
-    position: fixed;
-    bottom: 122px;
-    right: 338px;
-    background: white;
-    border: 1px solid rgba(0, 0, 0, .45);
-    border-bottom: 1px solid #666;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, .3);
-
-    .tt-nib {
-      background: white;
-      width: 10px;
-      height: 10px;
-      transform: rotate(45deg);
-      position: relative;
-      bottom: 35px;
-      left: 205px;
-      border-top: inherit;
-      border-right: inherit;
-    }}
-
   .dropdown {
     font-size: 13px;
     border: 1px solid #bdc7d8;
@@ -240,6 +211,80 @@ body {
 
   .dob-wrapper {
     display: flex;
+
+    @keyframes fade {
+      0% {opacity:0;}
+      100% {opacity:100;}
+    }
+    .tooltip {
+      position: absolute;
+      animation: fade 500ms;
+      animation-timing-function: ease;
+
+    .birthday-tt {
+      position: relative;
+      width: 200px;
+      right: 610px;
+      bottom: 42px;
+      -webkit-user-select: none;
+      transition: opacity 400ms;
+      font-size: 12px;
+      font-weight: 600;
+      height: auto;
+      border: 1px solid rgba(0, 0, 0, .45);
+      border-bottom: 1px solid #666;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, .3);
+      background: white;
+      z-index: 2;
+
+
+      .tt-content {
+        padding: 10px;
+      }
+
+      .underlay {
+        position: relative;
+        background: #f2f2f2;
+        padding: 6px 0;
+        width: 100%;
+        height: 24px;
+        top: 21px;
+        border-top: 1px solid #ccc;
+      }
+      .tt-button {
+        background-color: #4267b2;
+        position: relative;
+        left: 70%;
+        padding: 0 6px;
+        border-radius: 2px;
+        width: 44px;
+        height: 24px;
+        color: white;
+        font-size: 12px;
+        line-height: 24px;
+        margin: 0;
+        text-align: center;
+      }
+
+      .tt-button:hover {
+        background-color: #365899;
+      }
+
+      .tt-button:active {
+        background-color: #29487d;
+      }
+
+      .tt-nib {
+        background: white;
+        width: 10px;
+        height: 10px;
+        transform: rotate(45deg);
+        position: relative;
+        bottom: 70px !important;
+        right: -195px !important;
+        border-top: inherit;
+        border-right: inherit;
+      }}}
   }
 
   .question {
@@ -247,6 +292,11 @@ body {
     padding: 0 10px;
     margin: 0;
     color: #3b5998;
+  }
+
+  .question:hover {
+    text-decoration: underline;
+    cursor: pointer;
   }
 
     .signup-button {
