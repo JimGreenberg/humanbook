@@ -20,8 +20,6 @@ class Newsfeed extends React.Component {
     return (
       <div>
         <NavBar />
-        <PostForm wallUserId={this.props.currentUserId} />
-
         <PostList />
       </div>
     );

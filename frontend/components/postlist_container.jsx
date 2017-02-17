@@ -28,13 +28,12 @@ class PostList extends React.Component {
   render() {
     return (
       <ul className='postlist-wrapper'>
-        <li className=''>
-          <PostForm wallUserId={this.props.currentUserId} />
-        </li>
-
         {this.props.posts.map( post => {
           return <PostIndexItem key={this.props.posts.indexOf(post)} post={post}/>;
         })}
+        <li className='post-item-wrapper'>
+          <PostForm wallUserId={this.props.currentUserId} />
+        </li>
       </ul>
     );
   }
