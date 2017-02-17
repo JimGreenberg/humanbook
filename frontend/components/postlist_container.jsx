@@ -10,7 +10,7 @@ import PostForm from './post_form';
 
 
 const mapStateToProps = state => ({
-  currentUser: state.session.currentUser,
+  currentUserId: state.session.currentUser.id,
   posts: Object.keys(state.posts).map(id => state.posts[id])
 
 });
