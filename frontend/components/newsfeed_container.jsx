@@ -3,6 +3,7 @@ import {router} from 'react-router';
 import {connect} from 'react-redux';
 import {signOut} from '../actions/session_actions';
 import NavBar from './navbar_container';
+import PostList from './postlist_container';
 
 const mapStateToProps = state => ({
   currentUser: state.session.currentUser
@@ -15,7 +16,10 @@ const mapDispatchToProps = dispatch => ({
 class Newsfeed extends React.Component {
   render() {
     return (
-      <NavBar />
+      <div>
+        <NavBar />
+        <PostList />
+      </div>
     );
   }
 }

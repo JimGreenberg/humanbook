@@ -70,10 +70,18 @@
    0% {opacity:0;}
    100% {opacity:100;}
  }
- .tooltip {
-   position: absolute;
+ .attache-wrapper {
    animation: fade 500ms;
    animation-timing-function: ease;
+   width: auto;
+   height: auto;
+   margin: 5px 10px 5px 0;
+   font-size: 18px;
+   position: relative;
+ }
+
+ .tooltip {
+   position: absolute;
  }
  button {
    user-select: none;

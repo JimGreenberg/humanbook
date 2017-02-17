@@ -2,7 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link, withRouter} from 'react-router';
 import {signUp} from '../actions/session_actions';
-import Tooltip from './tooltip';
+import {placeTooltip} from './tooltip';
+import {receiveErrors} from '../actions/session_actions';
 
 const mapStateToProps = state => ({
   currentUser: state.session.currentUser,
@@ -10,7 +11,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  createAccount: user => dispatch(signUp(user))
+  createAccount: user => dispatch(signUp(user)),
+  receiveErrors: err => dispatch(receiveErrors(err))
 });
 
 class SignUpForm extends React.Component {
@@ -23,25 +25,43 @@ class SignUpForm extends React.Component {
       usernameTwo: "",
       password: "",
       sex: "",
-      bdayFlag: false
+      bdayFlag: false,
+      fnameFlag: false,
+      lnameFlag: false,
+      usernameFlag: false,
+      usernameTwoFlag: false,
+      passwordFlag: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
   }
 
+  componentDidUpdate(prevProps) {
+    Object.keys(this.props.errors).forEach(error => {
+      if (prevProps.errors[error] !== this.props.errors[error]) {
+        let flag = `${error}Flag`;
+        this.setState({[flag]: !!this.props.errors[error]});
+      }
+    });
+  }
+
   update(field) {
+      let flag = `${field}Flag`;
       return event => this.setState({
-        [field]: event.currentTarget.value
+        [field]: event.currentTarget.value,
+        [flag]: false
       });
     }
 
   handleSubmit(event) {
     event.preventDefault();
     const user = this.state;
-    debugger
-    if (this.props.errors.length !== 0 || this.state.username !== this.state.usernameTwo) {
-      this.setState({errorFlag: true, usernameTwo: ""});
 
+    if (this.state.username !== this.state.usernameTwo) {
+      this.props.receiveErrors({usernameTwo: "Your re-entered username must match"});
+    }
+    if (this.props.errors.length !== 0) {
+      this.setState({usernameTwo: ""});
     }
     this.props.createAccount(user).then(() => this.props.router.push('/'));
   }
@@ -62,71 +82,60 @@ class SignUpForm extends React.Component {
     return arr;
   }
 
-  defaultCallback() {
-    this.setState({[visibleFlag]: !visibleFlag});
-  }
-
-  placeTooltip(message, className, id='none', visibleFlag=true, buttonText="", callback=this.defaultCallback) {
-    if (visibleFlag) {
-    return (
-      <div className='tooltip' >
-        <Tooltip
-          id={id}
-          tooltipMessage={message}
-          tooltipClassName={className}
-          buttonText={buttonText}
-          callback={callback.bind(this)}/>
-      </div>
-    );
-}}
-
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <div className='error-wrapper'>
-          {this.props.errors.map(
-            (error) => (this.placeTooltip(error, "error", this.props.errors.indexOf(error)))
-          )}
-        </div>
+
       <div className='signup-wrapper'>
         <h1>Sign Up</h1>
         <h2>It's free and always will be.</h2>
           <div className='tuple-wrapper'>
+            <div className='attache-wrapper'>
             <input
               type="text"
               value={this.state.fname}
               className="field"
               placeholder='First Name'
               onChange={this.update("fname")}/>
-
+            {placeTooltip(this.props.errors.fname, "error", "fname", this.state.fnameFlag)}
+</div>
+<div className='attache-wrapper'>
             <input
               type="text"
               value={this.state.lname}
               className="field"
               placeholder='Last Name'
               onChange={this.update("lname")}/>
+            {placeTooltip(this.props.errors.lname, "error", "lname", this.state.lnameFlag)}
           </div>
-
+          </div>
+          <div className='attache-wrapper'>
           <input
             type="username"
             value={this.state.username}
             className="field"
             placeholder='Mobile number or email'
             onChange={this.update("username")}/>
-
+          {placeTooltip(this.props.errors.username, "error", "username", this.state.usernameFlag)}
+        </div>
+        <div className='attache-wrapper'>
           <input
             type="username"
             value={this.state.usernameTwo}
             className="field"
             placeholder='Re-enter mobile number or email'
             onChange={this.update("usernameTwo")}/>
-
+          {placeTooltip(this.props.errors.usernameTwo, "error", "usernameTwo", this.state.usernameTwoFlag)}
+        </div>
+        <div className='attache-wrapper'>
             <input
               type="password"
               value={this.state.password}
               className="field"
               placeholder='New password'
               onChange={this.update("password")}/>
+            {placeTooltip(this.props.errors.password, "error", "password", this.state.passwordFlag)}
+          </div>
             <label className='birthday'>Birthday</label>
             <div className='dob-wrapper'>
               <select
@@ -152,12 +161,14 @@ class SignUpForm extends React.Component {
                 <option value="0">Year</option>
                 {this.yearHelper()}
               </select>
+              <div className='attache-wrapper'>
               <small
                 className='question tooltip-container'
                 onClick={() => this.setState({ bdayFlag: !this.state.bdayFlag })}>
                   Why do I need to provide my birthday?
                 </small>
-                {this.placeTooltip("it's so we know how old you are", "birthday-tt",'key' ,this.state.bdayFlag, "Okay")}
+                {placeTooltip("it's so we know how old you are", "birthday-tt",'key' ,this.state.bdayFlag, "Okay")}
+            </div>
             </div>
             <div className='tuple-wrapper'>
             <label>

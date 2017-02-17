@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import {signIn, signUp, signOut} from '../actions/session_actions';
-import Tooltip from './tooltip';
+import {placeTooltip} from './tooltip';
 
 
 const mapStateToProps = (state, ownProps) => ({
@@ -19,11 +19,18 @@ class SessionForm extends React.Component {
     super(props);
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      sessionFlag: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
     this.disabled = false;
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.errors.session !== this.props.errors.session) {
+      this.setState({sessionFlag: !!this.props.errors.session});
+    }
   }
 
   logInAs(username, password) {
@@ -50,16 +57,18 @@ class SessionForm extends React.Component {
   	}
 
   handleSubmit(event) {
-    return () =>
     event.preventDefault();
     const user = this.state;
+    let enteredPass = this.state.password; //reset password field on login attempt
+    user.password=enteredPass;
+    this.setState({password: ""});
     this.props.signIn(user).then(() => this.props.router.push('/'));
   }
 
   render() {
-
     return(
         <form onSubmit={this.handleSubmit}>
+
           <fieldset disabled={this.disabled}>
           <div className="form-wrapper">
 
@@ -71,6 +80,7 @@ class SessionForm extends React.Component {
               value={this.state.username}
               className="field"
               onChange={this.update("username")}/>
+            {placeTooltip(this.props.errors.session, "error", "session", this.state.sessionFlag)}
             </div>
 
             <div className="field-grp">
