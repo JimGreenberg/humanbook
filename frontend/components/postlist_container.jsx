@@ -31,9 +31,7 @@ class PostList extends React.Component {
         {this.props.posts.map( post => {
           return <PostIndexItem key={this.props.posts.indexOf(post)} post={post}/>;
         })}
-        <li className='post-item-wrapper'>
-          <PostForm wallUserId={this.props.currentUserId} />
-        </li>
+        <PostForm wallUserId={this.props.currentUserId} />
       </ul>
     );
   }
