@@ -23,7 +23,6 @@ class SessionForm extends React.Component {
       sessionFlag: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.update = this.update.bind(this);
     this.disabled = false;
   }
 

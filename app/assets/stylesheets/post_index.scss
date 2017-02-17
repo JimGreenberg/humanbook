@@ -2,8 +2,22 @@
   margin: auto;
   height: auto;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: center;
+
+  .post-form-wrapper {
+    .form {
+      textarea {
+        
+      }
+    }
+    .underlay {
+      .submit {
+
+      }
+    }
+  }
+
 
 .post-item-wrapper {
   background: white;

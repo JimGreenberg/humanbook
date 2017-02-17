@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link, hashHistory } from 'react-router';
+import {Link, hashHistory } from 'react-router';
 import {connect} from 'react';
-import newPostForm from './newPostForm';
 
 export default class PostIndexItem extends React.Component {
   constructor(props) {
