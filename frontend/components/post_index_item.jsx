@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, hashHistory } from 'react-router';
 import {connect} from 'react';
-import newPostForm from './newPostForm';
 
 export default class PostIndexItem extends React.Component {
   constructor(props) {
@@ -9,7 +8,9 @@ export default class PostIndexItem extends React.Component {
   }
 
   render() {
+    debugger
     const {body, author, wall_owner, author_id, wall_user_id, timestamp} = this.props.post;
+    if (!author) {return null;}
     const postToLabel = author_id === wall_user_id ? 'hidden' : 'name-label';
     return(
       <li className='post-item-wrapper'>
