@@ -4,9 +4,10 @@ import {connect} from 'react-redux';
 import {signOut} from '../actions/session_actions';
 import NavBar from './navbar_container';
 import PostList from './postlist_container';
+import PostForm from './post_form';
 
 const mapStateToProps = state => ({
-  currentUser: state.session.currentUser
+  currentUserId: state.session.currentUser.id
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -15,6 +16,7 @@ const mapDispatchToProps = dispatch => ({
 
 class Newsfeed extends React.Component {
   render() {
+
     return (
       <div>
         <NavBar />
