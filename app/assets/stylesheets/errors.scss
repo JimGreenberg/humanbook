@@ -1,0 +1,118 @@
+.error {
+  z-index: 2;
+  background-color: #be4b49;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(139, 3, 0, .75), 0 1px 10px rgba(0, 0, 0, .35);
+  color: #fff;
+  padding: 7px;
+  position: relative;
+  font-size: 14px;
+
+  text-align: center;
+  width: 200px;
+  * {
+    color: white;
+  }
+}
+
+.session {
+  left: 50%;
+  top: 130%;
+  .tt-nib {
+    background-color: inherit;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    z-index: 3;
+    left: 90%;
+    bottom: 90%;
+    transform: rotate(-45deg);
+    border-top: 0.5px rgba(139, 3, 0, 0.75) solid;
+    border-right: 0.5px rgba(139, 3, 0, 0.75) solid;
+  }
+}
+
+.username {
+  right: 105%;
+  bottom: 20%;
+  .tt-nib {
+    background-color: inherit;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    z-index: 3;
+    left: 98%;
+    bottom: 30%;
+    transform: rotate(45deg);
+    border-top: 0.5px rgba(139, 3, 0, 0.75) solid;
+    border-right: 0.5px rgba(139, 3, 0, 0.75) solid;
+  }
+}
+
+.fname {
+  bottom: 140%;
+  width: 80%;
+
+  .tt-nib {
+    background-color: inherit;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    z-index: 3;
+    left: 30%;
+    top: 82%;
+    transform: rotate(135deg);
+    border-top: 0.5px rgba(139, 3, 0, 0.75) solid;
+    border-right: 0.5px rgba(139, 3, 0, 0.75) solid;
+  }
+}
+
+.lname {
+  bottom: 140%;
+  width: 80%;
+  .tt-nib {
+    background-color: inherit;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    z-index: 3;
+    left: 30%;
+    top: 82%;
+    transform: rotate(135deg);
+    border-top: 0.5px rgba(139, 3, 0, 0.75) solid;
+    border-right: 0.5px rgba(139, 3, 0, 0.75) solid;
+  }
+}
+
+.password {
+  top: 140%;
+  .tt-nib {
+    background-color: inherit;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    z-index: 3;
+    left: 60%;
+    bottom: 88%;
+    transform: rotate(-45deg);
+    border-top: 0.5px rgba(139, 3, 0, 0.75) solid;
+    border-right: 0.5px rgba(139, 3, 0, 0.75) solid;
+  }
+}
+
+.usernameTwo {
+  right: 105%;
+  top: 10%;
+  .tt-nib {
+    background-color: inherit;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    z-index: 3;
+    left: 98%;
+    bottom: 50%;
+    transform: rotate(45deg);
+    border-top: 0.5px rgba(139, 3, 0, 0.75) solid;
+    border-right: 0.5px rgba(139, 3, 0, 0.75) solid;
+  }
+}

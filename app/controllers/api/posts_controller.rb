@@ -1,8 +1,20 @@
 class Api::PostsController < ApplicationController
 
   def show
-    @post = Post.find(params.id)
-    render json: {post: @post}
+    
+    @post = Post.find(params[:id])
+    render :show
+  end
+
+  def newsfeed
+
+    @posts = current_user.newsfeed_posts
+    render :index
+  end
+
+  def timeline
+    @posts = wall_posts(params[:user_id])
+    render :index
   end
 
   def create

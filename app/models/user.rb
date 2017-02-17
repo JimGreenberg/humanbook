@@ -16,9 +16,10 @@
 
 class User < ApplicationRecord
   before_validation :ensure_session_token
-  validates :username, :fname, :lname, :password_digest, presence: true
-  validates :username, uniqueness: true
-  validates :password, length: {minimum: 6, allow_nil: true}
+  validates :fname, :lname, presence: {message: "What's your name?"}
+  validates :username, uniqueness: {message: 'That username is taken, please try another'}, presence: {message: "You need to enter a username"}
+  validates :password, length: {minimum: 6, allow_nil: true, message: "Enter a password at least 6 characters long"}
+  validates :password_digest, presence: true
 
   attr_reader :password
 
@@ -54,6 +55,10 @@ def friends
   User
   .joins("INNER JOIN friendships ON friender_id = users.id OR receiver_id = users.id")
   .where("users.id != ? AND (friender_id = ? OR receiver_id = ?)", self.id, self.id, self.id)
+end
+
+def newsfeed_posts
+  Post.where(wall_owner: friends.to_a + [self])
 end
 
 #---------------#

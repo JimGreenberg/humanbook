@@ -2,14 +2,16 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import {signOut} from '../actions/session_actions';
-import SessionForm from './session_form'
-import SignUpForm from './signup_form'
-import Newsfeed from './newsfeed_container'
+import SessionForm from './session_form';
+import SignUpForm from './signup_form';
+import Newsfeed from './newsfeed_container';
+import {placeTooltip} from './tooltip';
 
 
-const mapStateToProps = ({session}) => ({
-  currentUser: session.currentUser,
-  errors: session.errors
+const mapStateToProps = (state) => ({
+  currentUser: state.session.currentUser,
+  errors: state.session.errors
+
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -17,6 +19,8 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class MainSplash extends React.Component {
+
+
 
   isSignedIn() {
     return !!this.props.currentUser;

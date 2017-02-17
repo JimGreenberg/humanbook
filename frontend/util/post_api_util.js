@@ -1,15 +1,15 @@
 
-export const fetchNewsfeed = (id) => (
+export const fetchNewsfeed = () => (
   $.ajax({
     method: 'GET',
-    url: 'api/posts'
+    url: 'api/newsfeed'
   })
 );
 
-export const fetchTimeline = (id) => (
+export const fetchTimeline = () => (
   $.ajax({
     method: 'GET',
-    url: 'api/posts'
+    url: 'api/timeline'
   })
 );
 

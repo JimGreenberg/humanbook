@@ -1,1 +1,1 @@
-json.merge! post.attributes
+json.partial! 'api/posts/post', post: @post

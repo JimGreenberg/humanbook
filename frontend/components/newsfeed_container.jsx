@@ -16,8 +16,10 @@ const mapDispatchToProps = dispatch => ({
 class Newsfeed extends React.Component {
   render() {
     return (
-      <NavBar />
-
+      <div>
+        <NavBar />
+        <PostList />
+      </div>
     );
   }
 }

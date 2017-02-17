@@ -1,3 +1,4 @@
+
 # == Schema Information
 #
 # Table name: posts
@@ -21,5 +22,8 @@ class Post < ApplicationRecord
     class_name: :User,
     foreign_key: :wall_user_id
 
+  def wall_posts(user)
+    Post.where(wall_owner: user.id)
+  end
 
 end
