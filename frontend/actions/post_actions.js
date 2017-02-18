@@ -43,5 +43,5 @@ export const createPost = post => (
 );
 
 export const updatePost = post => (
-  dispatch => (PostApiUtil.updatePost(post).then(post => dispatch(receivePost(post))).then(hashHistory.push('/')))
+  dispatch => (PostApiUtil.updatePost(post).then(post => dispatch(receivePost(post))))//.then(hashHistory.push('/')))
 );

@@ -18,7 +18,6 @@ class PostForm extends React.Component {
     super(props);
     this.state = {body: "", author_id: this.props.currentUserId, wall_user_id: this.props.wallUserId};
     this.handleSubmit = this.handleSubmit.bind(this);
-
   }
 
   update() {
@@ -27,9 +26,9 @@ class PostForm extends React.Component {
       };
     }
 
-  handleSubmit(event) {
+  handleSubmit(event, action) {
     event.preventDefault();
-    this.props.createPost(this.state).then(() => this.setState({body: ""}))
+    this.props.createPost(this.state).then(() => this.setState({body: ""}));
   }
 
   render () {
@@ -37,7 +36,6 @@ class PostForm extends React.Component {
       <form className='post-item-wrapper' onSubmit={this.handleSubmit}>
         <div className='form-main'>
           <textarea onChange={this.update()} value={this.state.body}>
-
           </textarea>
         </div>
         <div className="underlay">

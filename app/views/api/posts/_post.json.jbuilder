@@ -1,4 +1,5 @@
 json.body post.body
+json.id post.id
 json.wall_user_id post.wall_user_id
 json.author_id post.author_id
 json.timestamp post.updated_at
