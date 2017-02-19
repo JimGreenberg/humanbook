@@ -22,16 +22,13 @@ export const receivePost = post => {
   post
 });};
 
-export const forceView = id => {
-  
-}
 
 export const fetchNewsfeed = () => (
   dispatch => (PostApiUtil.fetchNewsfeed().then(posts => dispatch(receiveAllPosts(posts))))
 );
 
-export const fetchTimeline = () => (
-  dispatch => (PostApiUtil.fetchTimeline().then(posts => dispatch(receiveAllPosts(posts))))
+export const fetchTimeline = id => (
+  dispatch => (PostApiUtil.fetchTimeline(id).then(posts => dispatch(receiveAllPosts(posts))))
 );
 
 export const deletePost = id => (

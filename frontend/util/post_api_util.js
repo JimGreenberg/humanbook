@@ -6,10 +6,10 @@ export const fetchNewsfeed = () => (
   })
 );
 
-export const fetchTimeline = () => (
+export const fetchTimeline = id => (
   $.ajax({
     method: 'GET',
-    url: 'api/timeline'
+    url: `api/timeline/${id}`
   })
 );
 

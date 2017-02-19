@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :posts, only: [:create, :show, :update, :destroy]
     match '/newsfeed', to: 'posts#newsfeed', via: :get
-    match '/timeline', to: 'posts#timeline', via: :get
+    match '/timeline/:id', to: 'posts#timeline', via: :get
   end
   root 'static_pages#root'
 end

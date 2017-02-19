@@ -11,7 +11,8 @@ class Api::PostsController < ApplicationController
   end
 
   def timeline
-    @posts = wall_posts(params[:user_id])
+    user = User.find(params[:id])
+    @posts = user.wall_posts
     render :index
   end
 
