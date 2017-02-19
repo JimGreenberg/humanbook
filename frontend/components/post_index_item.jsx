@@ -1,10 +1,32 @@
 import React from 'react';
-import {Link, hashHistory } from 'react-router';
+import {Link} from 'react-router';
 import {connect} from 'react';
+import PostForm from './post_form';
 
 export default class PostIndexItem extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {editing: false};
+  }
+
+  handleDelete() {
+    this.props.deletePost(this.props.post.id).then(() => null);
+  }
+
+  handleEdit() {
+    this.setState({editing: !this.state.editing});
+  }
+
+  viewBody() {
+    return this.props.post.body;
+  }
+
+  editBody() {
+    return <PostForm formType='edit' handleEdit={this.handleEdit.bind(this)} post={this.props.post} />;
+  }
+
+  bodyMaker() {
+    return this.state.editing ? this.editBody() : this.viewBody();
   }
 
   render() {
@@ -26,7 +48,9 @@ export default class PostIndexItem extends React.Component {
           </div>
           </div>
         <br/>
-        <p className='post-body'>{body}</p>
+        <div className='post-body'>{this.bodyMaker()}</div>
+        <button onClick={this.handleEdit.bind(this)}>Edit</button>
+        <button onClick={this.handleDelete.bind(this)}>Delete</button>
       </li>
     );
 

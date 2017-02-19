@@ -5,18 +5,19 @@
   flex-direction: column-reverse;
   align-items: center;
 
-  .post-form-wrapper {
-    .form {
-      textarea {
-        
-      }
-    }
-    .underlay {
-      .submit {
+  textarea {
+    border: 5px green solid;
+  }
+  .form {
+  }
+  .underlay {
+    height: 10px;
+    width: auto;
+    .submit {
 
-      }
     }
   }
+
 
 
 .post-item-wrapper {

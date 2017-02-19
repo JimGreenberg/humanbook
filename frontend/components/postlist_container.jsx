@@ -3,11 +3,9 @@ import {withRouter} from 'react-router';
 import {connect} from 'react-redux';
 import {signOut} from '../actions/session_actions';
 import Tooltip from './tooltip';
-import {fetchNewsfeed} from '../actions/post_actions';
+import {fetchNewsfeed, updatePost, deletePost} from '../actions/post_actions';
 import PostIndexItem from './post_index_item';
 import PostForm from './post_form';
-
-
 
 const mapStateToProps = state => ({
   currentUserId: state.session.currentUser.id,
@@ -16,7 +14,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchNewsfeed: () => dispatch(fetchNewsfeed())
+  fetchNewsfeed: () => dispatch(fetchNewsfeed()),
+  deletePost: id => dispatch(deletePost(id))
 });
 
 class PostList extends React.Component {
@@ -29,9 +28,14 @@ class PostList extends React.Component {
     return (
       <ul className='postlist-wrapper'>
         {this.props.posts.map( post => {
-          return <PostIndexItem key={this.props.posts.indexOf(post)} post={post}/>;
+
+          return <PostIndexItem
+            key={this.props.posts.indexOf(post)}
+            post={post}
+            deletePost={this.props.deletePost}/>;
         })}
-        <PostForm wallUserId={this.props.currentUserId} />
+
+        <PostForm formType='new' wallUserId={this.props.currentUserId} />
       </ul>
     );
   }
