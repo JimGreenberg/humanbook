@@ -13,7 +13,7 @@ export default class PostIndexItem extends React.Component {
     this.props.deletePost(this.props.post.id).then(() => null);
   }
 
-  handleUpdate() {
+  handleEdit() {
     this.setState({editing: !this.state.editing});
   }
 
@@ -22,7 +22,7 @@ export default class PostIndexItem extends React.Component {
   }
 
   editBody() {
-    return <PostForm updatePost={this.props.updatePost} />;
+    return <PostForm formType='edit' handleEdit={this.handleEdit.bind(this)} post={this.props.post} />;
   }
 
   bodyMaker() {
@@ -48,8 +48,8 @@ export default class PostIndexItem extends React.Component {
           </div>
           </div>
         <br/>
-        <p className='post-body'>{this.bodyMaker()}</p>
-        <button onClick={this.handleUpdate.bind(this)}>Edit</button>
+        <div className='post-body'>{this.bodyMaker()}</div>
+        <button onClick={this.handleEdit.bind(this)}>Edit</button>
         <button onClick={this.handleDelete.bind(this)}>Delete</button>
       </li>
     );

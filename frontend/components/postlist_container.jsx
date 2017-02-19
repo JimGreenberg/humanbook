@@ -15,7 +15,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchNewsfeed: () => dispatch(fetchNewsfeed()),
-  updatePost: post => dispatch(updatePost(post)),
   deletePost: id => dispatch(deletePost(id))
 });
 
@@ -32,11 +31,11 @@ class PostList extends React.Component {
 
           return <PostIndexItem
             key={this.props.posts.indexOf(post)}
-            post={post} deletePost={this.props.deletePost}
-            updatePost={this.props.updatePost}/>;
+            post={post}
+            deletePost={this.props.deletePost}/>;
         })}
 
-        <PostForm wallUserId={this.props.currentUserId} />
+        <PostForm formType='new' wallUserId={this.props.currentUserId} />
       </ul>
     );
   }
