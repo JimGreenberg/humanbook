@@ -31,7 +31,7 @@ class User < ApplicationRecord
     class_name: :Post,
     foreign_key: :author_id
 
-  has_many :wall_posts,
+  has_many :wall_posts, -> {order(updated_at: :asc)},
     class_name: :Post,
     foreign_key: :wall_user_id
 
@@ -58,7 +58,7 @@ def friends
 end
 
 def newsfeed_posts
-  Post.where(wall_owner: friends.to_a + [self])
+  Post.where(wall_owner: friends.to_a + [self]).order(updated_at: :asc)
 end
 
 #---------------#
