@@ -1,0 +1,56 @@
+.top-wrapper{
+  width: 851px;
+  height: 358px;
+  border: yellow 3px solid;
+  margin: auto;
+.cover-photo{
+  height: 315px;
+  width: 851px;
+  border: red 2px solid;
+}
+.pp-floater{
+  display: flex;
+  position: relative;
+  bottom: 44%;
+  left: 15px;
+  height: 170px;
+  border: blue 2px solid;
+  .profile-pic{
+    position: absolute;
+    width: 168px;
+    height: 168px;
+    border: purple 2px solid;
+  }
+  .name{
+    position: absolute;
+    width: 100px;
+    height: 20px;
+    top: 70%;
+    left: 25%;
+    border: 2px solid orange;
+  }
+}
+.profile-tabs{}
+}
+.profile-content-wrapper{
+  width: 851px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  border: 3px solid purple;
+
+.sidecards-wrapper{
+  .intro-wrapper{
+    background: white;
+    height: 275px;
+    width: 323px;
+    margin: 10px;
+  }
+  .friends-side-wrapper{
+    background: white;
+    height: 275px;
+    width: 323px;
+    margin: 10px;
+  }
+}
+}
