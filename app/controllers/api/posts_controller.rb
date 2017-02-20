@@ -1,12 +1,13 @@
 class Api::PostsController < ApplicationController
 
   def show
+    debugger
     @post = Post.find(params[:id])
     render :show
   end
 
   def newsfeed
-    @posts = current_user.newsfeed_posts
+    @posts = current_user.newsfeed_posts.includes(:author, :wall_owner)
     render :index
   end
 

@@ -8,20 +8,25 @@
   width: 851px;
   border: red 2px solid;
 }
-.pp-floater{
+.pp-floater {
   display: flex;
   position: relative;
   bottom: 44%;
   left: 15px;
   height: 170px;
-  border: blue 2px solid;
-  .profile-pic{
+
+  .profile-pic {
     position: absolute;
     width: 168px;
     height: 168px;
     border: purple 2px solid;
   }
-  .name{
+
+  .pp-change-overlay:hover {
+    visibility: visible;
+  }
+
+  .name {
     position: absolute;
     width: 100px;
     height: 20px;
@@ -29,15 +34,34 @@
     left: 25%;
     border: 2px solid orange;
   }
+
+  .profile-btn {
+    position: absolute;
+    width: 30px;
+    height: 15px;
+    border: 2px solid pink;
+    top: 70%;
+    left: 80%;
+  }
 }
 .profile-tabs{}
 }
 .profile-content-wrapper{
   width: 851px;
+  height: 600px;
   margin: auto;
   display: flex;
   justify-content: center;
   border: 3px solid purple;
+
+  .postlist-wrapper {
+    height: 600px;
+    overflow: visible;
+    border: 5px solid blue;
+    justify-content: flex-end;
+    display: flex;
+    flex-direction: column-reverse;
+  }
 
 .sidecards-wrapper{
   .intro-wrapper{

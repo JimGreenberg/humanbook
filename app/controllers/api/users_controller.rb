@@ -1,8 +1,11 @@
 class Api::UsersController < ApplicationController
 
   def show
-    @user = User.find(params[:id])
-    render "api/users/profile"
+    @user = User
+      .includes(
+        wall_posts: [:wall_owner, :author])
+      .find(params[:id])
+    render :profile
   end
 
   def create

@@ -34,9 +34,10 @@ george.make_friend(kramer)
 elaine.make_friend(george)
 
 Post.destroy_all
-Post.create!(body: "asdfasef", author_id: george.id, wall_user_id: jerry.id)
-Post.create!(body: "asdfasef", author_id: elaine.id, wall_user_id: jerry.id)
-Post.create!(body: "asdfasef", author_id: kramer.id, wall_user_id: jerry.id)
+Post.create!(body: "to jerry from george", author_id: george.id, wall_user_id: jerry.id)
+Post.create!(body: "to jerry from elaine", author_id: elaine.id, wall_user_id: jerry.id)
+Post.create!(body: "to jerry from kramer", author_id: kramer.id, wall_user_id: jerry.id)
 Post.create!(body: "asdfasopdfja[psiodfjasef", author_id: george.id, wall_user_id: jerry.id)
 Post.create!(body: "asdfasef", author_id: bob.id, wall_user_id: jerry.id)
 Post.create!(body: "NEWMAN", author_id: newman.id, wall_user_id: art.id)
+Post.create!(body: "to art from jerry", author_id: jerry.id, wall_user_id: art.id)

@@ -23,9 +23,9 @@ class User < ApplicationRecord
 
   attr_reader :password
 
-  has_many :newsfeed_posts,
-    through: :friends,
-    source: :wall_posts
+  # has_many :newsfeed_posts, -> {order(updated_at: :asc)},
+  #   through: :friends,
+  #   source: :wall_posts
 
   has_many :authored_posts,
     class_name: :Post,
@@ -51,6 +51,9 @@ class User < ApplicationRecord
     through: :out_friendships,
     source: :receiver
 
+  has_many :in_friends_posts,
+    through: :in_friends
+
 def friends
   User
   .joins("INNER JOIN friendships ON friender_id = users.id OR receiver_id = users.id")
@@ -58,7 +61,8 @@ def friends
 end
 
 def newsfeed_posts
-  Post.where(wall_owner: friends.to_a + [self]).order(updated_at: :asc)
+  # Post.where(wall_owner: friends.to_a + [self]).order(updated_at: :asc)
+  Post.where(author: out_friends).or(Post.where( author: in_friends)).or(Post.where(author: self))
 end
 
 #---------------#

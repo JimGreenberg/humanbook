@@ -1,11 +1,14 @@
 import * as UserApiUtil from '../util/user_api_util';
+import {receiveAllPosts} from './post_actions';
 
 export const RECEIVE_PROFILE = 'RECEIVE_PROFILE';
-export const receiveProfile = user => ({
+export const receiveProfile = profile => ({
   type: RECEIVE_PROFILE,
-  user
+  user: profile.user,
+  posts: profile.posts
 });
 
 export const fetchProfile = id =>(
-  dispatch => (PostApiUtil.fetchProfile(id).then(user => dispatch(receiveProfile(user))))
+  dispatch => (UserApiUtil.fetchProfile(id)
+    .then(profile => dispatch(receiveProfile(profile))))
 );

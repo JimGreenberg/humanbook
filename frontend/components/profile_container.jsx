@@ -2,25 +2,36 @@ import React from 'react';
 import {router, Router, hashHistory} from 'react-router';
 import {connect} from 'react-redux';
 import {signOut} from '../actions/session_actions';
+import {fetchProfile} from '../actions/user_actions';
 import NavBar from './navbar_container';
 import PostList from './postlist_container';
-import PostForm from './post_form';
+
 
 
   const mapStateToProps = state => ({
-    currentUser: state.session.currentUser
+    user: state.user,
+    posts: Object.keys(state.posts).map(id => state.posts[id])
   });
 
   const mapDispatchToProps = dispatch => ({
-    signOut: () => dispatch(signOut())
+    signOut: () => dispatch(signOut()),
+    fetchProfile: id => dispatch(fetchProfile(id))
   });
 
 class ProfileContainer extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.btnState = this.props.params.id === this.props.user.id ?
+      'Update Profile' : 'Add Friend';
+    this.state = {posts: this.props.posts};
+  }
+
   componentDidMount() {
+    this.props.fetchProfile(this.props.params.id);
     window.scrollTo(0, 100);
   }
-  
+
   render() {
     return (
       <div>
@@ -30,6 +41,7 @@ class ProfileContainer extends React.Component {
           <div className='pp-floater'>
             <img className='profile-pic'></img>
             <label className='name'></label>
+            <div className='profile-btn' content={this.btnState}/>
           </div>
           <div className='profile-tabs'>
 
@@ -44,7 +56,7 @@ class ProfileContainer extends React.Component {
 
             </div>
           </div>
-          <PostList profile={true} />
+          <PostList className='timeline' profile={true} posts={this.props.posts} />
         </div>
       </div>
     );

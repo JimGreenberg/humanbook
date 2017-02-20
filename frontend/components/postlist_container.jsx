@@ -7,31 +7,30 @@ import {fetchNewsfeed, fetchTimeline, updatePost, deletePost} from '../actions/p
 import PostIndexItem from './post_index_item';
 import PostForm from './post_form';
 
-const mapStateToProps = (state, ownProps) => ({
-  currentUserId: state.session.currentUser.id,
-  posts: Object.keys(state.posts).map(id => state.posts[id])
+const mapStateToProps = (state) => {
 
-});
+  return {
+  currentUserId: state.session.currentUser.id};
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  let populate = ownProps.profile ? fetchTimeline : fetchNewsfeed;
   return {
     deletePost: id => dispatch(deletePost(id)),
-    populate: id => dispatch(populate(id))
   };
 };
 
 class PostList extends React.Component {
 
-  componentDidMount() {
-    this.props.populate(this.props.params.id);
+  constructor(props) {
+    super(props);
+
   }
 
   render() {
     return (
       <ul className='postlist-wrapper'>
-        {this.props.posts.map( post => {
 
+        {this.props.posts.map( post => {
           return <PostIndexItem
             key={this.props.posts.indexOf(post)}
             post={post}
