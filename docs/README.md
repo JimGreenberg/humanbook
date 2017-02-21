@@ -1,4 +1,5 @@
 ![humanbook](./production_images/humanbook-logos-01.png)
+
 # Development README
 ### humanbook: social media for people
 humanbook is a clone of the popular social media webapp 'facebook' implemented with a PostgreSQL-Ruby on Rails-React/Redux stack.
