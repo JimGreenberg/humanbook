@@ -68,7 +68,7 @@ class SignUpForm extends React.Component {
 
   dayHelper() {
     let arr = [];
-    for (var i = 0; i < 32; i++) {
+    for (var i = 1; i < 32; i++) {
       arr.push(<option key={`${i}`} value={`${i}`}>{i}</option>);
     }
     return arr;

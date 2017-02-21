@@ -36,7 +36,7 @@ class SessionForm extends React.Component {
     this.disabled = true;
     this.typeValue(username, "username", function () {
       this.typeValue(password, "password", function () {
-        this.props.signIn(this.state).then(() => this.props.router.push('/'));
+        this.props.signIn(this.state)//.then(() => this.props.router.push('/'));
       }.bind(this));
     }.bind(this));
   }

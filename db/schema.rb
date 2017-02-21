@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170216140030) do
+ActiveRecord::Schema.define(version: 20170221150147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,12 @@ ActiveRecord::Schema.define(version: 20170216140030) do
     t.string   "profile_pic"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "birthday"
+    t.string   "relationship"
+    t.string   "work"
+    t.string   "where"
+    t.string   "from"
+    t.string   "school"
     t.index ["fname"], name: "index_users_on_fname", using: :btree
     t.index ["lname"], name: "index_users_on_lname", using: :btree
     t.index ["session_token"], name: "index_users_on_session_token", using: :btree

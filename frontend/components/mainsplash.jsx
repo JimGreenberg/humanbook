@@ -20,8 +20,6 @@ const mapDispatchToProps = dispatch => ({
 
 class MainSplash extends React.Component {
 
-
-
   isSignedIn() {
     return !!this.props.currentUser;
   }

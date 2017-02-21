@@ -6,10 +6,16 @@ export const RECEIVE_POST = 'RECEIVE_POST';
 export const REMOVE_POST = 'REMOVE_POST';
 export const DISPATCH_VIEW = 'DISPATCH_VIEW';
 
-export const receiveAllPosts = posts => ({
+// export const receiveAllPosts = posts => ({
+//   type: RECEIVE_ALL_POSTS,
+//   posts
+// });
+export const receiveAllPosts = posts => {
+
+  return ({
   type: RECEIVE_ALL_POSTS,
   posts
-});
+});};
 
 export const removePost = post => ({
   type: REMOVE_POST,
@@ -22,16 +28,13 @@ export const receivePost = post => {
   post
 });};
 
-export const forceView = id => {
-  
-}
 
 export const fetchNewsfeed = () => (
   dispatch => (PostApiUtil.fetchNewsfeed().then(posts => dispatch(receiveAllPosts(posts))))
 );
 
-export const fetchTimeline = () => (
-  dispatch => (PostApiUtil.fetchTimeline().then(posts => dispatch(receiveAllPosts(posts))))
+export const fetchTimeline = id => (
+  dispatch => (PostApiUtil.fetchTimeline(id).then(posts => dispatch(receiveAllPosts(posts))))
 );
 
 export const deletePost = id => (

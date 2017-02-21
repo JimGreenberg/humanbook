@@ -25,7 +25,7 @@ class PostForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     if (!this.props.post) {return null;}
     this.state = this.props.post;
     this.setState({action: this.props.updatePost});
@@ -49,12 +49,15 @@ class PostForm extends React.Component {
   render () {
     let buttonText = this.props.formType === 'new' ? 'Post' : 'Update';
     return (
-      <form className='post-item-wrapper' onSubmit={this.handleSubmit}>
+      <form className='postform card' onSubmit={this.handleSubmit}>
+        <div className='overbar'><label>Status</label></div>
         <div className='form-main'>
-          <textarea onChange={this.update()} value={this.state.body}>
+          <div className='nib'></div>
+          <img></img>
+          <textarea onChange={this.update()} value={this.state.body} placeholder="What's on your mind?">
           </textarea>
         </div>
-        <div className="underlay">
+        <div className="underbar">
           <input type='submit' className='submit' value={buttonText}/>
         </div>
       </form>

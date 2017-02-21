@@ -3,32 +3,34 @@ import {withRouter} from 'react-router';
 import {connect} from 'react-redux';
 import {signOut} from '../actions/session_actions';
 import Tooltip from './tooltip';
-import {fetchNewsfeed, updatePost, deletePost} from '../actions/post_actions';
+import {fetchNewsfeed, fetchTimeline, updatePost, deletePost} from '../actions/post_actions';
 import PostIndexItem from './post_index_item';
 import PostForm from './post_form';
 
-const mapStateToProps = state => ({
-  currentUserId: state.session.currentUser.id,
-  posts: Object.keys(state.posts).map(id => state.posts[id])
+const mapStateToProps = (state) => {
 
-});
+  return {
+  currentUserId: state.session.currentUser.id};
+};
 
-const mapDispatchToProps = dispatch => ({
-  fetchNewsfeed: () => dispatch(fetchNewsfeed()),
-  deletePost: id => dispatch(deletePost(id))
-});
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    deletePost: id => dispatch(deletePost(id)),
+  };
+};
 
 class PostList extends React.Component {
 
-  componentDidMount() {
-    this.props.fetchNewsfeed();
+  constructor(props) {
+    super(props);
+
   }
 
   render() {
     return (
       <ul className='postlist-wrapper'>
-        {this.props.posts.map( post => {
 
+        {this.props.posts.map( post => {
           return <PostIndexItem
             key={this.props.posts.indexOf(post)}
             post={post}
@@ -41,4 +43,4 @@ class PostList extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostList);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostList));

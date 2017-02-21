@@ -17,6 +17,7 @@ class NavBar extends React.Component {
     super(props);
     this.currentUser = this.props.currentUser;
     this.redirectToHome = this.redirectToHome.bind(this);
+    this.redirectToProfile = this.redirectToProfile.bind(this);
   }
 
   redirectToHome() {
@@ -24,6 +25,7 @@ class NavBar extends React.Component {
   }
 
   redirectToProfile() {
+    let id = this.props.currentUser.id;
     this.props.router.push(`/users/${id}`);
   }
 
@@ -37,17 +39,17 @@ class NavBar extends React.Component {
         </div>
 
         <div className="nav-grp right">
-          <span className='profile-top-btn'>
+          <span className='profile-top-btn' onClick={this.redirectToProfile}>
             <img className='profile-micro'/>
               <label>{this.currentUser.fname}</label>
           </span>
-          <span className='home-top-btn'>
+          <span className='home-top-btn' onClick={this.redirectToHome}>
             <label>Home</label>
           </span>
           <img className='friends-top-btn'></img>
           <img className='messages-top-btn'></img>
           <img className='global-top-btn'></img>
-          <button className="logout-button" onClick={this.props.signOut}>Log Out</button>
+          <button className="logout-button" onClick={this.props.signOut.bind(this)}>Log Out</button>
         </div>
       </div>
     );
