@@ -47,6 +47,7 @@
     font-size: 24px;
     text-rendering: optimizelegibility;
     text-shadow: 0 0 3px rgba(0,0,0,.8);
+    text-transform: capitalize;
   }
 
   .profile-btn {
@@ -70,6 +71,25 @@
   }
 }
 .profile-tabs{
+  position: relative;
+
+  .nib {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: red;
+    border: inherit;
+    transform: rotate(45deg);
+    background: #e9ebee;
+    border-top: 1px solid rgba(0,0,0,0.075);
+    border-left: 1px solid rgba(0,0,0,0.075);
+    top: 95%;
+  }
+
+  .timeline {
+    left: 9%;
+  }
+
   background: white;
   display: flex;
   width: 500px;
@@ -85,12 +105,12 @@
     border-right: 1px solid #e9eaed;
     padding: 13.5px 17px;
     font-weight: 700;
-
-
   }
   li:first-of-type {
     border-left: 1px solid #e9eaed;
-
+  }
+  li:hover {
+    background: #f6f7f9;
   }
 }
 }
@@ -152,8 +172,13 @@
     h2 {
       font-size: 16px;
       padding-left: 12px;
-
     }
+
+        p {
+          color: #aaa;
+          text-transform: capitalize;
+        }
+
     background: white;
     margin-bottom: 17px;
     width: 297px;

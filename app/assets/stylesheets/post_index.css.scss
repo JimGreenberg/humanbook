@@ -181,6 +181,20 @@ width: auto;
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  a {
+    color: #365899;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: capitalize;
+
+  }
+
+  a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
 }
 .mini-arrow {
   border: 5px rgba(0,0,0,0) solid;

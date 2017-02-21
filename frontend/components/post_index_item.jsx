@@ -50,10 +50,12 @@ export default class PostIndexItem extends React.Component {
           <img className='pp-mini'/>
         <div className='name-label-wrapper'>
         <div className='name-label'>
-          <span>{`${author.fname} ${author.lname}`}</span>
+          <span>
+            <Link to= {`users/${author.id}`}>{`${author.fname} ${author.lname}`}</Link>
+          </span>
           <span className={postToLabel}>
             <div className='mini-arrow'/>
-            {`${wall_owner.fname} ${wall_owner.lname}`}
+            <Link to= {`users/${wall_owner.id}`}>{`${wall_owner.fname} ${wall_owner.lname}`}</Link>
           </span>
         </div>
           <small className='timestamp'>{`${timestamp.slice(0,10)} at ${timestamp.slice(11,16)}`}</small>

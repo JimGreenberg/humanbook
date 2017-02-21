@@ -12,3 +12,8 @@ export const fetchProfile = id =>(
   dispatch => (UserApiUtil.fetchProfile(id)
     .then(profile => dispatch(receiveProfile(profile))))
 );
+
+export const updateUser = user =>(
+  dispatch => (UserApiUtil.updateUser(user)
+    .then(profile => dispatch(receiveProfile(profile))))
+);
