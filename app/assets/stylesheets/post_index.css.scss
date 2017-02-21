@@ -17,20 +17,9 @@
 
     }
   }
-
-
-
 .post-item-wrapper {
-  background: white;
-  border: 1px solid;
-  border-top-color: rgb(229, 230, 233);
-  border-right-color: rgb(223, 224, 228);
-  border-bottom-color: rgb(208, 209, 213);
-  border-left-color: rgb(223, 224, 228);
-  border-radius: 3px;
   height: auto;
   width: 484px;
-  padding: 12px;
 
   .post-body {
     font-size: 14px;
@@ -44,7 +33,6 @@
   img {
     width: 40px;
     height: 40px;
-    border: 1px solid red;
     margin-right: 10px;
   }
 

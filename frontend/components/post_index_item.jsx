@@ -33,7 +33,7 @@ export default class PostIndexItem extends React.Component {
     const {body, author, wall_owner, author_id, wall_user_id, timestamp} = this.props.post;
     const postToLabel = author_id === wall_user_id ? 'hidden' : 'name-label';
     return(
-      <li className='post-item-wrapper'>
+      <li className='post-item-wrapper card'>
         <div className='label-wrapper'>
           <img/>
         <div className='name-label-wrapper'>

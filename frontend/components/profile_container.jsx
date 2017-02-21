@@ -9,7 +9,7 @@ import PostList from './postlist_container';
 
 
   const mapStateToProps = state => ({
-    user: state.user,
+    user: state.session.currentUser,
     posts: Object.keys(state.posts).map(id => state.posts[id])
   });
 
@@ -22,7 +22,7 @@ class ProfileContainer extends React.Component {
 
   constructor(props) {
     super(props);
-    this.btnState = this.props.params.id === this.props.user.id ?
+    this.btnState = this.props.params.id == this.props.user.id ?
       'Update Profile' : 'Add Friend';
     this.state = {posts: this.props.posts};
   }
@@ -33,6 +33,7 @@ class ProfileContainer extends React.Component {
   }
 
   render() {
+    const {fname, lname, birthday, work, school, relationship, from, where} = this.props.user;
     return (
       <div>
         <NavBar />
@@ -40,19 +41,30 @@ class ProfileContainer extends React.Component {
           <img className='cover-photo'></img>
           <div className='pp-floater'>
             <img className='profile-pic'></img>
-            <label className='name'></label>
-            <div className='profile-btn' content={this.btnState}/>
+            <label className='name'>{fname} {lname}</label>
+            <div className='profile-btn'>{this.btnState}</div>
           </div>
-          <div className='profile-tabs'>
-
-          </div>
+          <ul className='profile-tabs'>
+            <li>Timeline</li>
+            <li>About</li>
+            <li>Friends</li>
+          </ul>
         </div>
         <div className='profile-content-wrapper'>
           <div className='sidecards-wrapper'>
-            <div className='intro-wrapper'>
-
+            <div className='intro-wrapper card'>
+              <h2>Intro</h2>
+              <ul>
+                <li><div className='icon-nano'></div>Studied at {school}</li>
+                <li><div className='icon-nano'></div>Works at {work}</li>
+                <li><div className='icon-nano'></div>Born on {birthday}</li>
+                <li><div className='icon-nano'></div>Relationship status: {relationship}</li>
+                <li><div className='icon-nano'></div>From {from}</li>
+                <li><div className='icon-nano'></div>Lives in {where}</li>
+              </ul>
             </div>
-            <div className='friends-side-wrapper'>
+            <div className='friends-side-wrapper card'>
+              <h2>Friends</h2>
 
             </div>
           </div>

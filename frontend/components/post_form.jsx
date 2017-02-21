@@ -49,7 +49,7 @@ class PostForm extends React.Component {
   render () {
     let buttonText = this.props.formType === 'new' ? 'Post' : 'Update';
     return (
-      <form className='post-item-wrapper' onSubmit={this.handleSubmit}>
+      <form className='post-item-wrapper card' onSubmit={this.handleSubmit}>
         <div className='form-main'>
           <textarea onChange={this.update()} value={this.state.body}>
           </textarea>
