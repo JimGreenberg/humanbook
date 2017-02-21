@@ -12,6 +12,12 @@
 #  profile_pic     :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  birthday        :string
+#  relationship    :string
+#  work            :string
+#  where           :string
+#  from            :string
+#  school          :string
 #
 
 class User < ApplicationRecord
@@ -58,11 +64,16 @@ def friends
   User
   .joins("INNER JOIN friendships ON friender_id = users.id OR receiver_id = users.id")
   .where("users.id != ? AND (friender_id = ? OR receiver_id = ?)", self.id, self.id, self.id)
+  .where("friendships.completed = TRUE")
 end
 
 def newsfeed_posts
   # Post.where(wall_owner: friends.to_a + [self]).order(updated_at: :asc)
-  Post.where(author: out_friends).or(Post.where( author: in_friends)).or(Post.where(author: self))
+  Post
+  .where(author: out_friends)
+  .or(Post.where(author: in_friends))
+  .or(Post.where(author: self))
+  .order(updated_at: :asc)
 end
 
 #---------------#
@@ -112,9 +123,13 @@ end
     in_friends + out_friends
   end
 
-  def make_friend(other_user)
-    return if is_friends?(other_user)
-    Friendship.create!(friender_id: self.id, receiver_id: other_user.id)
+  def add_friend(other_user)
+    return Friendship.new(friender_id: self.id, receiver_id: other_user.id, completed: false)
+  end
+
+  def confirm_request(request)
+    return if request.completed
+    request.update(completed: true)
   end
 
   def defriend(other_user)
@@ -125,6 +140,11 @@ end
 
   def is_friends?(other_user)
     friends_array.include?(other_user)
+  end
+
+  def make_friend(other_user) #debug/seed only
+    return if is_friends?(other_user)
+    Friendship.create!(friender_id: self.id, receiver_id: other_user.id, completed: true)
   end
 
 #-----------------#
@@ -159,4 +179,5 @@ end
   def new_session_token
     SecureRandom.base64
   end
+
 end

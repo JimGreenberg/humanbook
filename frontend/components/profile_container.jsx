@@ -2,6 +2,7 @@ import React from 'react';
 import {router, Router, hashHistory, withRouter} from 'react-router';
 import {connect} from 'react-redux';
 import {fetchProfile} from '../actions/user_actions';
+import {fetchFriends} from '../actions/friends_actions';
 import NavBar from './navbar_container';
 import PostList from './postlist_container';
 
@@ -11,12 +12,14 @@ import PostList from './postlist_container';
     return{
       currentUser: state.session.currentUser,
       user: state.user,
-      posts: Object.keys(state.posts).map(id => state.posts[id])
+      posts: Object.keys(state.posts).map(id => state.posts[id]),
+      friends: state.friends
     };
   };
 
   const mapDispatchToProps = dispatch => ({
-    fetchProfile: id => dispatch(fetchProfile(id))
+    fetchProfile: id => dispatch(fetchProfile(id)),
+    fetchFriends: id => dispatch(fetchFriends(id))
   });
 
 class ProfileContainer extends React.Component {
@@ -24,13 +27,17 @@ class ProfileContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {posts: this.props.posts, userId: this.props.params.id};
-    this.btnState = this.props.params.id == this.props.currentUser.id ?
-      'Update Info' : 'Add Friend';
+    // this.btnState = this.props.params.id == this.props.currentUser.id ?
+    //   'Update Info' : 'Add Friend';
+    // if (this.props.params.id == this.props.currentUser.id) {
+    //   this.btnState = 'Update Info'
+    // } else if (){}
     this.handleButton = this.handleButton.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchProfile(this.props.params.id);
+    this.props.fetchFriends(this.props.params.id);
     window.scrollTo(0, 100);
   }
 

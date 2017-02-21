@@ -7,6 +7,7 @@
 #  receiver_id :integer          not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  completed   :boolean          default(FALSE), not null
 #
 
 class Friendship < ApplicationRecord
