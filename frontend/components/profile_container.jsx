@@ -8,10 +8,14 @@ import PostList from './postlist_container';
 
 
 
-  const mapStateToProps = state => ({
-    user: state.session.currentUser,
+  const mapStateToProps = state => {
+
+    return{
+    currentUser: state.session.currentUser,
+    user: state.user,
     posts: Object.keys(state.posts).map(id => state.posts[id])
-  });
+}
+  };
 
   const mapDispatchToProps = dispatch => ({
     signOut: () => dispatch(signOut()),
@@ -22,14 +26,21 @@ class ProfileContainer extends React.Component {
 
   constructor(props) {
     super(props);
-    this.btnState = this.props.params.id == this.props.user.id ?
-      'Update Profile' : 'Add Friend';
-    this.state = {posts: this.props.posts};
+
+    this.btnState = this.props.params.id == this.props.currentUser.id ?
+      'Update Info' : 'Add Friend';
+    this.state = {posts: this.props.posts, userId: this.props.params.id};
   }
 
   componentDidMount() {
     this.props.fetchProfile(this.props.params.id);
     window.scrollTo(0, 100);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.params.id !== this.props.params.id) {
+      this.props.fetchProfile(this.props.params.id);
+    }
   }
 
   render() {
@@ -53,7 +64,10 @@ class ProfileContainer extends React.Component {
         <div className='profile-content-wrapper'>
           <div className='sidecards-wrapper'>
             <div className='intro-wrapper card'>
-              <h2>Intro</h2>
+              <div className='sidecard-title'>
+                <img></img>
+                <h2>Intro</h2>
+              </div>
               <ul>
                 <li><div className='icon-nano'></div>Studied at {school}</li>
                 <li><div className='icon-nano'></div>Works at {work}</li>
@@ -64,8 +78,21 @@ class ProfileContainer extends React.Component {
               </ul>
             </div>
             <div className='friends-side-wrapper card'>
-              <h2>Friends</h2>
-
+              <div className='sidecard-title'>
+                <img></img>
+                <h2>Friends</h2>
+              </div>
+              <div>
+                <img className='friend-tile'></img>
+                <img className='friend-tile'></img>
+                <img className='friend-tile'></img>
+                <img className='friend-tile'></img>
+                <img className='friend-tile'></img>
+                <img className='friend-tile'></img>
+                <img className='friend-tile'></img>
+                <img className='friend-tile'></img>
+                <img className='friend-tile'></img>
+              </div>
             </div>
           </div>
           <PostList className='timeline' profile={true} posts={this.props.posts} />

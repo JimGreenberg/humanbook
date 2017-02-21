@@ -1,9 +1,10 @@
 .top-wrapper{
-  width: 851px;
+  width: 849px;
   height: 358px;
   margin: auto;
   background: white;
   border: 1px solid rgba(0,0,0,0.15);
+  margin-bottom: 17px;
 
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
@@ -18,11 +19,7 @@
   position: relative;
   bottom: 150px;
   left: 20px;
-  // left: 230px;
-  // height: 0;
-  // width: 0;
-  // height: 170px;
-  // width: 851px;
+
 
   .profile-pic {
     position: absolute;
@@ -32,7 +29,6 @@
     border: rgba(0,0,0,0.3) 1px solid;
     border-radius: 3px;
     outline-offset: -6px;
-    // background: blue;
   }
 
   .pp-change-overlay:hover {
@@ -57,13 +53,20 @@
     position: absolute;
     text-align: center;
     font-weight: bold;
-    border: 1px solid rgba(0,0,0,0.3);
+    border: 1px solid rgba(0,0,0,0.4);
     border-radius: 2px;
-    width: 150px;
+
     top: 100px;
-    left: 75%;
+    left: 84%;
     padding: 5px 10px;
+    color: #4b4f56;
+    font-size: 12px;
     background: white;
+  }
+
+  .profile-btn:hover {
+    background: #e9ebee;
+    cursor: pointer;
   }
 }
 .profile-tabs{
@@ -94,9 +97,9 @@
 .profile-content-wrapper{
   width: 851px;
   height: 600px;
-  margin: auto;
+  margin: 0 auto;
   display: flex;
-  justify-content: center;
+
 
   .postlist-wrapper {
     height: 600px;
@@ -104,16 +107,12 @@
     justify-content: flex-end;
     display: flex;
     flex-direction: column-reverse;
-    margin-top: 17px;
+    width: auto;
+    margin-left: 18px;
   }
 
 .sidecards-wrapper{
-  h2 {
-    font-size: 16px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #eee;
-    margin-bottom: 10px;
-  }
+
   ul {
     display: flex;
     flex-direction: column;
@@ -133,19 +132,55 @@
       }
     }
   }
-  div {
-    margin: 17px
+
+  .sidecard-title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    img {
+      width: 24px;
+      height: 24px;
+    }
   }
 
   .intro-wrapper{
+    .sidecard-title{
+      border-bottom: 1px solid #eee;
+      padding-bottom: 7px;
+    }
+
+    h2 {
+      font-size: 16px;
+      padding-left: 12px;
+
+    }
     background: white;
-    height: 275px;
-    width: 323px;
+    margin-bottom: 17px;
+    width: 297px;
   }
   .friends-side-wrapper{
+    .sidecard-title{
+      padding-left: 12px;
+    }
+    h2 {
+      padding: 12px;
+
+    }
     background: white;
-    height: 275px;
-    width: 323px;
+    width: 319px;
+    padding: 1px;
+    padding-bottom: 4px;
+
+    div:last-of-type{
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+
+    .friend-tile {
+      width: 100px;
+      height: 100px;
+      margin: 2px;
+    }
   }
-}
+}}
 }

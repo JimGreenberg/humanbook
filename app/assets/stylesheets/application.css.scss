@@ -35,6 +35,7 @@
  	vertical-align: baseline;
   color: #333;
   font-family: Helvetica;
+  outline: none;
  }
  /* HTML5 display-role reset for older browsers */
  article, aside, details, figcaption, figure,
@@ -88,15 +89,14 @@
    user-select: none;
  }
 
- .card {
-   background: white;
-   border: 1px solid;
-   border-top-color: rgb(229, 230, 233);
-   border-right-color: rgb(223, 224, 228);
-   border-bottom-color: rgb(208, 209, 213);
-   border-left-color: rgb(223, 224, 228);
-   border-radius: 3px;
-   margin-bottom: 17px;
-   padding: 12px;
-   color: #1d2129;
- }
+  .card {
+    background: white;
+    border: 1px solid;
+    border-top-color: rgb(229, 230, 233);
+    border-right-color: rgb(223, 224, 228);
+    border-bottom-color: rgb(208, 209, 213);
+    border-left-color: rgb(223, 224, 228);
+    border-radius: 3px;
+    padding: 12px;
+    color: #1d2129;
+  }

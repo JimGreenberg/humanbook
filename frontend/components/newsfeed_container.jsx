@@ -13,7 +13,7 @@ const mapStateToProps = (state, ownProps) => {
   return{
   currentUserId: state.session.currentUser.id,
   posts: Object.keys(state.posts).map(id => state.posts[id])
-}
+};
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -33,8 +33,9 @@ class Newsfeed extends React.Component {
   render() {
 
     return (
-      <div>
+      <div className='newsfeed-wrapper'>
         <NavBar />
+        <div className='spacer'></div>
         <PostList posts={this.props.posts}/>
       </div>
     );
