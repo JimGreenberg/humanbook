@@ -23,10 +23,9 @@ class ProfileContainer extends React.Component {
 
   constructor(props) {
     super(props);
-
+    this.state = {posts: this.props.posts, userId: this.props.params.id};
     this.btnState = this.props.params.id == this.props.currentUser.id ?
       'Update Info' : 'Add Friend';
-    this.state = {posts: this.props.posts, userId: this.props.params.id};
     this.handleButton = this.handleButton.bind(this);
   }
 
@@ -38,6 +37,8 @@ class ProfileContainer extends React.Component {
   componentDidUpdate(prevProps) {
     if (prevProps.params.id !== this.props.params.id) {
       this.props.fetchProfile(this.props.params.id);
+      this.btnState = this.props.params.id == this.props.currentUser.id ?
+        'Update Info' : 'Add Friend';
     }
   }
 
