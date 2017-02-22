@@ -2,7 +2,7 @@ class Api::FriendshipsController < ApplicationController
 
   def index
     user = User.find(params[:user_id])
-    @friendships = user.friends
+    @friendships = user.friendships
     render json: @friendships
   end
 

@@ -64,7 +64,12 @@ def friends
   User
   .joins("INNER JOIN friendships ON friender_id = users.id OR receiver_id = users.id")
   .where("users.id != ? AND (friender_id = ? OR receiver_id = ?)", self.id, self.id, self.id)
-  .where("friendships.completed = TRUE")
+  # .where("friendships.completed = TRUE")
+end
+
+def friendships
+  Friendship
+  .where("friender_id = ? OR receiver_id = ?", self.id, self.id)
 end
 
 def newsfeed_posts
