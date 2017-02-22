@@ -5,10 +5,12 @@ export const fetchProfile = id => {
   });
 };
 
-export const updateUser = user => {
+export const updateUser = formData => {
   return $.ajax({
     method: 'PATCH',
-    url: `/api/users/${user.id}`,
-    data: {user}
+    url: `/api/users/${formData.get('user[id]')}`,
+    contentType: false,
+    processData: false,
+    data: formData
   });
 };

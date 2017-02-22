@@ -31,8 +31,10 @@ class ProfileEditForm extends React.Component {
       dates.day = user.birthday.split(' ')[1];
       dates.year = user.birthday.split(' ')[2];
     }
-    this.state = merge({}, user, dates, {ppFile: "", cpFile: ""});
+    this.state = merge({}, user, dates, {profile_pic: "", cpFile: ""});
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.updatePp = this.updatePp.bind(this);
+    this.updateCp = this.updateCp.bind(this);
   }
 
   update(field) {
@@ -43,7 +45,20 @@ class ProfileEditForm extends React.Component {
 
   componentWillMount() {
     window.scrollTo(0, 100);
-    this.props.fetchProfile(this.props.params.id);
+    this.props.fetchProfile(this.props.params.id)
+    .then(() => {
+      let user = newProps.user;
+      let dates =
+        {month: "MM",
+        day: "DD",
+        year: "YYYY"};
+      if (user.birthday) {
+        dates.month = user.birthday.split(' ')[0];
+        dates.day = user.birthday.split(' ')[1];
+        dates.year = user.birthday.split(' ')[2];
+      }
+      this.setState(merge({}, user, dates, {profile_pic: "", cpFile: ""}));
+    });
   }
 
   componentWillReceiveProps(newProps, newState) {
@@ -57,16 +72,29 @@ class ProfileEditForm extends React.Component {
       dates.day = user.birthday.split(' ')[1];
       dates.year = user.birthday.split(' ')[2];
     }
-    this.state = merge({}, user, dates, {ppFile: "", cpFile: ""});
+    this.state = merge({}, user, dates, {profile_pic: "", cpFile: ""});
     }
 
-  handleSubmit(event) {
-    event.preventDefault();
-    let birth = [this.state.month, this.state.day, this.state.year].join(' ');
-    debugger
-    this.setState({birthday: birth}, () => {
-      this.props.updateUser(this.state).then(() => this.props.router.push(`/users/${this.props.user.id}`))//.then(() => this.forceUpdate());
-    });
+    updateCp(event) {
+      const file = event.currentTarget.files[1];
+      const fileReader = new FileReader();
+      fileReader.onloadend = () => {
+        this.setState({cover_photo: file, cpURL: fileReader.result});
+      };
+      if (file) {
+        fileReader.readAsDataURL(file);
+      }
+    }
+
+  updatePp(event) {
+    const file = event.currentTarget.files[0];
+    const fileReader = new FileReader();
+    fileReader.onloadend = () => {
+      this.setState({profile_pic: file, ppURL: fileReader.result});
+    };
+    if (file) {
+      fileReader.readAsDataURL(file);
+    }
   }
 
   dayHelper() {
@@ -83,6 +111,16 @@ class ProfileEditForm extends React.Component {
       arr.push(<option key={`${i}`} value={`${i}`}>{i}</option>);
     }
     return arr;
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    let birth = [this.state.month, this.state.day, this.state.year].join(' ');
+    let formData = new FormData();
+    Object.keys(this.state).map(key => {formData.append(`user[${key}]`, this.state[key])})
+    this.setState({birthday: birth}, () => {
+      this.props.updateUser(formData).then(() => this.props.router.push(`/users/${this.props.user.id}`));
+    });
   }
 
   render () {
@@ -102,7 +140,7 @@ class ProfileEditForm extends React.Component {
       <div>
         <NavBar />
         <div className='top-wrapper'>
-          <img className='cover-photo'></img>
+          <img className='cover-photo' src={this.props.user.cover_photo_url}></img>
           <div className='pp-floater'>
             <div className='pp-border'><img className='profile-pic' src={this.props.user.profile_pic_url}/></div>
             <label className='name'>{this.props.user.fname} {this.props.user.lname}</label>
@@ -187,7 +225,13 @@ class ProfileEditForm extends React.Component {
                   {this.yearHelper()}
                 </select>
           </div>
-          <input type='file'></input>
+          <img src={this.state.ppURL} />
+          <label>Profile Pic
+          <input type='file' onChange={this.updatePp}/>
+          </label>
+          <label>Cover Photo
+          <input type='file' onChange={this.updateCp}/>
+          </label>
           </div>
           <div className='underbar'>
             <input type='submit' className='submit' value='Update Info'/>

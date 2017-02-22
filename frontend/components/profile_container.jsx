@@ -103,7 +103,7 @@ class ProfileContainer extends React.Component {
         <div>
           <NavBar />
           <div className='top-wrapper'>
-            <img className='cover-photo' />
+            <img className='cover-photo' src={this.props.user.cover_photo_url} />
             <div className='pp-floater'>
               <div className='pp-border'><img className='profile-pic' src={this.props.user.profile_pic_url}/></div>
               <label className='name'>{fname} {lname}</label>

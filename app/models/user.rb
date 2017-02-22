@@ -20,6 +20,10 @@
 #  profile_pic_content_type :string
 #  profile_pic_file_size    :integer
 #  profile_pic_updated_at   :datetime
+#  cover_photo_file_name    :string
+#  cover_photo_content_type :string
+#  cover_photo_file_size    :integer
+#  cover_photo_updated_at   :datetime
 #
 
 class User < ApplicationRecord
@@ -31,6 +35,8 @@ class User < ApplicationRecord
 
   has_attached_file :profile_pic, default_url: "blank_user.png"
   validates_attachment_content_type :profile_pic, content_type: /\Aimage\/.*\Z/
+  has_attached_file :cover_photo, default_url: "blank_cover.png"
+  validates_attachment_content_type :cover_photo, content_type: /\Aimage\/.*\Z/
 
   attr_reader :password
 

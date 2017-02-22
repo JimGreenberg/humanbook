@@ -1,5 +1,6 @@
 user = @user.attributes
 user['profile_pic_url'] = asset_path(@user.profile_pic.url)
+user['cover_photo_url'] = asset_path(@user.cover_photo.url)
 json.user user
 
 
