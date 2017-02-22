@@ -4,6 +4,7 @@ import {Link, withRouter} from 'react-router';
 import {placeTooltip} from './tooltip';
 import {updateUser, fetchProfile} from '../actions/user_actions';
 import NavBar from './navbar_container';
+import merge from 'lodash/merge';
 
 
   const mapStateToProps = state => ({
@@ -20,8 +21,17 @@ import NavBar from './navbar_container';
 class ProfileEditForm extends React.Component {
   constructor(props){
     super(props);
-    this.state = this.props.user;
-    if (this.state.birthday) {this.setState({month: this.state.birthday.split(' ')[0], day: this.state.birthday.split(' ')[1], year:this.state.birthday.split(' ')[2]})}
+    let user = this.props.user;
+    let dates =
+      {month: "MM",
+      day: "DD",
+      year: "YYYY"};
+    if (user.birthday) {
+      dates.month = user.birthday.split(' ')[0];
+      dates.day = user.birthday.split(' ')[1];
+      dates.year = user.birthday.split(' ')[2];
+    }
+    this.state = merge({}, user, dates, {ppFile: "", cpFile: ""});
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -31,30 +41,33 @@ class ProfileEditForm extends React.Component {
       });
     }
 
-  componentDidMount() {
+  componentWillMount() {
     window.scrollTo(0, 100);
     this.props.fetchProfile(this.props.params.id);
   }
 
-  componentWillReceiveProps(newProps) {
-    this.state = newProps.user;
-    this.setState({month: this.state.birthday.split(' ')[0], day: this.state.birthday.split(' ')[1], year:this.state.birthday.split(' ')[2]});
-  }
+  componentWillReceiveProps(newProps, newState) {
+    let user = newProps.user;
+    let dates =
+      {month: "MM",
+      day: "DD",
+      year: "YYYY"};
+    if (user.birthday) {
+      dates.month = user.birthday.split(' ')[0];
+      dates.day = user.birthday.split(' ')[1];
+      dates.year = user.birthday.split(' ')[2];
+    }
+    this.state = merge({}, user, dates, {ppFile: "", cpFile: ""});
+    }
 
   handleSubmit(event) {
     event.preventDefault();
     let birth = [this.state.month, this.state.day, this.state.year].join(' ');
+    debugger
     this.setState({birthday: birth}, () => {
-      this.props.updateUser(this.state).then(() => this.props.router.push(`/users/${this.state.id}`)).then(() => this.forceUpdate());
+      this.props.updateUser(this.state).then(() => this.props.router.push(`/users/${this.props.user.id}`))//.then(() => this.forceUpdate());
     });
   }
-
-  componentWillUpdate(nextState) {
-    Object.keys({fname, lname, id, work, school, relationship, from, where, birthday}).forEach(key => {
-      if (!nextState.key) {nextState[key] = "";}
-    });
-  }
-
 
   dayHelper() {
     let arr = [];
@@ -73,7 +86,7 @@ class ProfileEditForm extends React.Component {
   }
 
   render () {
-    const {fname, lname, id, work, school, relationship, from, where, birthday} = this.state;
+    const {work, school, relationship, from, where, birthday} = this.state;
 
     if (birthday) {
       const month = birthday.split(' ')[0];
@@ -91,8 +104,8 @@ class ProfileEditForm extends React.Component {
         <div className='top-wrapper'>
           <img className='cover-photo'></img>
           <div className='pp-floater'>
-            <img className='profile-pic'></img>
-            <label className='name'>{fname} {lname}</label>
+            <div className='pp-border'><img className='profile-pic' src={this.props.user.profile_pic_url}/></div>
+            <label className='name'>{this.props.user.fname} {this.props.user.lname}</label>
           </div>
           <ul className='profile-tabs'>
             <div className='nib about'></div>
@@ -155,14 +168,14 @@ class ProfileEditForm extends React.Component {
                   id='month'
                   className='dropdown'
                   onChange={this.update('month')}>
-                  <option disabled value="0" >Month</option><option value='Jan'>Jan</option><option value='Feb'>Feb</option><option value='Mar'>Mar</option><option value='Apr'>Apr</option><option value='May'>May</option><option value='Jun'>Jun</option><option value='Jul'>Jul</option><option value='Aug'>Aug</option><option value='Sep'>Sep</option><option value='Oct'>Oct</option><option value='Nov'>Nov</option><option value='Dec'>Dec</option>
+                  <option disabled value={"MM"} >Month</option><option value='Jan'>Jan</option><option value='Feb'>Feb</option><option value='Mar'>Mar</option><option value='Apr'>Apr</option><option value='May'>May</option><option value='Jun'>Jun</option><option value='Jul'>Jul</option><option value='Aug'>Aug</option><option value='Sep'>Sep</option><option value='Oct'>Oct</option><option value='Nov'>Nov</option><option value='Dec'>Dec</option>
                 </select>
                 <select
                   value={this.state.day}
                   id='day'
                   className='dropdown'
                   onChange={this.update('day')}>
-                  <option disabled value="0">Day</option>
+                  <option disabled value={"DD"}>Day</option>
                   {this.dayHelper()}
                 </select>
                 <select
@@ -170,10 +183,11 @@ class ProfileEditForm extends React.Component {
                   id='year'
                   className='dropdown'
                   onChange={this.update('year')}>
-                  <option disabled value="0">Year</option>
+                  <option disabled value={"YYYY"}>Year</option>
                   {this.yearHelper()}
                 </select>
           </div>
+          <input type='file'></input>
           </div>
           <div className='underbar'>
             <input type='submit' className='submit' value='Update Info'/>
