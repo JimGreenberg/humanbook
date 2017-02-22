@@ -40,15 +40,15 @@ class NavBar extends React.Component {
 
         <div className="nav-grp right">
           <span className='profile-top-btn' onClick={this.redirectToProfile}>
-            <img className='profile-micro'/>
+            <img className='profile-micro' src = {this.props.currentUser.profile_pic_url} />
               <label>{this.currentUser.fname}</label>
           </span>
           <span className='home-top-btn' onClick={this.redirectToHome}>
             <label>Home</label>
           </span>
-          <img className='friends-top-btn'></img>
-          <img className='messages-top-btn'></img>
-          <img className='global-top-btn'></img>
+          <i className='fa fa-users'></i>
+          <i className='fa fa-comment'></i>
+          <i className="fa fa-globe"></i>
           <button className="logout-button" onClick={this.props.signOut.bind(this)}>Log Out</button>
         </div>
       </div>

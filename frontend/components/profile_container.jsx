@@ -119,21 +119,21 @@ class ProfileContainer extends React.Component {
             <div className='sidecards-wrapper'>
               <div className='intro-wrapper card'>
                 <div className='sidecard-title'>
-                  <img></img>
+                  <i className='fa fa-globe'></i>
                   <h2>Intro</h2>
                 </div>
                 <ul>
-                  <li><div className='icon-nano'></div>Studied at <p>{school}</p></li>
-                  <li><div className='icon-nano'></div>Works at <p>{work}</p></li>
-                  <li><div className='icon-nano'></div>Lives in <p>{where}</p></li>
-                  <li><div className='icon-nano'></div>Relationship status: <p>{relationship}</p></li>
-                  <li><div className='icon-nano'></div>From <p>{from}</p></li>
-                  <li><div className='icon-nano'></div>Born on <p>{birthday}</p></li>
+                  <li><i className='fa fa-mortar-board'></i><p>Studied at</p><p>{school}</p></li>
+                  <li><i className='fa fa-briefcase'></i><p>Works</p><p>{work}</p></li>
+                  <li><i className='fa fa-home'></i><p>Lives in</p><p>{where}</p></li>
+                  <li><i className='fa fa-heart'></i><p>Relationship</p><p>{relationship}</p></li>
+                  <li><i className='fa fa-map-marker'></i><p>From</p><p>{from}</p></li>
+                  <li><i className='fa fa-birthday-cake'></i><p>Born on</p><p>{birthday}</p></li>
                 </ul>
               </div>
               <div className='friends-side-wrapper card'>
                 <div className='sidecard-title'>
-                  <img></img>
+                  <i className='fa fa-users'></i>
                   <h2>Friends</h2>
                 </div>
                 <div>

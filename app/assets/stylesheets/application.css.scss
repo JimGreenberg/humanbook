@@ -74,35 +74,40 @@
 
  }
 
- @keyframes fade {
-   0% {opacity:0;}
-   100% {opacity:100;}
- }
- .attache-wrapper {
-   animation: fade 500ms;
-   animation-timing-function: ease;
-   width: auto;
-   height: auto;
-   margin: 5px 10px 5px 0;
-   font-size: 18px;
-   position: relative;
- }
+@keyframes fade {
+ 0% {opacity:0;}
+ 100% {opacity:100;}
+}
+.attache-wrapper {
+ animation: fade 500ms;
+ animation-timing-function: ease;
+ width: auto;
+ height: auto;
+ margin: 5px 10px 5px 0;
+ font-size: 18px;
+ position: relative;
+}
 
- .tooltip {
-   position: absolute;
- }
- button {
-   user-select: none;
- }
+.tooltip {
+ position: absolute;
+}
+button {
+ user-select: none;
+}
 
-  .card {
-    background: white;
-    border: 1px solid;
-    border-top-color: rgb(229, 230, 233);
-    border-right-color: rgb(223, 224, 228);
-    border-bottom-color: rgb(208, 209, 213);
-    border-left-color: rgb(223, 224, 228);
-    border-radius: 3px;
-    padding: 12px;
-    color: #1d2129;
-  }
+.card {
+  background: white;
+  border: 1px solid;
+  border-top-color: rgb(229, 230, 233);
+  border-right-color: rgb(223, 224, 228);
+  border-bottom-color: rgb(208, 209, 213);
+  border-left-color: rgb(223, 224, 228);
+  border-radius: 3px;
+  padding: 12px;
+  color: #1d2129;
+}
+
+.fa {
+  opacity: 0.4;
+  color: black;
+}

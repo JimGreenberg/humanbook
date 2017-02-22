@@ -170,9 +170,24 @@
   }
 
   .intro-wrapper{
+
+
     .sidecard-title{
       border-bottom: 1px solid #eee;
       padding-bottom: 7px;
+
+      .fa-globe {
+        text-align: center;
+        line-height: 12px;
+        width: 14px;
+        height: 14px;
+        color: white;
+        background: #5171b3;
+        border: 7px #5171b3 solid;
+        border-radius: 100px;
+        opacity: 1;
+        padding: 1px 0px 1px 2px;
+      }
     }
 
     h2 {
@@ -180,9 +195,16 @@
       padding-left: 12px;
     }
 
-        p {
+        p:last-of-type {
           color: #aaa;
           text-transform: capitalize;
+        }
+
+        li {
+          display: flex;
+          *:nth-child(2) {
+            padding: 6px;
+          }
         }
 
     background: white;
@@ -192,6 +214,20 @@
   .friends-side-wrapper{
     .sidecard-title{
       padding-left: 12px;
+
+      .fa-users {
+        text-align: center;
+        line-height: 12px;
+        width: 12px;
+        height: 12px;
+        color: white;
+        background: #f20057;
+        border: 7px #f20057 solid;
+        border-radius: 100px;
+        opacity: 1;
+        padding: 2px 4px 2px 0;
+
+      }
     }
     h2 {
       padding: 12px;

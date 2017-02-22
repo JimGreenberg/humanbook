@@ -47,7 +47,7 @@ export default class PostIndexItem extends React.Component {
     return(
       <li className='post-item-wrapper card'>
         <div className='label-wrapper'>
-          <img className='pp-mini'/>
+          <img className='pp-mini' src={author.profile_pic_url}/>
         <div className='name-label-wrapper'>
         <div className='name-label'>
           <span>

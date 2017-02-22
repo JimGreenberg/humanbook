@@ -7,7 +7,7 @@ import {createPost, updatePost} from '../actions/post_actions';
 
   const mapStateToProps = (state, ownProps) => {
   let post = ownProps.post || {body: "", author_id: state.session.currentUser.id, wall_user_id: ownProps.wallUserId};
-  return { post };
+  return { post, currentUser: state.session.currentUser };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -53,7 +53,7 @@ class PostForm extends React.Component {
         <div className='overbar'><label>Status</label></div>
         <div className='form-main'>
           <div className='nib'></div>
-          <img></img>
+          <img src={this.props.currentUser.profile_pic_url}></img>
           <textarea onChange={this.update()} value={this.state.body} placeholder="What's on your mind?">
           </textarea>
         </div>
