@@ -11,6 +11,7 @@
 #
 
 class Friendship < ApplicationRecord
+  validate :unique_pair_validation, on: :create
 
   belongs_to :receiver,
     class_name: :User,
@@ -20,4 +21,10 @@ class Friendship < ApplicationRecord
     class_name: :User,
     foreign_key: :friender_id
 
+  def unique_pair_validation
+    if User.find(:friender_id).friends.include?(User.find(:receiver_id))
+      errors.add(:friend, "Cannot duplicate entries for friend pair")
+    end
+  end
+  
 end

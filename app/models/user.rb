@@ -144,7 +144,7 @@ end
   end
 
   def is_friends?(other_user)
-    friends_array.include?(other_user)
+    friends.include?(other_user)
   end
 
   def make_friend(other_user) #debug/seed only

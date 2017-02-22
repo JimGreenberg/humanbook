@@ -57,19 +57,17 @@ export default class PostIndexItem extends React.Component {
             <div className='mini-arrow'/>
             <Link to= {`users/${wall_owner.id}`}>{`${wall_owner.fname} ${wall_owner.lname}`}</Link>
           </span>
-        </div>
+          </div>
           <small className='timestamp'>{`${timestamp.slice(0,10)} at ${timestamp.slice(11,16)}`}</small>
           </div>
-
+          <div className='tt-wrapper'>
+            <img onMouseOver={() => this.setState({ttFlag: !this.state.ttFlag})}/>
+            {placeTooltip(this.ttContents(), 'post-tt', 'key', this.state.ttFlag)}
+          </div>
           </div>
         <br/>
         <div className='post-body'>
           {this.bodyMaker()}
-
-          <div className='tt-wrapper'>
-            <img onClick={() => this.setState({ttFlag: !this.state.ttFlag})}/>
-            {placeTooltip(this.ttContents(), 'post-tt', 'key', this.state.ttFlag)}
-          </div>
 
         </div>
       </li>

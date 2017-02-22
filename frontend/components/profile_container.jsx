@@ -45,7 +45,7 @@ const buttonDecider = (friendship, state, ownProps) => {
 
   const mapDispatchToProps = dispatch => ({
     fetchProfile: id => dispatch(fetchProfile(id)),
-    fetchFriends: id => dispatch(fetchFriends(id)),
+    // fetchFriends: id => dispatch(fetchFriends(id)),
     deFriend: id => dispatch(deFriend(id)),
     confirmRequest: id => dispatch(confirmRequest(id)),
     sendRequest: id => dispatch(sendRequest(id))
@@ -56,18 +56,15 @@ class ProfileContainer extends React.Component {
   constructor(props) {
     super(props);
     this.handleButton = this.handleButton.bind(this);
-    this.state = {posts: this.props.posts, buttonText: this.props.buttonText};
+    this.state = {posts: this.props.posts};
   }
 
   componentDidMount() {
+    this.props.fetchProfile(this.props.params.id).then(action => {
     window.scrollTo(0, 100);
-    this.props.fetchProfile(this.props.params.id);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.params.id !== this.props.params.id) {
-      this.setState({buttonText: nextProps.buttonText})
-    }
+    });
+  //   this.setState({buttonText: this.props.buttonText}, () =>
+  // this.props.fetchProfile(this.props.params.id));
   }
 
   componentDidUpdate(prevProps) {
@@ -77,7 +74,7 @@ class ProfileContainer extends React.Component {
     }
   }
 
-  // componentWillUpdate(nextProps) {
+  // componentWillUpdate(nextProps, nextState) {
   //   if (nextProps.params.id !== this.props.params.id) {
   //     window.scrollTo(0, 100);
   //     nextProps.fetchProfile(nextProps.params.id);
@@ -86,7 +83,7 @@ class ProfileContainer extends React.Component {
 
 
   handleButton(event) {
-      switch(this.state.buttonText) {
+      switch(this.props.buttonText) {
         case 'Update Info':
           this.props.router.push(`/users/${currentUser.id}/edit`);
           break;
@@ -107,61 +104,66 @@ class ProfileContainer extends React.Component {
 
   render() {
     const {fname, lname, birthday, work, school, relationship, from, where} = this.props.user;
-    return (
-      <div>
-        <NavBar />
-        <div className='top-wrapper'>
-          <img className='cover-photo'></img>
-          <div className='pp-floater'>
-            <img className='profile-pic'></img>
-            <label className='name'>{fname} {lname}</label>
-            <div className='profile-btn' onClick={this.handleButton}>{this.state.buttonText}</div>
-          </div>
-          <ul className='profile-tabs'>
-            <div className='nib timeline'></div>
-            <li >Timeline</li>
-            <li >About</li>
-            <li >Friends</li>
-          </ul>
-        </div>
-        <div className='profile-content-wrapper'>
-          <div className='sidecards-wrapper'>
-            <div className='intro-wrapper card'>
-              <div className='sidecard-title'>
-                <img></img>
-                <h2>Intro</h2>
-              </div>
-              <ul>
-                <li><div className='icon-nano'></div>Studied at <p>{school}</p></li>
-                <li><div className='icon-nano'></div>Works at <p>{work}</p></li>
-                <li><div className='icon-nano'></div>Lives in <p>{where}</p></li>
-                <li><div className='icon-nano'></div>Relationship status: <p>{relationship}</p></li>
-                <li><div className='icon-nano'></div>From <p>{from}</p></li>
-                <li><div className='icon-nano'></div>Born on <p>{birthday}</p></li>
-              </ul>
+    if (!this.props.user.fname) {
+      return null;
+    } else {
+
+      return (
+        <div>
+          <NavBar />
+          <div className='top-wrapper'>
+            <img className='cover-photo'></img>
+            <div className='pp-floater'>
+              <img className='profile-pic'></img>
+              <label className='name'>{fname} {lname}</label>
+              <div className='profile-btn' onClick={this.handleButton}>{this.props.buttonText}</div>
             </div>
-            <div className='friends-side-wrapper card'>
-              <div className='sidecard-title'>
-                <img></img>
-                <h2>Friends</h2>
+            <ul className='profile-tabs'>
+              <div className='nib timeline'></div>
+              <li >Timeline</li>
+              <li >About</li>
+              <li >Friends</li>
+            </ul>
+          </div>
+          <div className='profile-content-wrapper'>
+            <div className='sidecards-wrapper'>
+              <div className='intro-wrapper card'>
+                <div className='sidecard-title'>
+                  <img></img>
+                  <h2>Intro</h2>
+                </div>
+                <ul>
+                  <li><div className='icon-nano'></div>Studied at <p>{school}</p></li>
+                  <li><div className='icon-nano'></div>Works at <p>{work}</p></li>
+                  <li><div className='icon-nano'></div>Lives in <p>{where}</p></li>
+                  <li><div className='icon-nano'></div>Relationship status: <p>{relationship}</p></li>
+                  <li><div className='icon-nano'></div>From <p>{from}</p></li>
+                  <li><div className='icon-nano'></div>Born on <p>{birthday}</p></li>
+                </ul>
               </div>
-              <div>
-                <img className='friend-tile'></img>
-                <img className='friend-tile'></img>
-                <img className='friend-tile'></img>
-                <img className='friend-tile'></img>
-                <img className='friend-tile'></img>
-                <img className='friend-tile'></img>
-                <img className='friend-tile'></img>
-                <img className='friend-tile'></img>
-                <img className='friend-tile'></img>
+              <div className='friends-side-wrapper card'>
+                <div className='sidecard-title'>
+                  <img></img>
+                  <h2>Friends</h2>
+                </div>
+                <div>
+                  <img className='friend-tile'></img>
+                  <img className='friend-tile'></img>
+                  <img className='friend-tile'></img>
+                  <img className='friend-tile'></img>
+                  <img className='friend-tile'></img>
+                  <img className='friend-tile'></img>
+                  <img className='friend-tile'></img>
+                  <img className='friend-tile'></img>
+                  <img className='friend-tile'></img>
+                </div>
               </div>
             </div>
+            <PostList className='timeline' profile={true} posts={this.props.posts} />
           </div>
-          <PostList className='timeline' profile={true} posts={this.props.posts} />
         </div>
-      </div>
-    );
+      );
+    }
   }
 }
 

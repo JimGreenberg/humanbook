@@ -21,6 +21,7 @@ class ProfileEditForm extends React.Component {
   constructor(props){
     super(props);
     this.state = this.props.user;
+    if (this.state.birthday) {this.setState({month: this.state.birthday.split(' ')[0], day: this.state.birthday.split(' ')[1], year:this.state.birthday.split(' ')[2]})}
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -31,20 +32,26 @@ class ProfileEditForm extends React.Component {
     }
 
   componentDidMount() {
-    this.props.fetchProfile(this.props.params.id);
     window.scrollTo(0, 100);
+    this.props.fetchProfile(this.props.params.id);
   }
 
   componentWillReceiveProps(newProps) {
     this.state = newProps.user;
-    this.setState({month: this.state.birthday.split(' ')[0], day: this.state.birthday.split(' ')[1], year:this.state.birthday.split(' ')[2]})
+    this.setState({month: this.state.birthday.split(' ')[0], day: this.state.birthday.split(' ')[1], year:this.state.birthday.split(' ')[2]});
   }
 
   handleSubmit(event) {
     event.preventDefault();
     let birth = [this.state.month, this.state.day, this.state.year].join(' ');
     this.setState({birthday: birth}, () => {
-      this.props.updateUser(this.state).then(this.props.router.push(`/users/${this.state.id}`));
+      this.props.updateUser(this.state).then(() => this.props.router.push(`/users/${this.state.id}`)).then(() => this.forceUpdate());
+    });
+  }
+
+  componentWillUpdate(nextState) {
+    Object.keys({fname, lname, id, work, school, relationship, from, where, birthday}).forEach(key => {
+      if (!nextState.key) {nextState[key] = "";}
     });
   }
 
@@ -66,14 +73,18 @@ class ProfileEditForm extends React.Component {
   }
 
   render () {
-    //pef stands for profile-edit-form
-
     const {fname, lname, id, work, school, relationship, from, where, birthday} = this.state;
+
     if (birthday) {
       const month = birthday.split(' ')[0];
       const day = birthday.split(' ')[1];
       const year = birthday.split(' ')[2];
     }
+
+    if (!this.props.user.fname) {
+      return null;
+    } else {
+
     return (
       <div>
         <NavBar />
@@ -90,7 +101,7 @@ class ProfileEditForm extends React.Component {
               <li >Friends</li>
           </ul>
         </div>
-        <form className='pef-wrapper card' onSubmit={this.handleBirthday, this.handleSubmit}>
+        <form className='pef-wrapper card' onSubmit={this.handleSubmit}>
           <div>
             <label>School</label>
             <input
@@ -171,6 +182,7 @@ class ProfileEditForm extends React.Component {
       </div>
     );
   }
+}
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProfileEditForm));
