@@ -2,21 +2,24 @@ import React from 'react';
 import {router, Router, hashHistory, withRouter} from 'react-router';
 import {connect} from 'react-redux';
 import {fetchProfile} from '../actions/user_actions';
-import {fetchFriends, deFriend, updateRequest, sendRequest} from '../actions/friends_actions';
+import {fetchFriends, deFriend, confirmRequest, sendRequest} from '../actions/friends_actions';
 import NavBar from './navbar_container';
 import PostList from './postlist_container';
 
-const findFriendship = (friendships, state) => {
+const findFriendship = (state) => {
+  if (!state.friendships) {return;}
   let value = null;
-  Object.keys(friendships).forEach((id) => {
-    if (state.session.currentUser.id === friendships[id].receiver_id || state.session.currentUser.id === friendships[id].friender_id) {
-      value = friendships[id];
+  Object.keys(state.friendships).forEach(id => {
+    if (state.session.currentUser.id === state.friendships[id].receiver_id ||
+        state.session.currentUser.id === state.friendships[id].friender_id) {
+      value = state.friendships[id];
     }
   });
   return value;
 };
 
 const buttonDecider = (friendship, state, ownProps) => {
+  if (!ownProps) {return;}
   if (ownProps.params.id == state.session.currentUser.id) {
     return 'Update Info';
   } else if (friendship) {
@@ -31,66 +34,71 @@ const buttonDecider = (friendship, state, ownProps) => {
   }
 };
 
-  const mapStateToProps = (state, ownProps) => {
-    debugger
-    return{
-      currentUser: state.session.currentUser,
-      user: state.user,
-      posts: Object.keys(state.posts).map(id => state.posts[id]),
-      friends: state.friends,
-      btnText: buttonDecider(findFriendship(state.friends, state), state, ownProps)
-    };
-  };
+  const mapStateToProps = (state, ownProps) => ({
+    currentUser: state.session.currentUser,
+    user: state.user,
+    posts: Object.keys(state.posts).map(id => state.posts[id]),
+    friendships: state.friendships,
+    buttonText: buttonDecider(findFriendship(state), state, ownProps),
+    currentFriendship: findFriendship(state)
+  });
 
   const mapDispatchToProps = dispatch => ({
     fetchProfile: id => dispatch(fetchProfile(id)),
     fetchFriends: id => dispatch(fetchFriends(id)),
     deFriend: id => dispatch(deFriend(id)),
-    updateRequest: id => dispatch(updateRequest(id)),
+    confirmRequest: id => dispatch(confirmRequest(id)),
     sendRequest: id => dispatch(sendRequest(id))
-
   });
 
 class ProfileContainer extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {posts: this.props.posts, userId: this.props.params.id};
     this.handleButton = this.handleButton.bind(this);
-    // this.findFriendship = this.findFriendship.bind(this);
-    // this.buttonDecider = this.buttonDecider.bind(this);
-
+    this.state = {posts: this.props.posts, buttonText: this.props.buttonText};
   }
 
   componentDidMount() {
-    this.props.fetchProfile(this.props.params.id);
-    this.props.fetchFriends(this.props.params.id);
     window.scrollTo(0, 100);
+    this.props.fetchProfile(this.props.params.id);
   }
 
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.params.id !== this.props.params.id) {
-      this.props.fetchProfile(this.props.params.id);
-      this.props.fetchFriends(this.props.params.id);
-      window.scrollTo(0, 100);
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.params.id !== this.props.params.id) {
+      this.setState({buttonText: nextProps.buttonText})
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.params.id !== this.props.params.id) {
+      window.scrollTo(0, 100);
+      this.props.fetchProfile(this.props.params.id);
+    }
+  }
+
+  // componentWillUpdate(nextProps) {
+  //   if (nextProps.params.id !== this.props.params.id) {
+  //     window.scrollTo(0, 100);
+  //     nextProps.fetchProfile(nextProps.params.id);
+  //   }
+  // }
+
+
   handleButton(event) {
-      switch(this.props.btnText) {
+      switch(this.state.buttonText) {
         case 'Update Info':
           this.props.router.push(`/users/${currentUser.id}/edit`);
           break;
         case 'Add Friend':
-          this.props.sendRequest(this.props.user.id);
+          this.props.sendRequest(this.props.user.id).then(this.setState({buttonText: 'Cancel Request'}));
           break;
         case 'Accept Request':
-          this.props.updateRequest(this.props.user.id);
+          this.props.confirmRequest(this.props.currentFriendship.id).then(this.setState({buttonText: 'Remove Friend'}));
           break;
         case 'Cancel Request':
         case 'Remove Friend':
-          this.props.deFriend(this.props.user.id);
+          this.props.deFriend(this.props.currentFriendship.id).then(this.setState({buttonText: 'Add Friend'}));
           break;
         default:
           console.log('BAD ERROR');
@@ -107,7 +115,7 @@ class ProfileContainer extends React.Component {
           <div className='pp-floater'>
             <img className='profile-pic'></img>
             <label className='name'>{fname} {lname}</label>
-            <div className='profile-btn' onClick={this.handleButton}>{this.props.btnText}</div>
+            <div className='profile-btn' onClick={this.handleButton}>{this.state.buttonText}</div>
           </div>
           <ul className='profile-tabs'>
             <div className='nib timeline'></div>
