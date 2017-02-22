@@ -64,6 +64,21 @@
     cursor: pointer;
   }
 
+  .logout-button {
+    position: absolute;
+    font-weight: 600;
+    color: white;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 2px;
+    padding: 5px 5px;
+    background: rgba(0,0,0,0);
+    right: 10%;
+
+    &:hover {
+      background: rgba(0,0,0,0.2);
+    }
+  }
+
   img {
     width: 20px;
     height: 20px;

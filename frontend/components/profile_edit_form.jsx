@@ -43,11 +43,11 @@ class ProfileEditForm extends React.Component {
       });
     }
 
-  componentWillMount() {
+  componentDidMount() {
     window.scrollTo(0, 100);
     this.props.fetchProfile(this.props.params.id)
     .then(() => {
-      let user = newProps.user;
+      let user = this.props.user;
       let dates =
         {month: "MM",
         day: "DD",
@@ -57,7 +57,7 @@ class ProfileEditForm extends React.Component {
         dates.day = user.birthday.split(' ')[1];
         dates.year = user.birthday.split(' ')[2];
       }
-      this.setState(merge({}, user, dates, {profile_pic: "", cpFile: ""}));
+      this.state = (merge({}, user, dates, {profile_pic: "", cpFile: ""}));
     });
   }
 
@@ -72,11 +72,11 @@ class ProfileEditForm extends React.Component {
       dates.day = user.birthday.split(' ')[1];
       dates.year = user.birthday.split(' ')[2];
     }
-    this.state = merge({}, user, dates, {profile_pic: "", cpFile: ""});
+    this.setState(merge({}, user, dates, {profile_pic: "", cpFile: ""}));
     }
 
     updateCp(event) {
-      const file = event.currentTarget.files[1];
+      const file = event.currentTarget.files[0];
       const fileReader = new FileReader();
       fileReader.onloadend = () => {
         this.setState({cover_photo: file, cpURL: fileReader.result});
@@ -117,10 +117,10 @@ class ProfileEditForm extends React.Component {
     event.preventDefault();
     let birth = [this.state.month, this.state.day, this.state.year].join(' ');
     let formData = new FormData();
-    Object.keys(this.state).map(key => {formData.append(`user[${key}]`, this.state[key])})
     this.setState({birthday: birth}, () => {
-      this.props.updateUser(formData).then(() => this.props.router.push(`/users/${this.props.user.id}`));
-    });
+      Object.keys(this.state).map(key => {formData.append(`user[${key}]`, this.state[key])})
+        this.props.updateUser(formData).then(() => this.props.router.push(`/users/${this.props.user.id}`));
+      });
   }
 
   render () {

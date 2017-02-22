@@ -45,7 +45,6 @@ const buttonDecider = (friendship, state, ownProps) => {
 
   const mapDispatchToProps = dispatch => ({
     fetchProfile: id => dispatch(fetchProfile(id)),
-    // fetchFriends: id => dispatch(fetchFriends(id)),
     deFriend: id => dispatch(deFriend(id)),
     confirmRequest: id => dispatch(confirmRequest(id)),
     sendRequest: id => dispatch(sendRequest(id))
