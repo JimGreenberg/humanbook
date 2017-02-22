@@ -2,22 +2,28 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
-#  username        :string           not null
-#  fname           :string           not null
-#  lname           :string           not null
-#  password_digest :string           not null
-#  session_token   :string           not null
-#  cover_photo     :string
-#  profile_pic     :string
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  birthday        :string
-#  relationship    :string
-#  work            :string
-#  where           :string
-#  from            :string
-#  school          :string
+#  id                       :integer          not null, primary key
+#  username                 :string           not null
+#  fname                    :string           not null
+#  lname                    :string           not null
+#  password_digest          :string           not null
+#  session_token            :string           not null
+#  created_at               :datetime         not null
+#  updated_at               :datetime         not null
+#  birthday                 :string
+#  relationship             :string
+#  work                     :string
+#  where                    :string
+#  from                     :string
+#  school                   :string
+#  profile_pic_file_name    :string
+#  profile_pic_content_type :string
+#  profile_pic_file_size    :integer
+#  profile_pic_updated_at   :datetime
+#  cover_photo_file_name    :string
+#  cover_photo_content_type :string
+#  cover_photo_file_size    :integer
+#  cover_photo_updated_at   :datetime
 #
 
 class User < ApplicationRecord
@@ -26,6 +32,11 @@ class User < ApplicationRecord
   validates :username, uniqueness: {message: 'That username is taken, please try another'}, presence: {message: "You need to enter a username"}
   validates :password, length: {minimum: 6, allow_nil: true, message: "Enter a password at least 6 characters long"}
   validates :password_digest, presence: true
+
+  has_attached_file :profile_pic, default_url: "blank_user.png"
+  validates_attachment_content_type :profile_pic, content_type: /\Aimage\/.*\Z/
+  has_attached_file :cover_photo, default_url: "blank_cover.png"
+  validates_attachment_content_type :cover_photo, content_type: /\Aimage\/.*\Z/
 
   attr_reader :password
 

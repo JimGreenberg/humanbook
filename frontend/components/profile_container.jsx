@@ -63,8 +63,6 @@ class ProfileContainer extends React.Component {
     this.props.fetchProfile(this.props.params.id).then(action => {
     window.scrollTo(0, 100);
     });
-  //   this.setState({buttonText: this.props.buttonText}, () =>
-  // this.props.fetchProfile(this.props.params.id));
   }
 
   componentDidUpdate(prevProps) {
@@ -73,13 +71,6 @@ class ProfileContainer extends React.Component {
       this.props.fetchProfile(this.props.params.id);
     }
   }
-
-  // componentWillUpdate(nextProps, nextState) {
-  //   if (nextProps.params.id !== this.props.params.id) {
-  //     window.scrollTo(0, 100);
-  //     nextProps.fetchProfile(nextProps.params.id);
-  //   }
-  // }
 
 
   handleButton(event) {
@@ -112,9 +103,9 @@ class ProfileContainer extends React.Component {
         <div>
           <NavBar />
           <div className='top-wrapper'>
-            <img className='cover-photo'></img>
+            <img className='cover-photo' src={this.props.user.cover_photo_url} />
             <div className='pp-floater'>
-              <img className='profile-pic'></img>
+              <div className='pp-border'><img className='profile-pic' src={this.props.user.profile_pic_url}/></div>
               <label className='name'>{fname} {lname}</label>
               <div className='profile-btn' onClick={this.handleButton}>{this.props.buttonText}</div>
             </div>

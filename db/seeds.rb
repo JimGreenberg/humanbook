@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 User.destroy_all
+Friendship.destroy_all
+Post.destroy_all
 
 jerry = User.create!(username: "jerry@seinfeld.com", fname: "Jerry", lname: "Seinfeld", password:"asdfasdf")
 george = User.create!(username: "george.costanza@yankeesny.com", fname: "George", lname: "Costanza", password:"asdfasdf")
@@ -20,8 +22,6 @@ tim = User.create!(username: "toothd3cay@shalom.net", fname: "Tim", lname: "What
 art = User.create!(username: "vandelay@architect.us", fname: "Art", lname: "Vandelay", password:"asdfasdf")
 pennypacker = User.create!(username: "he@pennypa.ck", fname: "H.E.", lname: "Pennypacker", password:"asdfasdf")
 
-Friendship.destroy_all
-
 jerry.make_friend(george)
 elaine.make_friend(jerry)
 tim.make_friend(art)
@@ -33,7 +33,6 @@ jerry.make_friend(puddy)
 george.make_friend(kramer)
 elaine.make_friend(george)
 
-Post.destroy_all
 Post.create!(body: "to jerry from george", author_id: george.id, wall_user_id: jerry.id)
 Post.create!(body: "to jerry from elaine", author_id: elaine.id, wall_user_id: jerry.id)
 Post.create!(body: "to george from elaine", author_id: elaine.id, wall_user_id: george.id)

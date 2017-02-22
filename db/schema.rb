@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170221195650) do
+ActiveRecord::Schema.define(version: 20170222210121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,21 +45,27 @@ ActiveRecord::Schema.define(version: 20170221195650) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "username",        null: false
-    t.string   "fname",           null: false
-    t.string   "lname",           null: false
-    t.string   "password_digest", null: false
-    t.string   "session_token",   null: false
-    t.string   "cover_photo"
-    t.string   "profile_pic"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "username",                 null: false
+    t.string   "fname",                    null: false
+    t.string   "lname",                    null: false
+    t.string   "password_digest",          null: false
+    t.string   "session_token",            null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.string   "birthday"
     t.string   "relationship"
     t.string   "work"
     t.string   "where"
     t.string   "from"
     t.string   "school"
+    t.string   "profile_pic_file_name"
+    t.string   "profile_pic_content_type"
+    t.integer  "profile_pic_file_size"
+    t.datetime "profile_pic_updated_at"
+    t.string   "cover_photo_file_name"
+    t.string   "cover_photo_content_type"
+    t.integer  "cover_photo_file_size"
+    t.datetime "cover_photo_updated_at"
     t.index ["fname"], name: "index_users_on_fname", using: :btree
     t.index ["lname"], name: "index_users_on_lname", using: :btree
     t.index ["session_token"], name: "index_users_on_session_token", using: :btree
