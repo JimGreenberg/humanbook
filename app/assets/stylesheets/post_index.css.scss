@@ -105,56 +105,6 @@ width: auto;
     display: flex;
     justify-content: space-between;
 
-    .tt-wrapper {
-      align-self: flex-end;
-      position: relative;
-
-      img {
-        width: 10px;
-        height: 10px;
-        z-index: 5;
-      }
-      .post-tt {
-        right: -17px;
-        top: 150%;
-        background: white;
-        border: 1px solid rgba(0, 0, 0, .15);
-        border-radius: 3px;
-        box-shadow: 2px -2px 18px rgba(0, 0, 0, .2);
-        padding: 4px 0;
-        outline: none;
-
-        .tt-nib {
-          pointer-events: none;
-          position: absolute;
-          width: 0px;
-          height: 0px;
-          border: 10px solid rgba(0,0,0,0);
-          border-bottom: white 10px solid;
-          left: 50%;
-          bottom: 93%;
-
-        }
-
-        button {
-          border: none;
-          width: 60px;
-          text-align: left;
-          background: white;
-          padding: 5px 12px;
-          color: #1d2129;
-
-        }
-        button:hover{
-          background: #3b5998;
-          color: white;
-          border : rgba(0,0,0,0.4) 1px solid;
-          border-left: none;
-          border-right: none;
-          padding: 4px 12px;
-        }
-      }
-    }
 
 
   }
@@ -163,6 +113,56 @@ width: auto;
 .label-wrapper {
   display: flex;
   align-items: center;
+
+  .tt-wrapper {
+    position: relative;
+
+    img {
+      width: 10px;
+      height: 10px;
+      z-index: 5;
+    }
+    .post-tt {
+      right: -17px;
+      top: 150%;
+      background: white;
+      border: 1px solid rgba(0, 0, 0, .15);
+      border-radius: 3px;
+      box-shadow: 2px -2px 18px rgba(0, 0, 0, .2);
+      padding: 4px 0;
+      outline: none;
+
+      .tt-nib {
+        pointer-events: none;
+        position: absolute;
+        width: 0px;
+        height: 0px;
+        border: 10px solid rgba(0,0,0,0);
+        border-bottom: white 10px solid;
+        left: 50%;
+        bottom: 93%;
+
+      }
+
+      button {
+        border: none;
+        width: 60px;
+        text-align: left;
+        background: white;
+        padding: 5px 12px;
+        color: #1d2129;
+
+      }
+      button:hover{
+        background: #3b5998;
+        color: white;
+        border : rgba(0,0,0,0.4) 1px solid;
+        border-left: none;
+        border-right: none;
+        padding: 4px 12px;
+      }
+    }
+  }
 
   .pp-mini {
     width: 40px;

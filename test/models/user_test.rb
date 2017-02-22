@@ -12,6 +12,12 @@
 #  profile_pic     :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  birthday        :string
+#  relationship    :string
+#  work            :string
+#  where           :string
+#  from            :string
+#  school          :string
 #
 
 require 'test_helper'

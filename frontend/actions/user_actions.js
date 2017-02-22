@@ -5,7 +5,8 @@ export const RECEIVE_PROFILE = 'RECEIVE_PROFILE';
 export const receiveProfile = profile => ({
   type: RECEIVE_PROFILE,
   user: profile.user,
-  posts: profile.posts
+  posts: profile.posts,
+  friendships: profile.friendships
 });
 
 export const fetchProfile = id =>(

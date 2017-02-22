@@ -10,18 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170221150147) do
+ActiveRecord::Schema.define(version: 20170221195650) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "friendships", force: :cascade do |t|
-    t.integer  "friender_id", null: false
-    t.integer  "receiver_id", null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "friender_id",                 null: false
+    t.integer  "receiver_id",                 null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "completed",   default: false, null: false
     t.index ["friender_id"], name: "index_friendships_on_friender_id", using: :btree
     t.index ["receiver_id"], name: "index_friendships_on_receiver_id", using: :btree
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer  "liker_id",    null: false
+    t.integer  "likeable_id", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["likeable_id"], name: "index_likes_on_likeable_id", using: :btree
+    t.index ["liker_id"], name: "index_likes_on_liker_id", using: :btree
   end
 
   create_table "posts", force: :cascade do |t|
