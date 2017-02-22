@@ -2,22 +2,24 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
-#  username        :string           not null
-#  fname           :string           not null
-#  lname           :string           not null
-#  password_digest :string           not null
-#  session_token   :string           not null
-#  cover_photo     :string
-#  profile_pic     :string
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  birthday        :string
-#  relationship    :string
-#  work            :string
-#  where           :string
-#  from            :string
-#  school          :string
+#  id                       :integer          not null, primary key
+#  username                 :string           not null
+#  fname                    :string           not null
+#  lname                    :string           not null
+#  password_digest          :string           not null
+#  session_token            :string           not null
+#  created_at               :datetime         not null
+#  updated_at               :datetime         not null
+#  birthday                 :string
+#  relationship             :string
+#  work                     :string
+#  where                    :string
+#  from                     :string
+#  school                   :string
+#  profile_pic_file_name    :string
+#  profile_pic_content_type :string
+#  profile_pic_file_size    :integer
+#  profile_pic_updated_at   :datetime
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

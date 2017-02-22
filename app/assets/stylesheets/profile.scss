@@ -17,18 +17,24 @@
 .pp-floater {
   display: flex;
   position: relative;
-  bottom: 150px;
+  bottom: 145px;
   left: 20px;
 
 
-  .profile-pic {
+  .pp-border {
     position: absolute;
-    width: 168px;
-    height: 168px;
-    outline: white 4px solid;
     border: rgba(0,0,0,0.3) 1px solid;
     border-radius: 3px;
-    outline-offset: -6px;
+    width: 168px;
+    height: 168px;
+    display: flex;
+    text-align: center;
+  }
+  .profile-pic {
+    width: 160px;
+    height: 160px;
+    border: white 4px solid;
+    border-radius: 3px;
   }
 
   .pp-change-overlay:hover {
