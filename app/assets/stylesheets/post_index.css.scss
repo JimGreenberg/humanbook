@@ -53,6 +53,8 @@ width: auto;
         height: 40px;
         width: 40px;
         margin-left: 12px;
+        outline: 1px solid rgba(0,0,0,0.1);
+        outline-offset: -1px;
       }
     textarea {
       padding: 23px 12px 10px;
@@ -62,6 +64,7 @@ width: auto;
       border: none;
       resize: none;
       outline: none;
+      width: 500px;
     }
   }
 
@@ -117,11 +120,10 @@ width: auto;
   .tt-wrapper {
     position: relative;
 
-    img {
-      width: 10px;
-      height: 10px;
-      z-index: 5;
+    .fa-pencil {
+      opacity: 0.15;
     }
+
     .post-tt {
       right: -17px;
       top: 150%;
@@ -168,6 +170,8 @@ width: auto;
     width: 40px;
     height: 40px;
     margin-right: 10px;
+    outline: 1px solid rgba(0,0,0,0.1);
+    outline-offset: -1px;
   }
 
 .name-label-wrapper {

@@ -8,6 +8,7 @@ export default class PostIndexItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {editing: false, ttFlag: false};
+    this.toggleTT = this.toggleTT.bind(this);
   }
 
   handleDelete() {
@@ -38,7 +39,7 @@ export default class PostIndexItem extends React.Component {
   }
 
   toggleTT() {
-    this.setState({[ttFlag]: !ttFlag});
+    this.setState({ttFlag: !this.state.ttFlag});
   }
 
   render() {
@@ -47,7 +48,9 @@ export default class PostIndexItem extends React.Component {
     return(
       <li className='post-item-wrapper card'>
         <div className='label-wrapper'>
-          <img className='pp-mini' src={author.profile_pic_url}/>
+          <Link to= {`users/${author.id}`}>
+            <img className='pp-mini' src={author.profile_pic_url}/>
+          </Link>
         <div className='name-label-wrapper'>
         <div className='name-label'>
           <span>
@@ -60,8 +63,10 @@ export default class PostIndexItem extends React.Component {
           </div>
           <small className='timestamp'>{`${timestamp.slice(0,10)} at ${timestamp.slice(11,16)}`}</small>
           </div>
-          <div className='tt-wrapper'>
-            <img onMouseOver={() => this.setState({ttFlag: !this.state.ttFlag})}/>
+          <div className={this.props.currentUser.id === author.id ? 'tt-wrapper' : 'hidden'}>
+            <i className='fa fa-pencil'
+               onMouseEnter={this.toggleTT}
+               onMouseLeave={() => window.setTimeout(() => this.setState({ttFlag: !this.state.ttFlag}), 2000)}/>
             {placeTooltip(this.ttContents(), 'post-tt', 'key', this.state.ttFlag)}
           </div>
           </div>

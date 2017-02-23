@@ -1,12 +1,15 @@
 .navbar {
   background: #3b5998;
+  border-bottom: 1px solid #29487d;
   display: flex;
   align-items: center;
   justify-content: space-around;
+
   height: 42px;
   position: fixed;
   width: 100%;
   z-index: 10;
+
 
   .nav-grp {
     display: flex;
@@ -22,6 +25,13 @@
     width: 26px;
     height: 26px;
     padding: 3px;
+    outline: none;
+    border-radius: 3px;
+
+    &:hover {
+      cursor: pointer;
+      background: rgba(0,0,0,0.1)
+    }
   }
 
   .search-bar {
@@ -37,32 +47,42 @@
   span {
     display: flex;
     align-items: center;
-    padding: 6px;
+    padding: 8px;
     margin: 0;
+    border: none;
+    border-radius: 2px;
+
+    &:first-of-type {
+      margin-right: 0;
+      padding: 2px 5px 2px 1px;
+    }
+    &:last-of-type {
+      border-left: 1px rgba(0,0,0,0.1) solid;
+      margin-right: 20px;
+    }
+  }
+
+  span:hover {
+    background-color: rgba(0,0,0,0.1);
+    cursor: pointer;
+    border-color: rgba(0,0,0,0);
+    cursor: pointer;
+  }
+
+  span:hover ~ span {
+    border-color: rgba(0,0,0,0);
   }
 
   label {
     color: #fff;
     font-size: 12px;
     font-weight: 600;
+    &:hover {
+    cursor: pointer;
   }
+}
 
-  span:first-of-type {
-    border-right: 1px rgba(0,0,0,0.2) solid;
-    margin-right: 0;
-    padding: 2px 5px 2px 1px;
-  }
 
-  label:hover {
-    cursor: pointer;
-  }
-  span:hover {
-    background-color: rgba(0,0,0,0.2);
-    cursor: pointer;
-    border-color: rgba(0,0,0,0);
-    border-radius: 2px;
-    cursor: pointer;
-  }
 
   .logout-button {
     font-weight: 500;
@@ -81,6 +101,9 @@
     width: 24px;
     height: 24px;
     border-radius: 2px;
+    outline: 1px solid rgba(0,0,0,0.1);
+    outline-offset: -1px;
+    padding: -1px;
     margin: 0;
   }
 }

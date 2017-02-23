@@ -12,6 +12,8 @@ const Root = ({store}) => (
       <Route path="/" component={App}/>
         <Route path="/users/:id" component={ProfileContainer} onEnter={_ensureLoggedIn} />
         <Route path="/users/:id/edit" component={ProfileEditForm} onEnter={_ensureLoggedIn} />
+        <Route path="/users/:id/about" component={ProfileEditForm} onEnter={_ensureLoggedIn} />
+        <Route path="/users/:id/friends" component={ProfileEditForm} onEnter={_ensureLoggedIn} />
         <Route path="/login" component={SessionForm} onEnter={_redirectIfLoggedIn} />
     </Router>
   </Provider>

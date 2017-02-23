@@ -29,7 +29,6 @@ class NavBar extends React.Component {
     this.props.router.push(`/users/${id}`);
   }
 
-
   render(){
     return (
       <div className="navbar">

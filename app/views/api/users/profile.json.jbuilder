@@ -7,6 +7,11 @@ json.user user
 json.posts (@user.wall_posts) do |post|
   json.partial! '/api/posts/post', post: post
 end
+
 json.friendships (@user.friendships) do |friendship|
   json.partial! '/api/friendships/friendship', friendship: friendship
+end
+
+json.friends (@user.friends) do |friend|
+  json.partial! '/api/users/user', user: friend
 end

@@ -147,9 +147,9 @@ class ProfileEditForm extends React.Component {
           </div>
           <ul className='profile-tabs'>
             <div className='nib about'></div>
-              <li >Timeline</li>
-              <li >About</li>
-              <li >Friends</li>
+              <Link to={`/users/${this.props.user.id}`}><li>Timeline</li></Link>
+              <Link to={`/users/${this.props.user.id}/about`}><li>About</li></Link>
+              <Link to={`/users/${this.props.user.id}/friends`}><li>Friends</li></Link>
           </ul>
         </div>
         <form className='pef-wrapper card' onSubmit={this.handleSubmit}>

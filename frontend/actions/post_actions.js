@@ -19,6 +19,7 @@ export const removePost = post => ({
 });
 
 export const receivePost = post => {
+
   return ({
   type: RECEIVE_POST,
   post

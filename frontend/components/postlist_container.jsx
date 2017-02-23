@@ -10,7 +10,7 @@ import PostForm from './post_form';
 const mapStateToProps = (state) => {
 
   return {
-  currentUserId: state.session.currentUser.id};
+  currentUser: state.session.currentUser};
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -23,10 +23,10 @@ class PostList extends React.Component {
 
   constructor(props) {
     super(props);
-
   }
 
   render() {
+    const wallUserId = this.props.profile ? this.props.params.id : this.props.currentUser.id;
     return (
       <ul className='postlist-wrapper'>
 
@@ -34,10 +34,11 @@ class PostList extends React.Component {
           return <PostIndexItem
             key={this.props.posts.indexOf(post)}
             post={post}
-            deletePost={this.props.deletePost}/>;
+            deletePost={this.props.deletePost}
+            currentUser={this.props.currentUser} />;
         })}
 
-        <PostForm formType='new' wallUserId={this.props.currentUserId} />
+        <PostForm formType='new' wallUserId={parseInt(wallUserId)} />
       </ul>
     );
   }

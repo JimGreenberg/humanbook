@@ -7,7 +7,7 @@ import {createPost, updatePost} from '../actions/post_actions';
 
   const mapStateToProps = (state, ownProps) => {
   let post = ownProps.post || {body: "", author_id: state.session.currentUser.id, wall_user_id: ownProps.wallUserId};
-  return { post, currentUser: state.session.currentUser };
+  return { currentUser: state.session.currentUser, post }
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -23,12 +23,12 @@ class PostForm extends React.Component {
     super(props);
     this.state = this.props.post;
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.success = this.success.bind(this);
   }
 
   componentWillMount() {
     if (!this.props.post) {return null;}
     this.state = this.props.post;
-    this.setState({action: this.props.updatePost});
   }
 
   update() {
@@ -42,6 +42,7 @@ class PostForm extends React.Component {
     }
 
   handleSubmit(event) {
+    debugger
     event.preventDefault();
     this.props.action(this.state).then(this.success());
   }

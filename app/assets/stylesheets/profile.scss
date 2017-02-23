@@ -11,7 +11,7 @@
 
 .cover-photo{
   height: 315px;
-  width: 851px;
+  width: 849px;
 }
 .pp-floater {
   display: flex;
@@ -50,7 +50,7 @@
     text-align: left;
     color: white;
     font-size: 24px;
-    text-rendering: optimizelegibility;
+    text-rendering: optimizeLegibility;
     text-shadow: 0 0 3px rgba(0,0,0,.8);
     text-transform: capitalize;
     margin: auto;
@@ -79,6 +79,37 @@
 .profile-tabs{
   position: relative;
 
+  a:first-of-type li {
+    border-left: 1px solid #e9eaed;
+  }
+
+  a {
+    text-decoration: none;
+    color: #365899;
+    border: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+
+    li {
+      align-self: center;
+      color: #365899;
+      cursor: pointer;
+      text-decoration: none;
+      border-right: 1px solid #e9eaed;
+      padding: 13.5px 17px;
+      font-weight: 700;
+
+
+
+      &:hover {
+        background: #f6f7f9;
+      }
+    }
+  }
+
   .nib {
     position: absolute;
     width: 10px;
@@ -103,21 +134,7 @@
   margin-left: 210px;
   align-items: center;
 
-  li {
-    align-self: center;
-    color: #365899;
-    cursor: pointer;
-    text-decoration: none;
-    border-right: 1px solid #e9eaed;
-    padding: 13.5px 17px;
-    font-weight: 700;
-  }
-  li:first-of-type {
-    border-left: 1px solid #e9eaed;
-  }
-  li:hover {
-    background: #f6f7f9;
-  }
+
 }
 }
 .profile-content-wrapper{
@@ -226,12 +243,17 @@
         border-radius: 100px;
         opacity: 1;
         padding: 2px 4px 2px 0;
+        margin-right: 6px;
 
       }
     }
-    h2 {
-      padding: 12px;
 
+    h2 {
+      padding: 12px 6px;
+      &:last-of-type {
+        color: #ccc;
+        padding-left: 0;
+      }
     }
     background: white;
     width: 319px;
@@ -247,7 +269,28 @@
       width: 100px;
       height: 100px;
       margin: 2px;
+      position: relative;
+
+      .friend-tile-name {
+        position: absolute;
+        font-weight: 500;
+        text-align: left;
+        color: white;
+        font-size: 12px;
+        text-rendering: optimizeLegibility;
+        text-shadow: 0 0 1px rgba(0,0,0,.8);
+        text-transform: capitalize;
+        bottom: 5%;
+        left: 5%;
+        padding: 0 2px;
+      }
+
+      .friend-tile-img {
+        width: 100px;
+        height: 100px;
+      }
     }
   }
-}}
+}
+}
 }

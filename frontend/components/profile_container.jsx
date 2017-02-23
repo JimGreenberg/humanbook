@@ -1,5 +1,5 @@
 import React from 'react';
-import {router, Router, hashHistory, withRouter} from 'react-router';
+import {Link, router, Router, hashHistory, withRouter} from 'react-router';
 import {connect} from 'react-redux';
 import {fetchProfile} from '../actions/user_actions';
 import {fetchFriends, deFriend, confirmRequest, sendRequest} from '../actions/friends_actions';
@@ -39,6 +39,7 @@ const buttonDecider = (friendship, state, ownProps) => {
     user: state.user,
     posts: Object.keys(state.posts).map(id => state.posts[id]),
     friendships: state.friendships,
+    friends: state.friends,
     buttonText: buttonDecider(findFriendship(state), state, ownProps),
     currentFriendship: findFriendship(state)
   });
@@ -63,13 +64,19 @@ class ProfileContainer extends React.Component {
     window.scrollTo(0, 100);
     });
   }
-
+  
   componentDidUpdate(prevProps) {
     if (prevProps.params.id !== this.props.params.id) {
       window.scrollTo(0, 100);
       this.props.fetchProfile(this.props.params.id);
     }
   }
+  // componentWillUpdate(nextProps) {
+  //   if (nextProps.params.id !== this.props.params.id) {
+  //     window.scrollTo(0, 100);
+  //     this.props.fetchProfile(this.props.params.id);
+  //   }
+  // }
 
 
   handleButton(event) {
@@ -94,6 +101,27 @@ class ProfileContainer extends React.Component {
 
   render() {
     const {fname, lname, birthday, work, school, relationship, from, where} = this.props.user;
+    const friends = this.props.friends;
+    const friendTiles = () => {
+      const arr = [];
+      const max = 9 > Object.keys(friends).length ? Object.keys(friends).length : 9;
+      for (var i = 0; i < max; i++) {
+        arr.push(
+          <Link className='friend-tile' key={i} to= {`/users/${friends[i].id}/`}>
+
+            <label className='friend-tile-name'>
+              {`${friends[i].fname} ${friends[i].lname}`}
+            </label>
+
+            <img className='friend-tile-img'
+            src={friends[i].profile_pic_url} />
+
+          </Link>
+        );
+      }
+      return <div className='friend-tiles'>{arr}</div>;
+    };
+
     if (!this.props.user.fname) {
       return null;
     } else {
@@ -110,9 +138,9 @@ class ProfileContainer extends React.Component {
             </div>
             <ul className='profile-tabs'>
               <div className='nib timeline'></div>
-              <li >Timeline</li>
-              <li >About</li>
-              <li >Friends</li>
+                <Link to={`/users/${this.props.user.id}`}><li>Timeline</li></Link>
+                <Link to={`/users/${this.props.user.id}/about`}><li>About</li></Link>
+                <Link to={`/users/${this.props.user.id}/friends`}><li>Friends</li></Link>
             </ul>
           </div>
           <div className='profile-content-wrapper'>
@@ -124,7 +152,7 @@ class ProfileContainer extends React.Component {
                 </div>
                 <ul>
                   <li><i className='fa fa-mortar-board'></i><p>Studied at</p><p>{school}</p></li>
-                  <li><i className='fa fa-briefcase'></i><p>Works</p><p>{work}</p></li>
+                  <li><i className='fa fa-briefcase'></i><p>Works at</p><p>{work}</p></li>
                   <li><i className='fa fa-home'></i><p>Lives in</p><p>{where}</p></li>
                   <li><i className='fa fa-heart'></i><p>Relationship</p><p>{relationship}</p></li>
                   <li><i className='fa fa-map-marker'></i><p>From</p><p>{from}</p></li>
@@ -134,19 +162,9 @@ class ProfileContainer extends React.Component {
               <div className='friends-side-wrapper card'>
                 <div className='sidecard-title'>
                   <i className='fa fa-users'></i>
-                  <h2>Friends</h2>
+                  <h2>Friends</h2><h2>{`· ${Object.keys(friends).length}`}</h2>
                 </div>
-                <div>
-                  <img className='friend-tile'></img>
-                  <img className='friend-tile'></img>
-                  <img className='friend-tile'></img>
-                  <img className='friend-tile'></img>
-                  <img className='friend-tile'></img>
-                  <img className='friend-tile'></img>
-                  <img className='friend-tile'></img>
-                  <img className='friend-tile'></img>
-                  <img className='friend-tile'></img>
-                </div>
+              {friendTiles()}
               </div>
             </div>
             <PostList className='timeline' profile={true} posts={this.props.posts} />
