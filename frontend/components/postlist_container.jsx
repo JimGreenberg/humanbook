@@ -10,7 +10,8 @@ import PostForm from './post_form';
 const mapStateToProps = (state) => {
 
   return {
-  currentUser: state.session.currentUser};
+  currentUser: state.session.currentUser,
+  posts: Object.keys(state.posts).map(postId => state.posts[postId])};
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -31,11 +32,12 @@ class PostList extends React.Component {
       <ul className='postlist-wrapper'>
 
         {this.props.posts.map( post => {
+          if (!post) {return;}
           return <PostIndexItem
-            key={this.props.posts.indexOf(post)}
+            key={post.id}
             post={post}
             deletePost={this.props.deletePost}
-            currentUser={this.props.currentUser} />;
+            currentUser={this.props.currentUser}/>;
         })}
 
         <PostForm formType='new' wallUserId={parseInt(wallUserId)} />

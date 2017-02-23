@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router';
 import {connect} from 'react';
 import PostForm from './post_form';
+import CommentTree from './comment_tree';
 import {placeTooltip} from './tooltip';
 
 export default class PostIndexItem extends React.Component {
@@ -9,6 +10,11 @@ export default class PostIndexItem extends React.Component {
     super(props);
     this.state = {editing: false, ttFlag: false};
     this.toggleTT = this.toggleTT.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({body: nextProps.body});
   }
 
   handleDelete() {
@@ -24,7 +30,7 @@ export default class PostIndexItem extends React.Component {
   }
 
   editBody() {
-    return <PostForm formType='edit' handleEdit={this.handleEdit.bind(this)} post={this.props.post} />;
+    return <PostForm formType='edit' handleEdit={this.handleEdit} post={this.props.post} />;
   }
 
   bodyMaker() {
@@ -43,11 +49,13 @@ export default class PostIndexItem extends React.Component {
   }
 
   render() {
-    const {body, author, wall_owner, author_id, wall_user_id, timestamp} = this.props.post;
+    let {body, author, wall_owner, author_id, wall_user_id, timestamp, comments, topLevelComments} = this.props.post;
     const postToLabel = author_id === wall_user_id ? 'hidden' : 'name-label';
+    if (!comments) { comments = []; }
     return(
-      <li className='post-item-wrapper card'>
-        <div className='label-wrapper'>
+      <li>
+        <div className='post-item-wrapper card'>
+        <div className='label-wrapper'> 
           <Link to= {`users/${author.id}`}>
             <img className='pp-mini' src={author.profile_pic_url}/>
           </Link>
@@ -73,8 +81,9 @@ export default class PostIndexItem extends React.Component {
         <br/>
         <div className='post-body'>
           {this.bodyMaker()}
-
         </div>
+        </div>
+        <CommentTree topLevelComments={topLevelComments} comments={comments} currentUser={this.props.currentUser}/>
       </li>
     );
 

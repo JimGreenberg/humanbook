@@ -1,0 +1,96 @@
+.comment-tree {
+  font-size: 12px;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  background: #f6f7f9;
+  margin-top: -11px;
+  margin-bottom: 10px;
+  border: 1px solid;
+  padding: 0 12px;
+  border-top-color: rgb(229, 230, 233);
+  border-right-color: rgb(223, 224, 228);
+  border-bottom-color: rgb(208, 209, 213);
+  border-left-color: rgb(223, 224, 228);
+  border-radius: 3px;
+  color: #1d2129;
+
+
+  .comment {
+    display: flex;
+    align-items: center;
+    padding: 3px 0;
+
+    .pp-mini {
+      width: 32px;
+      height: 32px;
+      margin-right: 10px;
+      outline: 1px solid rgba(0,0,0,0.1);
+      outline-offset: -1px;
+      padding: 0;
+    }
+
+     & > div {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+      & * {
+        padding: 2px 0;
+      }
+  }
+
+  .child {
+    margin-left: 20px;
+  }
+}
+
+  .first-line {
+    display: flex;
+    flex-direction: row;
+    width: inherit;
+    line-height: 16px;
+
+    & * {
+      &:nth-child(2) {
+        margin: 0 auto 0 7px;
+      }
+    }
+
+    a {
+      color: #365899;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      text-transform: capitalize;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+
+  .second-line {
+    display: flex;
+    flex-direction: row;
+    width: inherit;
+
+    .timestamp {
+      font-size: 12px;
+      color: rgb(208, 209, 213);
+    }
+
+    a {
+      line-height: 10px;
+      color: #365899;
+      text-decoration: none;
+      font-size: 12px;
+      text-transform: capitalize;
+      margin-right: 5px;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }

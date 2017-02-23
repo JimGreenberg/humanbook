@@ -64,7 +64,7 @@ class ProfileContainer extends React.Component {
     window.scrollTo(0, 100);
     });
   }
-  
+
   componentDidUpdate(prevProps) {
     if (prevProps.params.id !== this.props.params.id) {
       window.scrollTo(0, 100);
@@ -102,19 +102,24 @@ class ProfileContainer extends React.Component {
   render() {
     const {fname, lname, birthday, work, school, relationship, from, where} = this.props.user;
     const friends = this.props.friends;
-    const friendTiles = () => {
+    const friendTiles = (friends) => {
+      if (!friends) {return;}
       const arr = [];
-      const max = 9 > Object.keys(friends).length ? Object.keys(friends).length : 9;
+      let keys = Object.keys(friends);
+      let max = 9;
+      if (9 > keys.length) {
+        max = keys.length;
+      }
       for (var i = 0; i < max; i++) {
         arr.push(
-          <Link className='friend-tile' key={i} to= {`/users/${friends[i].id}/`}>
+          <Link className='friend-tile' key={i} to= {`/users/${[keys[i]]}/`}>
 
             <label className='friend-tile-name'>
-              {`${friends[i].fname} ${friends[i].lname}`}
+              {`${friends[keys[i]].fname} ${friends[keys[i]].lname}`}
             </label>
 
             <img className='friend-tile-img'
-            src={friends[i].profile_pic_url} />
+            src={friends[keys[i]].profile_pic_url} />
 
           </Link>
         );
@@ -164,10 +169,10 @@ class ProfileContainer extends React.Component {
                   <i className='fa fa-users'></i>
                   <h2>Friends</h2><h2>{`· ${Object.keys(friends).length}`}</h2>
                 </div>
-              {friendTiles()}
+              {friendTiles(friends)}
               </div>
             </div>
-            <PostList className='timeline' profile={true} posts={this.props.posts} />
+            <PostList className='timeline' profile={true} />
           </div>
         </div>
       );

@@ -13,7 +13,6 @@ import {createPost, updatePost} from '../actions/post_actions';
 const mapDispatchToProps = (dispatch, ownProps) => {
   const action = ownProps.formType === "new" ? createPost : updatePost;
   return {
-    fetchPost: id => dispatch(fetchPost(id)),
     action: post => dispatch(action(post))
   };
 };
@@ -31,18 +30,15 @@ class PostForm extends React.Component {
     this.state = this.props.post;
   }
 
-  update() {
-      return event => {
-        this.setState({body: event.currentTarget.value});
-      };
-    }
+  update(event) {
+    this.setState({body: event.currentTarget.value});
+  }
 
     success() {
-      return this.props.formType === 'new' ? () => this.setState({body: ""}) : () => this.props.handleEdit();
+      return this.props.formType === 'new' ? () => this.setState({body: ""}) : this.props.handleEdit;
     }
 
   handleSubmit(event) {
-    debugger
     event.preventDefault();
     this.props.action(this.state).then(this.success());
   }
@@ -55,7 +51,7 @@ class PostForm extends React.Component {
         <div className='form-main'>
           <div className='nib'></div>
           <img src={this.props.currentUser.profile_pic_url}></img>
-          <textarea onChange={this.update()} value={this.state.body} placeholder="What's on your mind?">
+          <textarea onChange={this.update} value={this.state.body} placeholder="What's on your mind?">
           </textarea>
         </div>
         <div className="underbar">

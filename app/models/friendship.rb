@@ -12,6 +12,7 @@
 
 class Friendship < ApplicationRecord
   # validate :unique_pair_validation, on: :create
+  validates :friender_id, :receiver_id, presence: true
 
   belongs_to :receiver,
     class_name: :User,

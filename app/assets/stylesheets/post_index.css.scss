@@ -10,7 +10,6 @@ width: auto;
   flex-direction: column-reverse;
   align-items: center;
 
-
   .postform {
     padding: 0;
     flex-direction: column;
@@ -101,6 +100,10 @@ width: auto;
   height: auto;
   width: 484px;
   margin-bottom: 10px;
+  // border-bottom: none;
+  // border-bottom-left-radius: 0;
+  // border-bottom-right-radius: 0;
+
 
   .post-body {
     font-size: 14px;
@@ -108,8 +111,9 @@ width: auto;
     display: flex;
     justify-content: space-between;
 
-
-
+    textarea {
+      width: 400px;
+    }
   }
 }
 
@@ -122,6 +126,10 @@ width: auto;
 
     .fa-pencil {
       opacity: 0.15;
+
+      width: 10px;
+      height: 10px;
+
     }
 
     .post-tt {

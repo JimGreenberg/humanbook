@@ -11,15 +11,7 @@ const PostsReducer = (oldState = {}, action) => {
       return merge({}, oldState, {[action.post.id]: action.post});
     case REMOVE_POST:
       let newState = merge({}, oldState);
-      let deleteId = null;
-      Object.keys(newState).forEach(
-        postId => {
-          if (newState[postId].id === action.post.id) {
-            deleteId = postId;
-          }
-        }
-      );
-      delete newState[deleteId];
+      delete newState[action.post.id];
       return newState;
     case RECEIVE_PROFILE:
         return merge({}, action.posts);

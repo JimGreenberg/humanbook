@@ -71,6 +71,10 @@ class User < ApplicationRecord
   has_many :in_friends_posts,
     through: :in_friends
 
+  has_many :authored_comments,
+    class_name: :Comment,
+      foreign_key: :author_id
+
 def friends
   User
   .joins("INNER JOIN friendships ON friender_id = users.id OR receiver_id = users.id")

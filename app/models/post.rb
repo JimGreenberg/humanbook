@@ -22,6 +22,16 @@ class Post < ApplicationRecord
     class_name: :User,
     foreign_key: :wall_user_id
 
+  has_many :comments, as: :commentable
+
+  has_many :top_level_comments, -> {where(parent_id: nil)},
+    foreign_key: :commentable_id,
+    class_name: :Comment
+
+  has_many :comment_authors,
+    through: :comments,
+    source: :author
+
   def wall_posts(user)
     Post.where(wall_owner: user.id)
   end
