@@ -2,20 +2,20 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import {placeTooltip} from './tooltip';
-import {receiveComment, removeComment} from '../actions/comments_actions';
+import {createComment, updateComment} from '../actions/comments_actions';
 
   const mapStateToProps = (state, ownProps) => {
     let comment = ownProps.comment ||
       { body: "",
-        author_id: state.session.currentUser.id,
-        parent_id: ownProps.parent_id,
-        commentable_id: ownProps.commentable_id };
+        authorId: state.session.currentUser.id,
+        parentId: ownProps.parent_id,
+        commentableId: ownProps.commentable_id };
 
     return {comment, currentUser: state.session.currentUser};
   };
 
   const mapDispatchToProps = (dispatch, ownProps) => {
-    const action = ownProps.formType === "new" ? createComment : updateComment;
+    const action = ownProps.formType !== "edit" ? createComment : updateComment;
     return {
       action: post => dispatch(action(post))
     };
@@ -39,7 +39,13 @@ class CommentForm extends React.Component {
   }
 
   success() {
-    return this.props.formType === 'new' ? () => this.setState({body: ""}) : this.props.handleEdit;
+    if (this.props.formType === 'edit') {
+      return this.props.handleEdit;
+    } else if (this.props.formType === 'reply') {
+      return this.props.handleReply;
+    } else {
+      return () => this.setState({body: ""})
+    }
   }
 
 
@@ -50,15 +56,14 @@ class CommentForm extends React.Component {
 
   render() {
     return(
-      <form className='comment-form' onSubmit={this.handleSubmit}>
-        <img src={this.props.currentUser.profile_pic_url}/>
+      <form className={this.props.className} onSubmit={this.handleSubmit}>
+        <img className= 'pp-mini' src={this.props.currentUser.profile_pic_url}/>
         <input type='text'
           onChange={this.update}
           value={this.state.body}
           placeholder={
-            `Write a
-            ${this.props.formType === 'new' ?
-            'comment' : 'reply'}`
+            `Write a ${!this.props.parentId ?
+            'comment' : 'reply'}...`
           }
         />
       </form>

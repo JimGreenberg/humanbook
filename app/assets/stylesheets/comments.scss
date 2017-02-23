@@ -13,20 +13,34 @@
   border-radius: 3px;
   color: #1d2129;
 
+  .pp-mini {
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+    outline: 1px solid rgba(0,0,0,0.1);
+    outline-offset: -1px;
+    padding: 0;
+  }
+
+  .comment-form {
+    width: auto;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+
+    & input {
+      height: 28px;
+      padding: 0 7px;
+      width: 100%;
+    }
+  }
 
   .comment {
     display: flex;
     align-items: center;
     padding: 3px 0;
 
-    .pp-mini {
-      width: 32px;
-      height: 32px;
-      margin-right: 10px;
-      outline: 1px solid rgba(0,0,0,0.1);
-      outline-offset: -1px;
-      padding: 0;
-    }
 
      & > div {
       display: flex;
@@ -34,9 +48,6 @@
       width: 100%;
     }
 
-      & * {
-        padding: 2px 0;
-      }
   }
 
   .child {
@@ -45,6 +56,7 @@
 }
 
   .first-line {
+    padding: 5px 0;
     display: flex;
     flex-direction: row;
     width: inherit;

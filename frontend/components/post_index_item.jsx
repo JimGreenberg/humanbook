@@ -83,7 +83,12 @@ export default class PostIndexItem extends React.Component {
           {this.bodyMaker()}
         </div>
         </div>
-        <CommentTree topLevelComments={topLevelComments} comments={comments} currentUser={this.props.currentUser}/>
+        <CommentTree
+          topLevelComments={topLevelComments}
+          postId={this.props.post.id}
+          comments={comments}
+          currentUser={this.props.currentUser}
+        />
       </li>
     );
 
