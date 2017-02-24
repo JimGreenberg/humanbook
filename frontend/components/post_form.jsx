@@ -23,6 +23,7 @@ class PostForm extends React.Component {
     this.state = this.props.post;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.success = this.success.bind(this);
+    this.update = this.update.bind(this);
   }
 
   componentWillMount() {
