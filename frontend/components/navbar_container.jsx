@@ -3,6 +3,8 @@ import {withRouter} from 'react-router';
 import {connect} from 'react-redux';
 import {signOut} from '../actions/session_actions';
 import Tooltip from './tooltip';
+import Search from './search';
+
 
 const mapStateToProps = state => ({
   currentUser: state.session.currentUser
@@ -34,7 +36,7 @@ class NavBar extends React.Component {
       <div className="navbar">
         <div className="nav-grp left">
         <img className='logo' onClick={this.redirectToHome} src={window.images.negLogo}/>
-          <input type='text' className='search-bar' placeholder={this.currentUser.username}/>
+          <Search />
         </div>
 
         <div className="nav-grp right">

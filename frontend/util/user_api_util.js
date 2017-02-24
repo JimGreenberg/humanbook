@@ -14,3 +14,10 @@ export const updateUser = formData => {
     data: formData
   });
 };
+
+export const fetchAllUsers = id => {
+  return $.ajax({
+    method: "GET",
+    url: `/api/users/`
+  });
+};

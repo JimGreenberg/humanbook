@@ -1,5 +1,6 @@
 import {combineReducers} from 'redux';
 import PostsReducer from './posts_reducer';
+import SearchReducer from './search_reducer';
 import SessionReducer from './session_reducer';
 import UsersReducer from './users_reducer';
 import FriendsReducer from './friends_reducer';
@@ -10,7 +11,8 @@ const RootReducer = combineReducers({
   posts: PostsReducer,
   user: UsersReducer,
   friendships: FriendshipsReducer,
-  friends: FriendsReducer
+  friends: FriendsReducer,
+  search: SearchReducer
 });
 
 export default RootReducer;

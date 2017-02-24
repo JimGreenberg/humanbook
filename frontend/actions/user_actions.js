@@ -2,6 +2,8 @@ import * as UserApiUtil from '../util/user_api_util';
 import {receiveAllPosts} from './post_actions';
 
 export const RECEIVE_PROFILE = 'RECEIVE_PROFILE';
+export const RECEIVE_SEARCH = 'RECEIVE_SEARCH';
+
 export const receiveProfile = profile => ({
   type: RECEIVE_PROFILE,
   user: profile.user,
@@ -10,12 +12,22 @@ export const receiveProfile = profile => ({
   friends: profile.friends
 });
 
-export const fetchProfile = id =>(
+export const receiveSearch = search => ({
+  type: RECEIVE_SEARCH,
+  search: search
+});
+
+export const fetchAllUsers = () => (
+  dispatch => (UserApiUtil.fetchAllUsers()
+    .then(search => dispatch(receiveSearch(search))))
+);
+
+export const fetchProfile = id => (
   dispatch => (UserApiUtil.fetchProfile(id)
     .then(profile => dispatch(receiveProfile(profile))))
 );
 
-export const updateUser = user =>(
+export const updateUser = user => (
   dispatch => (UserApiUtil.updateUser(user)
     .then(profile => dispatch(receiveProfile(profile))))
 );

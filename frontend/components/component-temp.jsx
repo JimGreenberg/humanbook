@@ -13,7 +13,9 @@ import {placeTooltip} from './tooltip';
   });
 
 class PostForm extends React.Component {
-
+  render() {
+    return(null);
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostForm);

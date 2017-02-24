@@ -1,6 +1,5 @@
 import merge from 'lodash/merge';
 import {RECEIVE_PROFILE} from '../actions/user_actions';
-// import {RECEIVE_POST} from '../actions/post_actions';
 
 const UsersReducer = (oldState = {}, action) => {
   Object.freeze(oldState);
