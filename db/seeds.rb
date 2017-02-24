@@ -52,26 +52,50 @@ jerry.make_friend(puddy)
 george.make_friend(kramer)
 elaine.make_friend(george)
 
-post1=Post.create!(body: "to jerry from george", author_id: george.id, wall_user_id: jerry.id)
-post2=Post.create!(body: "to jerry from elaine", author_id: elaine.id, wall_user_id: jerry.id)
-post3=Post.create!(body: "to george from elaine", author_id: elaine.id, wall_user_id: george.id)
-post4=Post.create!(body: "to george from kramer", author_id: kramer.id, wall_user_id: george.id)
-post5=Post.create!(body: "these pretzels are making me thirsty", author_id: george.id, wall_user_id: george.id)
-post6=Post.create!(body: "ITS THE SUMMER OF GEORGE", author_id: george.id, wall_user_id: george.id)
-post7=Post.create!(body: "an architect?", author_id: elaine.id, wall_user_id: george.id)
-post8=Post.create!(body: "to george kramer", author_id: george.id, wall_user_id: kramer.id)
-post9=Post.create!(body: "asdfasopdfja[psiodfjasef", author_id: george.id, wall_user_id: jerry.id)
-post10=Post.create!(body: "asdfasef", author_id: bob.id, wall_user_id: jerry.id)
-post11=Post.create!(body: "NEWMAN", author_id: newman.id, wall_user_id: art.id)
-post12=Post.create!(body: "to art from jerry", author_id: jerry.id, wall_user_id: art.id)
+post1=Post.create!(body: "You've got to apologize", author_id: george.id, wall_user_id: jerry.id)
+comment1_0=Comment.create!(commentable_type: "Post", body: "why?", author_id: jerry.id, commentable_id: post1.id)
+comment1_1=Comment.create!(commentable_type: "Post", body: "because it's the mature and adult thing to do", author_id: george.id, commentable_id: post1.id)
+comment1_2=Comment.create!(commentable_type: "Post", body: "but how does that affect me?", author_id: jerry.id, commentable_id: post1.id)
 
-comment1=Comment.create!(commentable_type: "Post", body: "you shitpickle", author_id: jerry.id, commentable_id: post1.id)
-comment2=Comment.create!(commentable_type: "Post", body: "Hi elaine", author_id: jerry.id, commentable_id: post3.id)
-comment3=Comment.create!(commentable_type: "Post", body: "Hi elaine, again", author_id: jerry.id, commentable_id: post3.id, parent_id: comment2.id)
-comment4=Comment.create!(commentable_type: "Post", body: "Hi tom", author_id: jerry.id, commentable_id: post3.id, parent_id: comment2.id)
-comment5=Comment.create!(commentable_type: "Post", body: "babka", author_id: jerry.id, commentable_id: post1.id, parent_id: comment1.id)
-comment6=Comment.create!(commentable_type: "Post", body: "VEGAN FIGHTER", author_id: jerry.id, commentable_id: post1.id)
-comment7=Comment.create!(commentable_type: "Post", body: "help me fight children", author_id: jerry.id, commentable_id: post1.id, parent_id: comment1.id)
-comment8=Comment.create!(commentable_type: "Post", body: "i don't like other people", author_id: jerry.id, commentable_id: post1.id)
-comment9=Comment.create!(commentable_type: "Post", body: "eifjs", author_id: jerry.id, commentable_id: post1.id)
-comment10=Comment.create!(commentable_type: "Post", body: "Hi elaine", author_id: jerry.id, commentable_id: post1.id)
+post2=Post.create!(body: "there's more to newman than meets the eye", author_id: elaine.id, wall_user_id: newman.id)
+comment2=Comment.create!(commentable_type: "Post", body: "no, there's less", author_id: jerry.id, commentable_id: post2.id)
+
+post3=Post.create!(body: "ITS THE SUMMER OF GEORGE", author_id: george.id, wall_user_id: george.id)
+
+post4=Post.create!(body: "these pretzels are making me thirsty", author_id: kramer.id, wall_user_id: kramer.id)
+comment4_0=Comment.create!(commentable_type: "Post", body: "THESE pretzels are making me thirsty", author_id: elaine.id, commentable_id: post4.id)
+comment4_1=Comment.create!(commentable_type: "Post", body: "these pretzels are making ME thirsty", author_id: jerry.id, commentable_id: post4.id, parent_id: comment4_0.id)
+comment4_2=Comment.create!(commentable_type: "Post", body: "THESE PRETZELS ARE MAKING ME THIRSTY!", author_id: george.id, commentable_id: post4.id)
+
+post5=Post.create!(body: "You know you’re not supposed to brush your teeth for 24 hours before you go to the dentist", author_id: kramer.id, wall_user_id: jerry.id)
+comment5_0=Comment.create!(commentable_type: "Post", body: "I think you’re thinking of ‘You’re not supposed to eat 24 hours before surgery’.", author_id: jerry.id, commentable_id: post5.id)
+comment5_1=Comment.create!(commentable_type: "Post", body: " Oh, you gotta eat before surgery. You need your strength.", author_id: kramer.id, commentable_id: post5.id, parent_id: comment5_0.id)
+
+post6=Post.create!(body: "Elaine, breaking up is like knocking over a Coke machine. You can’t do it in one push; you gotta rock it back and forth a few times and THEN it goes over.", author_id: jerry.id, wall_user_id: elaine.id)
+
+post7=Post.create!(body: "If you’re not gonna be a part of a civil society, then just get in your car and drive on over to the East Side.", author_id: kramer.id, wall_user_id: kramer.id)
+
+post8=Post.create!(body: "There is no bigger loser than me!", author_id: george.id, wall_user_id: george.id)
+
+post9=Post.create!(body: "Do you have any conceivable reason for even getting up in the morning?", author_id: kramer.id, wall_user_id: george.id)
+comment9_0=Comment.create!(commentable_type: "Post", body: "i like to get the daily news...", author_id: george.id, commentable_id: post9.id)
+comment9_1=Comment.create!(commentable_type: "Post", body: "atta boy george!", author_id: jerry.id, commentable_id: post9.id, parent_id: comment9_0.id)
+
+post11=Post.create!(body: "Hello, Jerry.", author_id: newman.id, wall_user_id: jerry.id)
+comment11=Comment.create!(commentable_type: "Post", body: "Hello, Newman.", author_id: jerry.id, commentable_id: post11.id)
+
+post12=Post.create!(body: "you know, I always wanted to prented I was an architect", author_id: george.id, wall_user_id: george.id)
+comment10_0=Comment.create!(commentable_type: "Post", body: "Art Vandelay: Senior Architect, I can see it now...", author_id: art.id, commentable_id: post12.id)
+
+post13=Post.create!(body: "I lie every second of the day. My whole life is a sham.", author_id: george.id, wall_user_id: george.id)
+
+post14=Post.create!(body: "Why does everything have to be so... jokey with you?", author_id: elaine.id, wall_user_id: jerry.id)
+comment14_0=Comment.create!(commentable_type: "Post", body: "I'm a comedian.", author_id: jerry.id, commentable_id: post14.id)
+
+
+post10=Post.create!(body: "I gave all these out at the office as gifts", author_id: george.id, wall_user_id: jerry.id)
+comment10_0=Comment.create!(commentable_type: "Post", body: "The human fund...", author_id: jerry.id, commentable_id: post10.id)
+comment10_1=Comment.create!(commentable_type: "Post", body: "yyup", author_id: george.id, commentable_id: post10.id)
+comment10_2=Comment.create!(commentable_type: "Post", body: "money for people?", author_id: jerry.id, commentable_id: post10.id)
+comment10_3=Comment.create!(commentable_type: "Post", body: "yeah isn't it great? i spent no money", author_id: george.id, commentable_id: post10.id)
+comment10_4=Comment.create!(commentable_type: "Post", body: "this is a new low george, even for you", author_id: elaine.id, commentable_id: post10.id, parent_id: comment10_3.id)
