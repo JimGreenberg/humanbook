@@ -36,7 +36,7 @@ class SessionForm extends React.Component {
     this.disabled = true;
     this.typeValue(username, "username", function () {
       this.typeValue(password, "password", function () {
-        this.props.signIn(this.state)//.then(() => this.props.router.push('/'));
+        this.props.signIn(this.state);
       }.bind(this));
     }.bind(this));
   }
@@ -90,7 +90,10 @@ class SessionForm extends React.Component {
               value={this.state.password}
               className="field"
               onChange={this.update("password")}/>
-            <button onClick={() => {this.logInAs("jerry@seinfeld.com", 'asdfasdf');}}>Demo Log In</button>
+            <a className={this.state.demoBtn} onClick={
+              () => this.setState({username: "", password: "", demoBtn: 'disabled'},
+                    this.logInAs("jjerry@seinfeld.com", 'asdfasdf'))
+            }>Demo Log In</a>
 
           </div>
 
