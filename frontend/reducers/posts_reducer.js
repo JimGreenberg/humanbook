@@ -24,7 +24,7 @@ const PostsReducer = (oldState = {}, action) => {
 
       let topLevelComments = [...oldState[action.comment.commentable_id].topLevelComments];
       if (parent) {
-        if(!parent.child_ids.includes(action.comment.id)) {parent.push(action.comment.parent_id);}
+        if(!parent.child_ids.includes(action.comment.id)) {parent.child_ids.push(action.comment.id);}
       } else if (!topLevelComments.includes(action.comment.id)) {
         topLevelComments.push(action.comment.id);
       }
@@ -37,7 +37,24 @@ const PostsReducer = (oldState = {}, action) => {
       });
 
     case REMOVE_COMMENT:
-    debugger
+      newState = merge({}, oldState);
+      comments = newState[action.comment.commentable_id].comments;
+
+      parent = comments[action.comment.parent_id];
+      if (parent) {parent = parent.filter(id => id !== action.comment.id);}
+
+      topLevelComments = newState[action.comment.commentable_id].topLevelComments;
+      topLevelComments = topLevelComments.filter(id => id !== action.comment.id);
+      newState[action.comment.commentable_id].topLevelComments = topLevelComments;
+
+      delete comments[action.comment.id];
+      return merge({}, newState, {
+        [action.comment.commentable_id]: merge({}, newState[action.comment.commentable_id], {
+          comments,
+          topLevelComments
+        })
+      });
+
     default:
       return oldState;
   }

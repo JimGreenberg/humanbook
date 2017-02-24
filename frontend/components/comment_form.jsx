@@ -42,9 +42,9 @@ class CommentForm extends React.Component {
 
   success() {
     if (this.props.formType === 'edit') {
-      return this.props.handleEdit;
+      return this.props.toggleEdit;
     } else if (this.props.formType === 'reply') {
-      return this.props.handleReply;
+      return this.props.toggleReply;
     } else {
       return () => this.setState({body: ""});
     }
@@ -58,16 +58,13 @@ class CommentForm extends React.Component {
 
   render() {
     return(
-      <form className={this.props.className} onSubmit={this.handleSubmit}>
+      <form className={`${this.props.formType} comment-form`} onSubmit={this.handleSubmit}>
         <img className= 'pp-mini' src={this.props.currentUser.profile_pic_url}/>
         <input type='text'
           onChange={this.update}
           value={this.state.body}
           placeholder={
-            `Write a ${!this.props.parentId ?
-            'comment' : 'reply'}...`
-          }
-        />
+            `Write a ${!this.props.parent_id ? 'comment' : 'reply'}...`}/>
       </form>
     );
   }

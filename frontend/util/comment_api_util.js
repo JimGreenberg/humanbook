@@ -9,7 +9,7 @@ export const createComment = comment => (
 export const updateComment = comment => (
   $.ajax({
     method: 'PATCH',
-    url: `/api/comments/${id}`,
+    url: `/api/comments/${comment.id}`,
     data: {comment}
   })
 );
