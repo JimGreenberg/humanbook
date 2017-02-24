@@ -3,15 +3,15 @@ import * as CommentApiUtil from '../util/comment_api_util';
 export const RECEIVE_COMMENT = 'RECEIVE_COMMENT';
 export const REMOVE_COMMENT = 'REMOVE_COMMENT';
 
-export const removeComment = post => ({
+export const removeComment = comment => ({
   type: REMOVE_COMMENT,
-  post
+  comment
 });
 
-export const receiveComment = post => {
+export const receiveComment = comment => {
   return ({
   type: RECEIVE_COMMENT,
-  post
+  comment
 });};
 
 export const deleteComment = id => (

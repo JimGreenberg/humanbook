@@ -1,14 +1,16 @@
 export const createComment = comment => (
   $.ajax({
     method: 'POST',
-    url: '/api/comments'
+    url: '/api/comments',
+    data: {comment}
   })
 );
 
 export const updateComment = comment => (
   $.ajax({
     method: 'PATCH',
-    url: `/api/comments/${id}`
+    url: `/api/comments/${id}`,
+    data: {comment}
   })
 );
 

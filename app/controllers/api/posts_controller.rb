@@ -6,7 +6,7 @@ class Api::PostsController < ApplicationController
   end
 
   def newsfeed
-    @posts = current_user.newsfeed_posts.includes(:author, :wall_owner)
+    @posts = current_user.newsfeed_posts.includes(:author, :wall_owner).includes(:comments).includes(:comment_authors)
     render :newsfeed
   end
 

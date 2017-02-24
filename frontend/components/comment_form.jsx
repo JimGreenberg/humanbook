@@ -7,9 +7,10 @@ import {createComment, updateComment} from '../actions/comments_actions';
   const mapStateToProps = (state, ownProps) => {
     let comment = ownProps.comment ||
       { body: "",
-        authorId: state.session.currentUser.id,
-        parentId: ownProps.parent_id,
-        commentableId: ownProps.commentable_id };
+        author_id: state.session.currentUser.id,
+        parent_id: ownProps.parentId,
+        commentable_id: ownProps.commentableId,
+        commentable_type: 'Post'};
 
     return {comment, currentUser: state.session.currentUser};
   };
@@ -27,6 +28,7 @@ class CommentForm extends React.Component {
     this.state = this.props.comment;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.success = this.success.bind(this);
+    this.update = this.update.bind(this);
   }
 
   componentWillMount() {
@@ -44,7 +46,7 @@ class CommentForm extends React.Component {
     } else if (this.props.formType === 'reply') {
       return this.props.handleReply;
     } else {
-      return () => this.setState({body: ""})
+      return () => this.setState({body: ""});
     }
   }
 

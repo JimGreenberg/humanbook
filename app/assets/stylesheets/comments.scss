@@ -39,7 +39,9 @@
   .comment {
     display: flex;
     align-items: center;
-    padding: 3px 0;
+    &:first-of-type {
+      margin-top: 7px;
+    }
 
 
      & > div {

@@ -56,7 +56,7 @@ export default class PostIndexItem extends React.Component {
       <li>
         <div className='post-item-wrapper card'>
         <div className='label-wrapper'> 
-          <Link to= {`users/${author.id}`}>
+          <Link to= {`users/${author_id}`}>
             <img className='pp-mini' src={author.profile_pic_url}/>
           </Link>
         <div className='name-label-wrapper'>
@@ -73,8 +73,7 @@ export default class PostIndexItem extends React.Component {
           </div>
           <div className={this.props.currentUser.id === author.id ? 'tt-wrapper' : 'hidden'}>
             <i className='fa fa-pencil'
-               onMouseEnter={this.toggleTT}
-               onMouseLeave={() => window.setTimeout(() => this.setState({ttFlag: !this.state.ttFlag}), 2000)}/>
+               onClick={this.toggleTT}/>
             {placeTooltip(this.ttContents(), 'post-tt', 'key', this.state.ttFlag)}
           </div>
           </div>
