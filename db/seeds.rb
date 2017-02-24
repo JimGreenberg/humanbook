@@ -97,5 +97,5 @@ post10=Post.create!(body: "I gave all these out at the office as gifts", author_
 comment10_0=Comment.create!(commentable_type: "Post", body: "The human fund...", author_id: jerry.id, commentable_id: post10.id)
 comment10_1=Comment.create!(commentable_type: "Post", body: "yyup", author_id: george.id, commentable_id: post10.id)
 comment10_2=Comment.create!(commentable_type: "Post", body: "money for people?", author_id: jerry.id, commentable_id: post10.id)
-comment10_3=Comment.create!(commentable_type: "Post", body: "yeah isn't it great? i spent no money", author_id: george.id, commentable_id: post10.id)
+comment10_3=Comment.create!(commentable_type: "Post", body: "yeah isn't it great? i didn't spend a dime", author_id: george.id, commentable_id: post10.id)
 comment10_4=Comment.create!(commentable_type: "Post", body: "this is a new low george, even for you", author_id: elaine.id, commentable_id: post10.id, parent_id: comment10_3.id)
