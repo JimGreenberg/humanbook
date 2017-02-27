@@ -1,12 +1,12 @@
 ![humanbook](./docs/production_images/humanbook-logos-01.png)
 
-Humanbook is a social media app designed to mimic [facebook](www.facebook.com) in both look and feel. It was built using Ruby-on-Rails, PostgreSQL and React.js with a Redux architecture. Feel free to make an account and explore your social network, or use the guest login.
+Humanbook is a social media app designed to mimic [facebook](https://www.facebook.com) in both look and feel. It was built using Ruby-on-Rails, PostgreSQL and React.js with a Redux architecture. Feel free to make an account and explore your social network, or use the guest login.
 
-A live version of the site can be found [here](www.humanbook.us)
+A live version of the site can be found [here](http://www.humanbook.us)
 
 ###Screenshots
-![entry](http://imgur.com/LbA1DtF)
-![newsfeed](http://imgur.com/iIVNbBc)
+![entry](http://imgur.com/LbA1DtF.png)
+![newsfeed](http://imgur.com/iIVNbBc.png)
 
 ###Features
   - Newsfeed of yours and your friends' recent posts
