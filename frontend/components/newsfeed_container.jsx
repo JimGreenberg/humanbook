@@ -11,7 +11,7 @@ import {fetchNewsfeed, fetchTimeline, updatePost, deletePost} from '../actions/p
 const mapStateToProps = (state, ownProps) => {
 
   return{
-  currentUserId: state.session.currentUser.id,
+  currentUser: state.session.currentUser,
   };
 };
 

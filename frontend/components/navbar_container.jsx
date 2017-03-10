@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {signOut} from '../actions/session_actions';
 import {placeTooltip} from './tooltip';
 import Search from './search';
+import NavDropdown from './navbar_dropdown';
 
 
 const mapStateToProps = state => ({
@@ -21,7 +22,7 @@ class NavBar extends React.Component {
     this.redirectToHome = this.redirectToHome.bind(this);
     this.redirectToProfile = this.redirectToProfile.bind(this);
     this.toggleFlag = this.toggleFlag.bind(this);
-    this.state = {ttFlag: false, last: ""};
+    this.state = {ttFlag: false, tab: ""};
   }
 
   redirectToHome() {
@@ -33,12 +34,12 @@ class NavBar extends React.Component {
     this.props.router.push(`/users/${id}`);
   }
 
-  toggleFlag(last) {
+  toggleFlag(tab) {
     return () => {
-      if (last === this.state.last || !this.state.ttFlag) {
+      if (tab === this.state.tab || !this.state.ttFlag) {
         this.setState({ttFlag: !this.state.ttFlag});
       } else {
-        this.setState({"last": last});
+        this.setState({"tab": tab});
       }
     };
   }
@@ -59,10 +60,10 @@ class NavBar extends React.Component {
           <span className='home-top-btn' onClick={this.redirectToHome}>
             <label>Home</label>
           </span>
-          {placeTooltip("CONTENT","nav-tt card",'',this.state.ttFlag)}
-          <i onClick={this.toggleFlag('friend')} className='fa fa-users'></i>
-          <i onClick={this.toggleFlag('comment')} className='fa fa-comment'></i>
-          <i onClick={this.toggleFlag('notif')} className="fa fa-globe"></i>
+          {placeTooltip(<NavDropdown currentUser={this.currentUser} tab={this.state.tab}/>,"nav-tt card",'',this.state.ttFlag)}
+          <i onClick={this.toggleFlag('friends')} className='fa fa-users'></i>
+          <i onClick={this.toggleFlag('messages')} className='fa fa-comment'></i>
+          <i onClick={this.toggleFlag('notifs')} className="fa fa-globe"></i>
           <button className="logout-button" onClick={this.props.signOut.bind(this)}>Log Out</button>
         </div>
       </div>
