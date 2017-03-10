@@ -8,7 +8,7 @@ json.set! :posts do
 end
 
 json.set! :friendships do
-  @user.friendships.each do |friendship|
+  @friendships.each do |friendship|
     json.set! friendship.id do
       json.partial! '/api/friendships/friendship', friendship: friendship
     end
@@ -16,7 +16,7 @@ json.set! :friendships do
 end
 
 json.set! :friends do
-  @user.friends.each do |friend|
+  @friends.each do |friend|
     json.set! friend.id do
       json.partial! '/api/users/user', user: friend
     end

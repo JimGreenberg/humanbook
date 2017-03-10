@@ -79,7 +79,6 @@ def friends
   User
   .joins("INNER JOIN friendships ON friender_id = users.id OR receiver_id = users.id")
   .where("users.id != ? AND (friender_id = ? OR receiver_id = ?)", self.id, self.id, self.id)
-  # .where("friendships.completed = TRUE")
 end
 
 def friendships
@@ -88,12 +87,14 @@ def friendships
 end
 
 def newsfeed_posts
-  # Post.where(wall_owner: friends.to_a + [self]).order(updated_at: :asc)
   Post
   .where(author: out_friends)
   .or(Post.where(author: in_friends))
   .or(Post.where(author: self))
   .order(updated_at: :asc)
+  .includes(:top_level_comments)
+  .includes(comments: :children)
+  .includes(:comment_authors)
 end
 
 #---------------#
@@ -106,38 +107,16 @@ end
 # from(
 # select
 # case myfships.friender_id
-# when 61 then myfships.receiver_id
+# when ? then myfships.receiver_id
 #   else myfships.friender_id
 # end as id
 # from(
 #   select friendships.id, friender_id, receiver_id from friendships
 #   join users as frienders on friender_id = frienders.id
 #   join users as receivers on receiver_id = receivers.id
-#   where receiver_id != 61 AND friender_id != 61) as myfships) as friends
+#   where receiver_id != ? AND friender_id != ?) as myfships) as friends
 # join users on users.id = friends.id
-#
 
-# select
-# *
-# from users
-# where
-# users.id
-# from(
-#   select friendships.id, friender_id, receiver_id from friendships
-#   join users as frienders on friender_id = frienders.id
-#   join users as receivers on receiver_id = receivers.id
-#   where receiver_id != 61 AND friender_id != 61) as myNfships
-
-
-# select
-# *
-# from
-# (select friendships.id, friender_id, receiver_id from friendships
-#   join users as frienders on friender_id = frienders.id
-#   join users as receivers on receiver_id = receivers.id
-#   where receiver_id = 49 or friender_id = 49) as myfships
-# join users as friendies on friender_id=users.id
-# join users on receivies receiver_id=users.id
 
   def friends_array
     in_friends + out_friends

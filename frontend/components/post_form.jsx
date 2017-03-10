@@ -7,7 +7,7 @@ import {createPost, updatePost} from '../actions/post_actions';
 
   const mapStateToProps = (state, ownProps) => {
   let post = ownProps.post || {body: "", author_id: state.session.currentUser.id, wall_user_id: ownProps.wallUserId};
-  return { currentUser: state.session.currentUser, post }
+  return { currentUser: state.session.currentUser, post };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {

@@ -32,8 +32,11 @@ class Post < ApplicationRecord
     through: :comments,
     source: :author
 
-  def wall_posts(user)
+  def self.wall_posts(user)
     Post.where(wall_owner: user.id)
+    .includes(:top_level_comments)
+    .includes(comments: :children)
+    .includes(:comment_authors)
   end
 
 end

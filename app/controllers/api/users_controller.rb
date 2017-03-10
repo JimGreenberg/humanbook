@@ -7,9 +7,10 @@ class Api::UsersController < ApplicationController
 
   def show
     @user = User
-      .includes(
-        wall_posts: [:wall_owner, :author])
+      .includes(wall_posts: [:wall_owner, :author, {comments: [:children, :author]}, :comment_authors, :top_level_comments])
       .find(params[:id])
+    @friends = @user.friends
+    @friendships = @user.friendships
     render :profile
   end
 

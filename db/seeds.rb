@@ -10,33 +10,40 @@ Friendship.destroy_all
 Post.destroy_all
 Comment.destroy_all
 
-jerry = User.create!(username: "jerry@seinfeld.com", fname: "Jerry", lname: "Seinfeld", password:"asdfasdf",
-profile_pic: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/jerry_pro.jpg',
-cover_photo: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/seinfeld_cover.png')
-george = User.create!(username: "george.costanza@yankeesny.com", fname: "George", lname: "Costanza", password:"asdfasdf",
-profile_pic: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/george_pro.jpg',
-cover_photo: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/george_cover.png')
-elaine = User.create!(username: "ebenes@jpeterman.com", fname: "Elaine", lname: "Benes", password:"asdfasdf",
-profile_pic: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/elaine_pro.jpg',
-cover_photo: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/elaine_cover.jpg')
-kramer = User.create!(username: "kramer@kramer.co", fname: "Cosmo", lname: "Kramer", password:"asdfasdf",
-profile_pic: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/kramer_pro.jpg',
-cover_photo: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/kramer_cover.jpg')
-newman = User.create!(username: "newman@usps.gov", fname: "Newman", lname: "Newman", password:"asdfasdf",
-profile_pic: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/newman_pro.jpg',
-cover_photo: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/newman_cover.jpg')
+jerry = User.create!(username: "jerry@seinfeld.com", fname: "Jerry", lname: "Seinfeld", password:"asdfasdf"
+# profile_pic: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/jerry_pro.jpg',
+# cover_photo: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/seinfeld_cover.png'
+)
+george = User.create!(username: "george.costanza@yankeesny.com", fname: "George", lname: "Costanza", password:"asdfasdf"
+# profile_pic: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/george_pro.jpg',
+# cover_photo: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/george_cover.png'
+)
+elaine = User.create!(username: "ebenes@jpeterman.com", fname: "Elaine", lname: "Benes", password:"asdfasdf"
+# profile_pic: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/elaine_pro.jpg',
+# cover_photo: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/elaine_cover.jpg'
+)
+kramer = User.create!(username: "kramer@kramer.co", fname: "Cosmo", lname: "Kramer", password:"asdfasdf"
+# profile_pic: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/kramer_pro.jpg',
+# cover_photo: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/kramer_cover.jpg'
+)
+newman = User.create!(username: "newman@usps.gov", fname: "Newman", lname: "Newman", password:"asdfasdf"
+# profile_pic: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/newman_pro.jpg',
+# cover_photo: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/newman_cover.jpg'
+)
 jpeterman = User.create!(username: "ceo@jpeterman.com", fname: "J.", lname: "Peterman", password:"asdfasdf")
 
 bob = User.create!(username: "bsacomano@mafia.org", fname: "Bob", lname: "Sacamano", password:"asdfasdf")
 
 puddy = User.create!(username: "puddy@davesgarage.com", fname: "Dave", lname: "Puddy", password:"asdfasdf")
 
-frank = User.create!(username: "fcostanza@roadrunner.co", fname: "Frank", lname: "Costanza", password:"asdfasdf",
-profile_pic: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/frank_pro.jpg',
-cover_photo: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/frank_cover.jpg')
-tim = User.create!(username: "toothd3cay@shalom.net", fname: "Tim", lname: "Whatley", password:"asdfasdf",
-profile_pic: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/whatley_pro.jpg',
-cover_photo: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/whatley_cover.jpg')
+frank = User.create!(username: "fcostanza@roadrunner.co", fname: "Frank", lname: "Costanza", password:"asdfasdf"
+# profile_pic: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/frank_pro.jpg',
+# cover_photo: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/frank_cover.jpg'
+)
+tim = User.create!(username: "toothd3cay@shalom.net", fname: "Tim", lname: "Whatley", password:"asdfasdf"
+# profile_pic: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/whatley_pro.jpg',
+# cover_photo: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/whatley_cover.jpg'
+)
 art = User.create!(username: "vandelay@architect.us", fname: "Art", lname: "Vandelay", password:"asdfasdf")
 
 pennypacker = User.create!(username: "he@pennypa.ck", fname: "H.E.", lname: "Pennypacker", password:"asdfasdf")
