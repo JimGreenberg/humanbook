@@ -9,9 +9,10 @@ export const receiveFriendship = friendship => ({
   friendship
 });
 
-export const receiveAllFriendships = friendships => ({
+export const receiveAllFriendships = data => ({
   type: RECEIVE_ALL_FRIENDSHIPS,
-  friendships
+  friends: data.friends,
+  friendships: data.friendships
 });
 
 export const removeFriendship = friendship => ({
@@ -21,7 +22,7 @@ export const removeFriendship = friendship => ({
 
 export const fetchFriends = userId => (
   dispatch => (FriendsApiUtil.fetchFriends(userId)
-  .then(friendships => dispatch(receiveAllFriendships(friendships))))
+  .then(data => dispatch(receiveAllFriendships(data))))
 );
 
 export const sendRequest = userId => (

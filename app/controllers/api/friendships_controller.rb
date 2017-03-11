@@ -3,7 +3,8 @@ class Api::FriendshipsController < ApplicationController
   def index
     user = User.find(params[:user_id])
     @friendships = user.friendships
-    render json: @friendships
+    @friends = user.friends
+    render :index
   end
 
   def create

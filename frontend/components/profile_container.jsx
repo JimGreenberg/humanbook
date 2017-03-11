@@ -94,8 +94,6 @@ class ProfileContainer extends React.Component {
         case 'Remove Friend':
           this.props.deFriend(this.props.currentFriendship.id).then(this.setState({buttonText: 'Add Friend'}));
           break;
-        default:
-          console.log('BAD ERROR');
       }
   }
 

@@ -12,19 +12,19 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "./node_modules/.bin/webpack"
+    "heroku-postbuild": "webpack --config webpack.config.prod.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JimGreenberg/facebook-clone-fullstack.git"
+    "url": "git+https://github.com/JimGreenberg/humanbook.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/JimGreenberg/facebook-clone-fullstack/issues"
+    "url": "https://github.com/JimGreenberg/humanbook/issues"
   },
-  "homepage": "https://github.com/JimGreenberg/facebook-clone-fullstack#readme",
+  "homepage": "https://github.com/JimGreenberg/humanbook#readme",
   "dependencies": {
     "babel-core": "^6.22.1",
     "babel-loader": "^6.2.10",

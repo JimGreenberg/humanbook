@@ -12,41 +12,52 @@ Comment.destroy_all
 
 jerry = User.create!(username: "jerry@seinfeld.com", fname: "Jerry", lname: "Seinfeld", password:"asdfasdf",
   profile_pic: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/jerry_pro.jpg',
-  cover_photo: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/seinfeld_cover.png'
+  cover_photo: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/seinfeld_cover.png',
+  work: "comedian" , school: "Queens College" , where: "NYC" , from: "NYC" , relationship: "single", birthday: "Apr 29 1954"
 )
 george = User.create!(username: "george.costanza@yankeesny.com", fname: "George", lname: "Costanza", password:"asdfasdf",
   profile_pic: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/george_pro.jpg',
   cover_photo: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/george_cover.png'
+  work: "No thanks" , school: "Boston University" , where: "NYC" , from: "NYC" , relationship: "Widower", birthday: "Sep 23 1959"
+
 )
 elaine = User.create!(username: "ebenes@jpeterman.com", fname: "Elaine", lname: "Benes", password:"asdfasdf",
   profile_pic: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/elaine_pro.jpg',
   cover_photo: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/elaine_cover.jpg'
+  work: "J Peterman Catalogue" , school: "Northwestern University" , where: "NYC" , from: "NYC" , relationship: "single", birthday: "Jan 13 1961"
+
 )
 kramer = User.create!(username: "kramer@kramer.co", fname: "Cosmo", lname: "Kramer", password:"asdfasdf",
   profile_pic: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/kramer_pro.jpg',
   cover_photo: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/kramer_cover.jpg'
+  work: "Unemployed" , school: "Unknown" , where: "NYC" , from: "NYC" , relationship: "single", birthday: "Jul 24 1949"
+
 )
 newman = User.create!(username: "newman@usps.gov", fname: "Newman", lname: "Newman", password:"asdfasdf",
   profile_pic: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/newman_pro.jpg',
   cover_photo: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/newman_cover.jpg'
+  work: "USPS" , school: "University of Georgia" , where: "NYC" , from: "NYC" , relationship: "single", birthday: "Aug 7 1955"
+
 )
-jpeterman = User.create!(username: "ceo@jpeterman.com", fname: "J.", lname: "Peterman", password:"asdfasdf")
+jpeterman = User.create!(username: "ceo@jpeterman.com", fname: "J.", lname: "Peterman", password:"asdfasdf", where: "NYC" , from: "NYC", work: "J Peterman Catalogue: CEO")
 
-bob = User.create!(username: "bsacomano@mafia.org", fname: "Bob", lname: "Sacamano", password:"asdfasdf")
+bob = User.create!(username: "bsacomano@mafia.org", fname: "Bob", lname: "Sacamano", password:"asdfasdf", where: "?" , from: "Italy", work: "Imports/Exports")
 
-puddy = User.create!(username: "puddy@davesgarage.com", fname: "Dave", lname: "Puddy", password:"asdfasdf")
+puddy = User.create!(username: "puddy@davesgarage.com", fname: "Dave", lname: "Puddy", password:"asdfasdf" work: 'mechanic', where: "NYC" , from: "NYC")
 
-frank = User.create!(username: "fcostanza@roadrunner.co", fname: "Frank", lname: "Costanza", password:"asdfasdf",
+frank = User.create!(username: "fcostanza@roadrunner.co", fname: "Frank", lname: "Costanza", password:"asdfasdf", where: "NYC" , from: "NYC",
   profile_pic: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/frank_pro.jpg',
   cover_photo: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/frank_cover.jpg'
 )
 tim = User.create!(username: "toothd3cay@shalom.net", fname: "Tim", lname: "Whatley", password:"asdfasdf",
   profile_pic: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/whatley_pro.jpg',
   cover_photo: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/whatley_cover.jpg'
-)
-art = User.create!(username: "vandelay@architect.us", fname: "Art", lname: "Vandelay", password:"asdfasdf")
+  work: "Dentist" , school: "Univeristy of Phoenix" , where: "NYC" , from: "Albuquerque NM" , relationship: "Married", birthday: "Mar 7 1956"
 
-pennypacker = User.create!(username: "he@pennypa.ck", fname: "H.E.", lname: "Pennypacker", password:"asdfasdf")
+)
+art = User.create!(username: "vandelay@architect.us", fname: "Art", lname: "Vandelay", password:"asdfasdf", work: "architect", where: "NYC" , from: "NYC")
+
+pennypacker = User.create!(username: "he@pennypa.ck", fname: "H.E.", lname: "Pennypacker", password:"asdfasdf", where: "NYC" , from: "NYC", work: "Billionaire Tycoon/Philanthropist")
 
 jerry.make_friend(george)
 elaine.make_friend(jerry)
@@ -102,7 +113,7 @@ comment14_0=Comment.create!(commentable_type: "Post", body: "I'm a comedian.", a
 
 post10=Post.create!(body: "I gave all these out at the office as gifts", author_id: george.id, wall_user_id: jerry.id)
 comment10_0=Comment.create!(commentable_type: "Post", body: "The human fund...", author_id: jerry.id, commentable_id: post10.id)
-comment10_1=Comment.create!(commentable_type: "Post", body: "yyup", author_id: george.id, commentable_id: post10.id)
+comment10_1=Comment.create!(commentable_type: "Post", body: "yup", author_id: george.id, commentable_id: post10.id)
 comment10_2=Comment.create!(commentable_type: "Post", body: "money for people?", author_id: jerry.id, commentable_id: post10.id)
 comment10_3=Comment.create!(commentable_type: "Post", body: "yeah isn't it great? i didn't spend a dime", author_id: george.id, commentable_id: post10.id)
 comment10_4=Comment.create!(commentable_type: "Post", body: "this is a new low george, even for you", author_id: elaine.id, commentable_id: post10.id, parent_id: comment10_3.id)

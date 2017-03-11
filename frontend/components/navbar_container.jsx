@@ -37,7 +37,7 @@ class NavBar extends React.Component {
   toggleFlag(tab) {
     return () => {
       if (tab === this.state.tab || !this.state.ttFlag) {
-        this.setState({ttFlag: !this.state.ttFlag});
+        this.setState({ttFlag: !this.state.ttFlag, "tab": tab});
       } else {
         this.setState({"tab": tab});
       }
@@ -60,11 +60,13 @@ class NavBar extends React.Component {
           <span className='home-top-btn' onClick={this.redirectToHome}>
             <label>Home</label>
           </span>
+
           {placeTooltip(<NavDropdown currentUser={this.currentUser} tab={this.state.tab}/>,"nav-tt card",'',this.state.ttFlag)}
           <i onClick={this.toggleFlag('friends')} className='fa fa-users'></i>
           <i onClick={this.toggleFlag('messages')} className='fa fa-comment'></i>
           <i onClick={this.toggleFlag('notifs')} className="fa fa-globe"></i>
-          <button className="logout-button" onClick={this.props.signOut.bind(this)}>Log Out</button>
+
+          <button className="nav-button" onClick={this.props.signOut.bind(this)}>Log Out</button>
         </div>
       </div>
     );

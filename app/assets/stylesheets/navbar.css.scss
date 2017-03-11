@@ -12,7 +12,69 @@
 
   .nav-tt {
     opacity: 1;
-    top: 100%;
+    top: calc(100% + 1px);
+    padding: 0;
+    margin: 0;
+    left: 50%;
+    box-shadow: 0px 3px 8px rgba(0,0,0,0.25);
+
+    .tt-content {
+      margin: 0;
+    }
+  }
+  .nav-tt-content {
+    margin: 0;
+    width: 430px;
+    position: relative;
+
+    & .tt-nib {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: white;
+      transform: rotate(45deg);
+      border-top: 1px solid rgba(0,0,0,0.1);
+      border-left: 1px solid rgba(0,0,0,0.1);
+      top: -7px;
+    }
+    &.friends .tt-nib{left:calc(67% + 2px);}
+    &.messages .tt-nib{left:calc(74% + 3px);}
+    &.notifs .tt-nib{left:calc(81% + 2px);}
+
+    &.friends li a:last-of-type {margin-right: auto;}
+
+    & li {
+      height: 60px;
+      font-size: 12px;
+      display: flex;
+      flex-direction: row;
+      padding: 5px;
+      border-bottom: 1px solid #dddfe2;
+      margin: 0;
+      align-items: center;
+
+      &:first-of-type {
+        font-weight: bold;
+        padding: 8px;
+        height: 16px;
+      }
+      &:last-of-type {
+        border: none;
+      }
+
+      & a {
+        font-weight: bold;
+        text-decoration: none;
+      }
+      & img {
+        width: 48px;
+        height: 48px;
+      }
+    }
+    &.notifs li:hover {
+      background: #e9ebee;
+    }
+
   }
 
   .nav-grp {
@@ -118,7 +180,7 @@
   }
 }
 
-  .logout-button {
+  .nav-button {
     font-weight: 500;
     color: white;
     border: 1px solid rgba(0,0,0,0.2);
@@ -127,10 +189,31 @@
     background: rgba(0,0,0,0);
 
     &:hover {
+      cursor: pointer;
       background: rgba(0,0,0,0.2);
     }
   }
 
+  .white {
+    font-weight: 600;
+    color: #333;
+    background: rgba(0,0,0,0.01);
+    &:hover {
+      background: rgba(0,0,0,0.05);
+    }
+  }
+
+  .blue {
+    background-color: #4267b2;
+    border-color: #4267b2;
+    font-weight: 600;
+    text-align: center;
+    color: white;
+    &:hover {
+    background-color: #365899;
+    border-color: #365899;
+    }
+  }
   img {
     width: 24px;
     height: 24px;
@@ -139,5 +222,9 @@
     outline-offset: -1px;
     padding: -1px;
     margin: 0;
+  }
+  .fa {
+    font-size: 20px;
+    // background: yellow;
   }
 }
