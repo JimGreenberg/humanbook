@@ -17,25 +17,25 @@ jerry = User.create!(username: "jerry@seinfeld.com", fname: "Jerry", lname: "Sei
 )
 george = User.create!(username: "george.costanza@yankeesny.com", fname: "George", lname: "Costanza", password:"asdfasdf",
   profile_pic: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/george_pro.jpg',
-  cover_photo: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/george_cover.png'
+  cover_photo: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/george_cover.png',
   work: "No thanks" , school: "Boston University" , where: "NYC" , from: "NYC" , relationship: "Widower", birthday: "Sep 23 1959"
 
 )
 elaine = User.create!(username: "ebenes@jpeterman.com", fname: "Elaine", lname: "Benes", password:"asdfasdf",
   profile_pic: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/elaine_pro.jpg',
-  cover_photo: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/elaine_cover.jpg'
+  cover_photo: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/elaine_cover.jpg',
   work: "J Peterman Catalogue" , school: "Northwestern University" , where: "NYC" , from: "NYC" , relationship: "single", birthday: "Jan 13 1961"
 
 )
 kramer = User.create!(username: "kramer@kramer.co", fname: "Cosmo", lname: "Kramer", password:"asdfasdf",
   profile_pic: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/kramer_pro.jpg',
-  cover_photo: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/kramer_cover.jpg'
+  cover_photo: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/kramer_cover.jpg',
   work: "Unemployed" , school: "Unknown" , where: "NYC" , from: "NYC" , relationship: "single", birthday: "Jul 24 1949"
 
 )
 newman = User.create!(username: "newman@usps.gov", fname: "Newman", lname: "Newman", password:"asdfasdf",
   profile_pic: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/newman_pro.jpg',
-  cover_photo: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/newman_cover.jpg'
+  cover_photo: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/newman_cover.jpg',
   work: "USPS" , school: "University of Georgia" , where: "NYC" , from: "NYC" , relationship: "single", birthday: "Aug 7 1955"
 
 )
@@ -47,11 +47,11 @@ puddy = User.create!(username: "puddy@davesgarage.com", fname: "Dave", lname: "P
 
 frank = User.create!(username: "fcostanza@roadrunner.co", fname: "Frank", lname: "Costanza", password:"asdfasdf", where: "NYC" , from: "NYC",
   profile_pic: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/frank_pro.jpg',
-  cover_photo: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/frank_cover.jpg'
+  cover_photo: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/frank_cover.jpg',
 )
 tim = User.create!(username: "toothd3cay@shalom.net", fname: "Tim", lname: "Whatley", password:"asdfasdf",
   profile_pic: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/whatley_pro.jpg',
-  cover_photo: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/whatley_cover.jpg'
+  cover_photo: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/whatley_cover.jpg',
   work: "Dentist" , school: "Univeristy of Phoenix" , where: "NYC" , from: "Albuquerque NM" , relationship: "Married", birthday: "Mar 7 1956"
 
 )
