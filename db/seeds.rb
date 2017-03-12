@@ -43,7 +43,7 @@ jpeterman = User.create!(username: "ceo@jpeterman.com", fname: "J.", lname: "Pet
 
 bob = User.create!(username: "bsacomano@mafia.org", fname: "Bob", lname: "Sacamano", password:"asdfasdf", where: "?" , from: "Italy", work: "Imports/Exports")
 
-puddy = User.create!(username: "puddy@davesgarage.com", fname: "Dave", lname: "Puddy", password:"asdfasdf" work: 'mechanic', where: "NYC" , from: "NYC")
+puddy = User.create!(username: "puddy@davesgarage.com", fname: "Dave", lname: "Puddy", password:"asdfasdf", work: 'mechanic', where: "NYC" , from: "NYC")
 
 frank = User.create!(username: "fcostanza@roadrunner.co", fname: "Frank", lname: "Costanza", password:"asdfasdf", where: "NYC" , from: "NYC",
   profile_pic: 'https://s3.amazonaws.com/humanbook-pro/seinfeld/frank_pro.jpg',
