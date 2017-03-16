@@ -13,7 +13,7 @@ export default class PostIndexItem extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({body: nextProps.body});
+    this.setState({body: nextProps.body, comments: nextProps.comments});
   }
 
   handleDelete() {

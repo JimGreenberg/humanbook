@@ -63,7 +63,6 @@ class NavBar extends React.Component {
 
           {placeTooltip(<NavDropdown currentUser={this.currentUser} tab={this.state.tab}/>,"nav-tt card",'',this.state.ttFlag)}
           <i onClick={this.toggleFlag('friends')} className='fa fa-users'></i>
-          <i onClick={this.toggleFlag('messages')} className='fa fa-comment'></i>
           <i onClick={this.toggleFlag('notifs')} className="fa fa-globe"></i>
 
           <button className="nav-button" onClick={this.props.signOut.bind(this)}>Log Out</button>

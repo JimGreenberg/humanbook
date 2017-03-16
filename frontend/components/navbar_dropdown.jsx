@@ -63,10 +63,8 @@ class NavDropdown extends React.Component {
   friendsContent() {
     const listItems = [];
     Object.keys(this.props.friendships).map(id => {
-      if (!this.props.friendships[id].completed) {
-        let userId = this.props.friendships[id].receiver_id === currentUser.id ?
-         this.props.friendships[id].friender_id :
-         this.props.friendships[id].receiver_id;
+      if (!this.props.friendships[id].completed && this.props.friendships[id].receiver_id === currentUser.id) {
+        let userId = this.props.friendships[id].friender_id;
         listItems.push(
           <li key={id}>
             <Link to= {`users/${userId}`}>
@@ -102,6 +100,7 @@ class NavDropdown extends React.Component {
 
   notifsContent() {
     const listItems = [];
+
     Object.keys(this.props.notifs).slice(-3).map(id => {
       listItems.push(
         <li key={id}>

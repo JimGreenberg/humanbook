@@ -39,7 +39,7 @@
     }
     &.friends .tt-nib{left:calc(67% + 2px);}
     &.messages .tt-nib{left:calc(74% + 3px);}
-    &.notifs .tt-nib{left:calc(81% + 2px);}
+    &.notifs .tt-nib{left:calc(74% + 3px);}
 
     &.friends li a:last-of-type {margin-right: auto;}
 
@@ -225,6 +225,11 @@
   }
   .fa {
     font-size: 20px;
+    &:hover{
+      cursor: pointer;
+      opacity: 0.6;
+    }
+
     // background: yellow;
   }
 }

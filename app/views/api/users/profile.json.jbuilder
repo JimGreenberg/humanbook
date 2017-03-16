@@ -4,7 +4,7 @@ user['cover_photo_url'] = asset_path(@user.cover_photo.url)
 json.user user
 
 json.set! :posts do
-  json.posts json.partial! '/api/posts/index', posts: @user.wall_posts
+  json.partial! '/api/posts/index', posts: @user.wall_posts
 end
 
 json.set! :friendships do

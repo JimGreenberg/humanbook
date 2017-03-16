@@ -42,7 +42,6 @@ class Comment extends React.Component {
     const {body, parent_id, author, timestamp, child_ids, commentable_id, commentable_type, id} = this.props.comment;
     const commentableId = commentable_id;
     const nodeType = !!parent_id ? 'child' : 'parent';
-
     return(
       <div className={`comment ${nodeType}`}>
         <Link to= {`users/${author.id}`}>
@@ -68,7 +67,7 @@ class Comment extends React.Component {
 
           <CommentForm
             formType={this.state.replying ? 'reply' : 'hidden'}
-            parentId={id}
+            parentId={parent_id || id}
             commentableId={commentableId}
             toggleReply={this.toggleReply}/>
         </div>
