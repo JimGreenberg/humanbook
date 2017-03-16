@@ -5,6 +5,9 @@ import {fetchProfile} from '../actions/user_actions';
 import {fetchFriends, deFriend, confirmRequest, sendRequest} from '../actions/friends_actions';
 import NavBar from './navbar_container';
 import PostList from './postlist_container';
+import FriendsView from './friends_view';
+import AboutView from './about_view';
+
 
 const findFriendship = (state) => {
   if (!state.friendships) {return;}
@@ -124,6 +127,19 @@ class ProfileContainer extends React.Component {
       }
       return <div className='friend-tiles'>{arr}</div>;
     };
+    const pathname = this.props.router.location.pathname.split('/')[3] || 'timeline'
+
+    const content = () => {
+      switch(pathname) {
+      case 'friends':
+        return <FriendsView classname='timeline' friends={friends} />;
+      case 'about':
+      return <AboutView classname='timeline' user={this.props.user} />;
+      case 'timeline':
+      default:
+        return <PostList className='timeline' profile={true} />;
+      }
+    };
 
     if (!this.props.user.fname) {
       return null;
@@ -140,7 +156,7 @@ class ProfileContainer extends React.Component {
               <div className='profile-btn' onClick={this.handleButton}>{this.props.buttonText}</div>
             </div>
             <ul className='profile-tabs'>
-              <div className='nib timeline'></div>
+              <div className={`nib ${pathname}`}></div>
                 <Link to={`/users/${this.props.user.id}`}><li>Timeline</li></Link>
                 <Link to={`/users/${this.props.user.id}/about`}><li>About</li></Link>
                 <Link to={`/users/${this.props.user.id}/friends`}><li>Friends</li></Link>
@@ -170,7 +186,7 @@ class ProfileContainer extends React.Component {
               {friendTiles(friends)}
               </div>
             </div>
-            <PostList className='timeline' profile={true} />
+            {content()}
           </div>
         </div>
       );
