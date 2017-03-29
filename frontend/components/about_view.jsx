@@ -1,7 +1,6 @@
 import React from 'react';
 const AboutView = (user) => {
-  const {fname, lname, birthday, work, school, relationship, from, where} = user;
-
+  const {fname, lname, birthday, work, school, relationship, from, where} = user.user;
   return (
     <ul className='card about-view'>
       <div>About</div>

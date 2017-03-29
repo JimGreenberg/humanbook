@@ -19,8 +19,7 @@ A live version of the site can be found [here](http://www.humanbook.us)
    + With nested comments
   - Full editing and deletion of all posts/comments you have made
 
-### Technical Details
-#### Friending Backend
+### Technical Details: Friending Backend
 The lifeblood of humanbook is the friending experience, and creating a system that mimicked the robustness of facebook's was no small feat. At the database level, a friendship is represented by an entry in the aptly named `friendships` table which holds the foreign keys of both users. However, friendships implemented in this way are NOT bidirectional- meaning that there is a difference between making friend by sending them a request and accepting a request that was sent to you. In order to search for one's own friends, the `friendships` table must be traversed whilst searching for your own `id` in both columns for the `friender` as well as the `receiver`. This was accomplished using the following SQL query:
 
 ```SQL
@@ -54,6 +53,5 @@ def friends
   .where("users.id != ? AND (friender_id = ? OR receiver_id = ?)", self.id, self.id, self.id)
 end
 ```
-
 
 Want to see how this webapp was planned? [Go to development README](./docs)

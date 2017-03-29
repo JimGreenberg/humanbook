@@ -10,7 +10,7 @@ const Root = ({store}) => (
   <Provider store={store}>
     <Router history={hashHistory}>
       <Route path="/" component={App}/>
-        <Route path="/users/:id" component={ProfileContainer} onEnter={_ensureLoggedIn} />
+        <Route path="/users/:id" component={ProfileContainer} onEnter={_ensureLoggedIn.bind(this)} />
         <Route path="/users/:id/edit" component={ProfileEditForm} onEnter={_ensureLoggedIn} />
         <Route path="/users/:id/about" component={ProfileContainer} onEnter={_ensureLoggedIn} />
         <Route path="/users/:id/friends" component={ProfileContainer} onEnter={_ensureLoggedIn} />
@@ -20,14 +20,12 @@ const Root = ({store}) => (
 );
 
 const _redirectIfLoggedIn = (nextState, replace) => {
-  const currentUser = store.getState().session.currentUser;
   if (currentUser) {
     replace('/');
   }
 }
 
 const _ensureLoggedIn = (nextState, replace) => {
-  const currentUser = store.getState().session.currentUser;
   if (!currentUser) {
     replace('/');
   }
