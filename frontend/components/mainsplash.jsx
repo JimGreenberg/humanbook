@@ -42,19 +42,21 @@ class MainSplash extends React.Component {
             <h1>Connect with friends and the <br/> world around you on Humanbook.</h1>
             <ul className='fluff-list'>
               <li>
-                <img src={window.images.logoIcon}/>
+                <i className='fa fa-user'/>
                 <p>See photos and updates</p>
                 <small>from friends in News Feed.</small>
               </li>
               <li>
-                <img src={window.images.logoIcon}/>
+                <i className='fa fa-newspaper-o'/>
                 <p>Share what's new </p>
                 <small>in your life on your Timeline.</small>
               </li>
               <li>
-                <img src={window.images.logoIcon}/>
-                <p>Find more</p>
-                <small>of what you're looking for with Facebook Search.</small>
+                <a href='http://www.jim-greenberg.com' target='_blank'>
+                  <i className='fa fa-id-card'/>
+                  <p>Click here</p>
+                  <small>to visit my portfolio online</small>
+                </a>
               </li>
             </ul>
           </div>

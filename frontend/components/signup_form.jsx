@@ -162,12 +162,12 @@ class SignUpForm extends React.Component {
                 {this.yearHelper()}
               </select>
               <div className='attache-wrapper'>
-              <small
-                className='question tooltip-container'
-                onClick={() => this.setState({ bdayFlag: !this.state.bdayFlag })}>
+                <small
+                  className='question tooltip-container'
+                  onClick={() => this.setState({ bdayFlag: !this.state.bdayFlag })}>
                   Why do I need to provide my birthday?
                 </small>
-                {placeTooltip("it's so we know how old you are", "birthday-tt",'key' ,this.state.bdayFlag, "Okay")}
+                {placeTooltip("it's so we know how old you are", "birthday-tt",'key',this.state.bdayFlag, "Okay", () => this.setState({bdayFlag: !this.state.bdayFlag}).bind(this))}
             </div>
             </div>
             <div className='tuple-wrapper'>
@@ -190,11 +190,6 @@ class SignUpForm extends React.Component {
                 />Male
             </label>
             </div>
-            <small>
-              By clicking Create Account, you agree to our Terms and that you have read our
-              Data Policy, including our Cookie Use.
-              You may receive SMS Notifications from Humanbook and can opt out at any time.
-            </small>
             <input
               type='submit'
               className='signup-button'

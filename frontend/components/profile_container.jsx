@@ -85,7 +85,7 @@ class ProfileContainer extends React.Component {
   handleButton(event) {
       switch(this.props.buttonText) {
         case 'Update Info':
-          this.props.router.push(`/users/${currentUser.id}/edit`);
+          this.props.router.push(`/users/${this.props.currentUser.id}/edit`);
           break;
         case 'Add Friend':
           this.props.sendRequest(this.props.user.id).then(this.setState({buttonText: 'Cancel Request'}));
@@ -127,7 +127,7 @@ class ProfileContainer extends React.Component {
       }
       return <div className='friend-tiles'>{arr}</div>;
     };
-    const pathname = this.props.router.location.pathname.split('/')[3] || 'timeline'
+    const pathname = this.props.router.location.pathname.split('/')[3] || 'timeline';
 
     const content = () => {
       switch(pathname) {

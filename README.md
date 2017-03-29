@@ -4,11 +4,11 @@ Humanbook is a social media app designed to mimic [facebook](https://www.faceboo
 
 A live version of the site can be found [here](http://www.humanbook.us)
 
-###Screenshots
-![entry](http://imgur.com/LbA1DtF.png)
-![newsfeed](http://imgur.com/iIVNbBc.png)
+### Screenshots
+![entry](./docs/production_images/login_sample.png)
+![newsfeed](./docs/production_images/nf_sample.png)
 
-###Features
+### Features
   - Newsfeed of yours and your friends' recent posts
   - User profiles, complete with:
    + A timeline that yourself/friends can post to
@@ -18,11 +18,12 @@ A live version of the site can be found [here](http://www.humanbook.us)
   - Commenting on posts
    + With nested comments
   - Full editing and deletion of all posts/comments you have made
-  
-###Technical Details: Friending Backend
+
+### Technical Details
+#### Friending Backend
 The lifeblood of humanbook is the friending experience, and creating a system that mimicked the robustness of facebook's was no small feat. At the database level, a friendship is represented by an entry in the aptly named `friendships` table which holds the foreign keys of both users. However, friendships implemented in this way are NOT bidirectional- meaning that there is a difference between making friend by sending them a request and accepting a request that was sent to you. In order to search for one's own friends, the `friendships` table must be traversed whilst searching for your own `id` in both columns for the `friender` as well as the `receiver`. This was accomplished using the following SQL query:
 
-```
+```SQL
 SELECT
   users.*
 FROM(
@@ -33,8 +34,8 @@ FROM(
   END as id
 FROM(
   SELECT
-    friendships.id, friender_id, receiver_id 
-  FROM 
+    friendships.id, friender_id, receiver_id
+  FROM
    friendships
    INNER JOIN
     users AS frienders ON friender_id = frienders.id
@@ -46,7 +47,7 @@ FROM(
 ```
 
 An ActiveRecord relation made this much less verbose:
-```
+```ruby
 def friends
   User
   .joins("INNER JOIN friendships ON friender_id = users.id OR receiver_id = users.id")
@@ -54,5 +55,5 @@ def friends
 end
 ```
 
- 
+
 Want to see how this webapp was planned? [Go to development README](./docs)

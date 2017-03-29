@@ -120,30 +120,41 @@ body {
       font-weight: 600;
     }
 
-    li {
+    li, a {
       display: flex;
       padding: 20px 0 10px;
       align-items: center;
     }
 
-    li > * {
-      padding: 0px 10px 5px;
-    }
-
-    img {
+    i {
       width: 48px;
-      height: auto;
-      padding: 0 20px 0 0;
+      height: 48px;
+      font-size: 24px;
+      line-height: 48px;
+      box-shadow: 0 0 10px rgba(0,0,0, 0.5) inset;
+      border-radius: 3px;
+      text-align: center;
     }
 
     p {
       font-size: 18px;
+      padding: 0 10px;
     }
 
     small {
       font-size: 16px;
       font-weight: 400;
       color: #666;
+    }
+
+    a {
+      padding: 0;
+      position: relative;
+      left: 0;
+      font-size: 16px;
+      color: #666;
+      text-decoration: none;
+      width: 100%;
     }
 
   }
@@ -232,15 +243,15 @@ body {
     align-items: center;
 
     .birthday-tt {
-      position: relative;
+      position: absolute;
       width: 200px;
-      right: 610px;
-      bottom: 42px;
+      right: 100%;
+      top: -80%;
       -webkit-user-select: none;
       transition: opacity 400ms;
       font-size: 12px;
       font-weight: 600;
-      height: auto;
+      height: 102px;
       border: 1px solid rgba(0, 0, 0, .45);
       border-bottom: 1px solid #666;
       box-shadow: 0 3px 8px rgba(0, 0, 0, .3);
@@ -277,6 +288,7 @@ body {
       }
 
       .tt-button:hover {
+        cursor: pointer;
         background-color: #365899;
       }
 
