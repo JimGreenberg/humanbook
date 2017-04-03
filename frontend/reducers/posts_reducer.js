@@ -41,7 +41,9 @@ const PostsReducer = (oldState = {}, action) => {
       comments = newState[action.comment.commentable_id].comments;
 
       parent = comments[action.comment.parent_id];
-      if (parent) {parent = parent.filter(id => id !== action.comment.id);}
+      if (parent) {
+        parent.child_ids = parent.child_ids.filter(id => id !== action.comment.id);
+      }
 
       topLevelComments = newState[action.comment.commentable_id].topLevelComments;
       topLevelComments = topLevelComments.filter(id => id !== action.comment.id);
