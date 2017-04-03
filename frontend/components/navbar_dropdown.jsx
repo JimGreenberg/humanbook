@@ -2,7 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import {placeTooltip} from './tooltip';
-import {fetchFriends, confirmRequest, deFriend} from '../actions/friends_actions';
+import { confirmRequest, deFriend} from '../actions/friends_actions';
+import {fetchFriends} from '../util/friends_api_util';
 import {fetchTimeline} from '../actions/user_actions';
 
 
@@ -14,7 +15,7 @@ import {fetchTimeline} from '../actions/user_actions';
   });
 
   const mapDispatchToProps = dispatch => ({
-    fetchFriends: id => dispatch(fetchFriends(id)),
+    // fetchFriends: id => dispatch(fetchFriends(id)),
     confirmRequest: id => dispatch(confirmRequest(id)),
     deFriend: id => dispatch(deFriend(id))
   });
@@ -24,13 +25,15 @@ class NavDropdown extends React.Component {
     super(props);
     this.confirmRequest = this.props.confirmRequest.bind(this);
     this.deFriend = this.props.deFriend.bind(this);
+    this.state = {friends: {}, friendships: {}};
   }
 
   componentWillMount() {
     if (this.props.tab === 'notifs') {
       //lazy fetch posts
     } else if (this.props.tab === 'friends') {
-      this.props.fetchFriends(this.props.currentUser.id);
+      fetchFriends(this.props.currentUser.id)
+      .then(data => this.setState(data));
     } else if (this.props.tab === 'messages') {
       //messages implemented later
     }
@@ -42,7 +45,8 @@ class NavDropdown extends React.Component {
       if (newProps.tab === 'notifs') {
         //lazy fetch posts
       } else if (newProps.tab === 'friends') {
-        this.props.fetchFriends(newProps.currentUser.id);
+        fetchFriends(newProps.currentUser.id)
+        .then(data => this.setState(data));
       } else if (newProps.tab === 'messages') {
         //messages implemented later
       }
@@ -62,21 +66,23 @@ class NavDropdown extends React.Component {
 
   friendsContent() {
     const listItems = [];
-    Object.keys(this.props.friendships).map(id => {
-      if (!this.props.friendships[id].completed && this.props.friendships[id].receiver_id === currentUser.id) {
-        let userId = this.props.friendships[id].friender_id;
+    Object.keys(this.state.friendships).map(id => {
+      if (!this.state.friendships[id].completed && this.state.friendships[id].receiver_id === currentUser.id) {
+        let userId = this.state.friendships[id].friender_id;
+        if (this.state.friends[userId]) {
         listItems.push(
           <li key={id}>
             <Link to= {`users/${userId}`}>
-              <img className='pp-mini' src={this.props.friends[userId].profile_pic_url}/>
+              <img className='pp-mini' src={this.state.friends[userId].profile_pic_url}/>
             </Link>
-            <Link to= {`users/${this.props.friends[userId].id}`}>
-              {`${this.props.friends[userId].fname} ${this.props.friends[userId].lname}`}
+            <Link to= {`users/${this.state.friends[userId].id}`}>
+              {`${this.state.friends[userId].fname} ${this.state.friends[userId].lname}`}
             </Link>
             <button className='nav-button blue' onClick={() => this.confirmRequest(id) }>Confirm</button>
             <button className='nav-button white' onClick={() => this.deFriend(id) }>Delete Request</button>
           </li>
         );
+        }
       }
     });
     return (

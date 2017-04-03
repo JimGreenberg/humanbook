@@ -5,7 +5,7 @@ import {Link} from 'react-router';
 const FriendsView = ({friends}) => {
   const friendTiles = (friends) => {
     if (!friends) {return;}
-    const arr = [<div>Friends</div>];
+    const arr = [<div key='main'>Friends</div>];
     let keys = Object.keys(friends);
     for (var i = 0; i < keys.length; i++) {
       arr.push(

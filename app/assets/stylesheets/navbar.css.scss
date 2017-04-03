@@ -186,11 +186,17 @@
     border: 1px solid rgba(0,0,0,0.2);
     border-radius: 2px;
     padding: 5px 5px;
-    background: rgba(0,0,0,0);
+    background: #4267b2;
 
     &:hover {
-      cursor: pointer;
-      background: rgba(0,0,0,0.2);
+      background-color: #365899;
+      border-color: #29487d;
+    }
+
+    &:active {
+      background-color: #29487d;
+      border-color: #29487d;
+      outline: none;
     }
   }
 

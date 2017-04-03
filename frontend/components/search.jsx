@@ -55,7 +55,7 @@ class Search extends React.Component {
     }
 
     return matches.map(id => (
-      <Link to={`/users/${id}`}>
+      <Link key={id} to={`/users/${id}`}>
         <img className='pp-mini' src={this.props.users[id].profile_pic_url}/>
         <p>{`${this.props.users[id].fname} ${this.props.users[id].lname}`}</p>
       </Link>
