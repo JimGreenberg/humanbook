@@ -47,9 +47,11 @@ class MainSplash extends React.Component {
                 <small>from friends in News Feed.</small>
               </li>
               <li>
-                <i className='fa fa-newspaper-o'/>
-                <p>Share what's new </p>
-                <small>in your life on your Timeline.</small>
+                <a href='http://www.github.com/JimGreenberg/humanbook' target='_blank'>
+                  <i className='fa fa-github'/>
+                  <p>Click here</p>
+                  <small>to check out the repo for this project</small>
+                </a>
               </li>
               <li>
                 <a href='http://www.jim-greenberg.com' target='_blank'>

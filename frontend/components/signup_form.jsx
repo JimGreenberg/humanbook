@@ -167,7 +167,7 @@ class SignUpForm extends React.Component {
                   onClick={() => this.setState({ bdayFlag: !this.state.bdayFlag })}>
                   Why do I need to provide my birthday?
                 </small>
-                {placeTooltip("it's so we know how old you are", "birthday-tt",'key',this.state.bdayFlag, "Okay", () => this.setState({bdayFlag: !this.state.bdayFlag}).bind(this))}
+                {placeTooltip("it's so we know how old you are", "birthday-tt",'key',this.state.bdayFlag, "Okay", () => this.setState({bdayFlag: !this.state.bdayFlag}))}
             </div>
             </div>
             <div className='tuple-wrapper'>
