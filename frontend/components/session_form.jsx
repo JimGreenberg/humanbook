@@ -20,7 +20,8 @@ class SessionForm extends React.Component {
     this.state = {
       username: "",
       password: "",
-      sessionFlag: false
+      sessionFlag: false,
+      forgotFlag: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.disabled = false;
@@ -90,17 +91,30 @@ class SessionForm extends React.Component {
               value={this.state.password}
               className="field"
               onChange={this.update("password")}/>
-            <a className={this.state.demoBtn} onClick={
-              () => this.setState({username: "", password: "", demoBtn: 'disabled'},
-                    this.logInAs("jjerry@seinfeld.com", 'asdfasdf'))
-            }>Demo Log In</a>
 
+            <div className='attache-wrapper'>
+              <a className={this.state.demoBtn}
+                 onClick={() => this.setState({ forgotFlag: !this.state.forgotFlag })}
+              >Forgot Account?</a>
+            {placeTooltip("Why not use the demo log in?", "mainsplash-tt",'key',this.state.forgotFlag, "Okay", () => this.setState({forgotFlag: !this.state.forgotFlag}))}
+            </div>
           </div>
 
           <input
             className='button'
             type="submit"
             value="Log In"
+            />
+
+          <input
+            className={`${this.state.demoBtn} button`}
+            type="submit"
+            value="Demo Log In"
+            onClick={(e) => {
+                      e.preventDefault();
+                      this.setState({username: "", password: "", demoBtn: 'disabled'},
+                      this.logInAs("jjerry@seinfeld.com", 'asdfasdf'));
+                    }}
             />
 
         </div>

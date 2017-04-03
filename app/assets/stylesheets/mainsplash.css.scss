@@ -2,6 +2,69 @@ body {
   background: #edf0f5;
 }
 
+  .mainsplash-tt {
+    position: absolute;
+    -webkit-user-select: none;
+    transition: opacity 400ms;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid rgba(0, 0, 0, .45);
+    border-bottom: 1px solid #666;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, .3);
+    background: white;
+    z-index: 2;
+
+
+    .tt-content {
+      padding: 10px;
+    }
+
+    .underlay {
+      position: relative;
+      background: #f2f2f2;
+      padding: 6px 0;
+      width: 100%;
+      height: 24px;
+      top: 21px;
+      border-top: 1px solid #ccc;
+    }
+    .tt-button {
+      background-color: #4267b2;
+      position: relative;
+      left: 70%;
+      padding: 0 6px;
+      border-radius: 2px;
+      width: 44px;
+      height: 24px;
+      color: white;
+      font-size: 12px;
+      line-height: 24px;
+      margin: 0;
+      text-align: center;
+    }
+
+    .tt-button:hover {
+      cursor: pointer;
+      background-color: #365899;
+    }
+
+    .tt-button:active {
+      background-color: #29487d;
+    }
+
+    .tt-nib {
+      background: white;
+      width: 10px;
+      height: 10px;
+      transform: rotate(45deg);
+      position: relative;
+      bottom: 70px;
+      right: -195px;
+      border-top: inherit;
+      border-right: inherit;
+    }
+  }
+
 .mainsplash {
 
   font-family: 'Source Sans Pro', sans-serif;
@@ -25,6 +88,19 @@ body {
       flex-direction: column;
       position: relative;
     }
+
+    .field-grp .mainsplash-tt {
+      width: 200px;
+      left: 0%;
+      top: 105%;
+      height: 90px;
+
+      .tt-nib {
+        transform: rotate(-45deg);
+        bottom: 83%;
+        left: 20%;
+      }
+    }
   }
 
   a {
@@ -34,9 +110,8 @@ body {
     padding: 0;
     text-align: left;
     font-size: 12px;
-    width: 73px;
     left: 8px;
-    top: 4px;
+    top: -4px;
     position: relative;
   }
 
@@ -242,72 +317,13 @@ body {
     display: flex;
     margin: 3px 0;
     align-items: center;
+  }
 
-    .birthday-tt {
-      position: absolute;
-      width: 200px;
-      right: 100%;
-      top: -80%;
-      -webkit-user-select: none;
-      transition: opacity 400ms;
-      font-size: 12px;
-      font-weight: 600;
-      height: 102px;
-      border: 1px solid rgba(0, 0, 0, .45);
-      border-bottom: 1px solid #666;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, .3);
-      background: white;
-      z-index: 2;
-
-
-      .tt-content {
-        padding: 10px;
-      }
-
-      .underlay {
-        position: relative;
-        background: #f2f2f2;
-        padding: 6px 0;
-        width: 100%;
-        height: 24px;
-        top: 21px;
-        border-top: 1px solid #ccc;
-      }
-      .tt-button {
-        background-color: #4267b2;
-        position: relative;
-        left: 70%;
-        padding: 0 6px;
-        border-radius: 2px;
-        width: 44px;
-        height: 24px;
-        color: white;
-        font-size: 12px;
-        line-height: 24px;
-        margin: 0;
-        text-align: center;
-      }
-
-      .tt-button:hover {
-        cursor: pointer;
-        background-color: #365899;
-      }
-
-      .tt-button:active {
-        background-color: #29487d;
-      }
-
-      .tt-nib {
-        background: white;
-        width: 10px;
-        height: 10px;
-        transform: rotate(45deg);
-        position: relative;
-        bottom: 70px;
-        right: -195px;
-        border-top: inherit;
-        border-right: inherit;
-      }}
+  .dob-wrapper .mainsplash-tt {
+    width: 200px;
+    right: 100%;
+    top: -80%;
+    height: 102px;
   }
 
   .question {
