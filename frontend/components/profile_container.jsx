@@ -74,13 +74,6 @@ class ProfileContainer extends React.Component {
       this.props.fetchProfile(this.props.params.id);
     }
   }
-  // componentWillUpdate(nextProps) {
-  //   if (nextProps.params.id !== this.props.params.id) {
-  //     window.scrollTo(0, 100);
-  //     this.props.fetchProfile(this.props.params.id);
-  //   }
-  // }
-
 
   handleButton(event) {
       switch(this.props.buttonText) {
