@@ -69,6 +69,7 @@ pennypacker.make_friend(jerry)
 jerry.make_friend(puddy)
 george.make_friend(kramer)
 elaine.make_friend(george)
+Friendship.create!(friender_id: tim.id, receiver_id: jerry.id, completed: false)
 
 post1=Post.create!(body: "You've got to apologize", author_id: george.id, wall_user_id: jerry.id)
 comment1_0=Comment.create!(commentable_type: "Post", body: "why?", author_id: jerry.id, commentable_id: post1.id)
