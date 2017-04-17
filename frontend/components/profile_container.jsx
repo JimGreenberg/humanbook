@@ -127,7 +127,7 @@ class ProfileContainer extends React.Component {
       case 'friends':
         return <FriendsView classname='timeline' friends={friends} />;
       case 'about':
-      return <AboutView classname='timeline' user={this.props.user} />;
+        return <AboutView classname='timeline' user={this.props.user} />;
       case 'timeline':
       default:
         return <PostList className='timeline' profile={true} />;

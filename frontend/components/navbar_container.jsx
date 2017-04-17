@@ -30,7 +30,7 @@ class NavBar extends React.Component {
   }
 
   redirectToProfile() {
-    let id = this.props.currentUser.id;
+    let id = this.currentUser.id;
     this.props.router.push(`/users/${id}`);
   }
 
@@ -54,7 +54,7 @@ class NavBar extends React.Component {
 
         <div className="nav-grp right">
           <span className='profile-top-btn' onClick={this.redirectToProfile}>
-            <img className='profile-micro' src = {this.props.currentUser.profile_pic_url} />
+            <img className='profile-micro' src = {this.currentUser.profile_pic_url} />
               <label>{this.currentUser.fname}</label>
           </span>
           <span className='home-top-btn' onClick={this.redirectToHome}>
