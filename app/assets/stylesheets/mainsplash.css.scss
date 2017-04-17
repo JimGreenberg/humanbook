@@ -230,7 +230,10 @@ body {
       font-size: 16px;
       color: #666;
       text-decoration: none;
-      width: 100%;
+    }
+
+    a:hover p, a:hover small {
+      text-decoration: underline;
     }
 
   }
