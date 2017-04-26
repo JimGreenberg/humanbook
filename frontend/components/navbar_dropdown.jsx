@@ -70,18 +70,24 @@ class NavDropdown extends React.Component {
       if (!this.state.friendships[id].completed && this.state.friendships[id].receiver_id === currentUser.id) {
         let userId = this.state.friendships[id].friender_id;
         if (this.state.friends[userId]) {
-        listItems.push(
-          <li key={id}>
-            <Link to= {`users/${userId}`}>
-              <img className='pp-mini' src={this.state.friends[userId].profile_pic_url}/>
-            </Link>
-            <Link to= {`users/${this.state.friends[userId].id}`}>
-              {`${this.state.friends[userId].fname} ${this.state.friends[userId].lname}`}
-            </Link>
-            <button className='nav-button blue' onClick={() => this.confirmRequest(id) }>Confirm</button>
-            <button className='nav-button white' onClick={() => this.deFriend(id) }>Delete Request</button>
-          </li>
-        );
+          listItems.push(
+            <li key={id}>
+              <Link to= {`users/${userId}`}>
+                <img className='pp-mini' src={this.state.friends[userId].profile_pic_url}/>
+              </Link>
+              <Link to= {`users/${this.state.friends[userId].id}`}>
+                {`${this.state.friends[userId].fname} ${this.state.friends[userId].lname}`}
+              </Link>
+              <button className='nav-button blue' onClick={() => this.confirmRequest(id) }>Confirm</button>
+              <button className='nav-button white' onClick={() => this.deFriend(id) }>Delete Request</button>
+            </li>
+          );
+        } else {
+          listItems.push(
+            <li>
+              <p>You have no pending friend requests</p>
+            </li>
+          );
         }
       }
     });
