@@ -61,7 +61,7 @@ class NavBar extends React.Component {
             <label>Home</label>
           </span>
 
-          {placeTooltip(<NavDropdown currentUser={this.currentUser} tab={this.state.tab}/>,"nav-tt card",'',this.state.ttFlag)}
+          {placeTooltip(<NavDropdown currentUser={this.currentUser} tab={this.state.tab}/>,"nav-tt card",this.state.ttFlag)}
           <i onClick={this.toggleFlag('friends')} className='fa fa-users'></i>
           <i onClick={this.toggleFlag('notifs')} className="fa fa-globe"></i>
 

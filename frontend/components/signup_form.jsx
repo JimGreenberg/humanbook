@@ -97,7 +97,7 @@ class SignUpForm extends React.Component {
               className="field"
               placeholder='First Name'
               onChange={this.update("fname")}/>
-            {placeTooltip(this.props.errors.fname, "error", "fname", this.state.fnameFlag)}
+            {placeTooltip(this.props.errors.fname, "error fname", this.state.fnameFlag)}
 </div>
 <div className='attache-wrapper'>
             <input
@@ -106,7 +106,7 @@ class SignUpForm extends React.Component {
               className="field"
               placeholder='Last Name'
               onChange={this.update("lname")}/>
-            {placeTooltip(this.props.errors.lname, "error", "lname", this.state.lnameFlag)}
+            {placeTooltip(this.props.errors.lname, "error lname", this.state.lnameFlag)}
           </div>
           </div>
           <div className='attache-wrapper'>
@@ -116,7 +116,7 @@ class SignUpForm extends React.Component {
             className="field"
             placeholder='Mobile number or email'
             onChange={this.update("username")}/>
-          {placeTooltip(this.props.errors.username, "error", "username", this.state.usernameFlag)}
+          {placeTooltip(this.props.errors.username, "error username", this.state.usernameFlag)}
         </div>
         <div className='attache-wrapper'>
           <input
@@ -125,7 +125,7 @@ class SignUpForm extends React.Component {
             className="field"
             placeholder='Re-enter mobile number or email'
             onChange={this.update("usernameTwo")}/>
-          {placeTooltip(this.props.errors.usernameTwo, "error", "usernameTwo", this.state.usernameTwoFlag)}
+          {placeTooltip(this.props.errors.usernameTwo, "error usernameTwo", this.state.usernameTwoFlag)}
         </div>
         <div className='attache-wrapper'>
             <input
@@ -134,7 +134,7 @@ class SignUpForm extends React.Component {
               className="field"
               placeholder='New password'
               onChange={this.update("password")}/>
-            {placeTooltip(this.props.errors.password, "error", "password", this.state.passwordFlag)}
+            {placeTooltip(this.props.errors.password, "error password", this.state.passwordFlag)}
           </div>
             <label className='birthday'>Birthday</label>
             <div className='dob-wrapper'>
@@ -167,7 +167,7 @@ class SignUpForm extends React.Component {
                   onClick={() => this.setState({ bdayFlag: !this.state.bdayFlag })}>
                   Why do I need to provide my birthday?
                 </small>
-                {placeTooltip("it's so we know how old you are", "mainsplash-tt",'key',this.state.bdayFlag, "Okay", () => this.setState({bdayFlag: !this.state.bdayFlag}))}
+                {placeTooltip("it's so we know how old you are", "mainsplash-tt",this.state.bdayFlag, "Okay", () => this.setState({bdayFlag: !this.state.bdayFlag}))}
             </div>
             </div>
             <div className='tuple-wrapper'>

@@ -48,7 +48,17 @@ export default class PostIndexItem extends React.Component {
   }
 
   render() {
-    let {id, body, author, wall_owner, author_id, wall_user_id, timestamp, comments, topLevelComments} = this.props.post;
+    let {
+      id,
+      body,
+      author,
+      wall_owner,
+      author_id,
+      wall_user_id,
+      timestamp,
+      comments,
+      topLevelComments
+    } = this.props.post;
     const postToLabel = author_id === wall_user_id ? 'hidden' : 'name-label';
     if (!comments) { comments = []; }
     return(
@@ -76,7 +86,7 @@ export default class PostIndexItem extends React.Component {
 
             <div className={this.props.currentUser.id === author.id ? 'tt-wrapper' : 'hidden'}>
               <i className='fa fa-angle-down' onClick={this.toggleTT} />
-              {placeTooltip(this.ttContents(), 'post-tt', 'key', this.state.ttFlag)}
+              {placeTooltip(this.ttContents(), 'post-tt', this.state.ttFlag)}
             </div>
           </div>
 

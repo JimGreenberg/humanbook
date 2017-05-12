@@ -39,7 +39,16 @@ class Comment extends React.Component {
   }
 
   render() {
-    const {body, parent_id, author, timestamp, child_ids, commentable_id, commentable_type, id} = this.props.comment;
+    const {
+      body,
+      parent_id,
+      author,
+      timestamp,
+      child_ids,
+      commentable_id,
+      commentable_type,
+      id
+    } = this.props.comment;
     const commentableId = commentable_id;
     const nodeType = !!parent_id ? 'child' : 'parent';
     return(

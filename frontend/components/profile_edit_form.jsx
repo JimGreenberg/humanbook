@@ -118,7 +118,7 @@ class ProfileEditForm extends React.Component {
     let birth = [this.state.month, this.state.day, this.state.year].join(' ');
     let formData = new FormData();
     this.setState({birthday: birth}, () => {
-      Object.keys(this.state).map(key => {formData.append(`user[${key}]`, this.state[key])})
+      Object.keys(this.state).map(field => {formData.append(`user[${field}]`, this.state[field]);});
         this.props.updateUser(formData).then(() => this.props.router.push(`/users/${this.props.user.id}`));
       });
   }

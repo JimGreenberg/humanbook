@@ -11,11 +11,10 @@ import {fetchTimeline} from '../actions/user_actions';
     currentUser: state.session.currentUser,
     friendships: state.friendships,
     friends: state.friends,
-    notifs: state.posts//replace with notifications later
+    notifs: state.posts //replace with real notifications later
   });
 
   const mapDispatchToProps = dispatch => ({
-    // fetchFriends: id => dispatch(fetchFriends(id)),
     confirmRequest: id => dispatch(confirmRequest(id)),
     deFriend: id => dispatch(deFriend(id))
   });
@@ -34,8 +33,6 @@ class NavDropdown extends React.Component {
     } else if (this.props.tab === 'friends') {
       fetchFriends(this.props.currentUser.id)
       .then(data => this.setState(data));
-    } else if (this.props.tab === 'messages') {
-      //messages implemented later
     }
     this.pickTitle(this.props.tab);
   }
@@ -59,8 +56,6 @@ class NavDropdown extends React.Component {
       this.title = 'Notifications';
     } else if (tab === 'friends') {
       this.title = 'Friend Requests';
-    } else if (tab === 'messages') {
-      this.title = 'Messages';
     }
   }
 
@@ -100,16 +95,6 @@ class NavDropdown extends React.Component {
     );
   }
 
-  messagesContent() {
-    return (
-      <ul className='messages nav-tt-content'>
-        <div className='tt-nib'></div>
-        <li>{this.title}</li>
-        <li>Messaging coming soon!</li>
-      </ul>
-    );
-  }
-
   notifsContent() {
     const listItems = [];
 
@@ -139,8 +124,6 @@ class NavDropdown extends React.Component {
     let content = null;
     if (this.props.tab === 'friends') {
       content = this.friendsContent();
-    } else if (this.props.tab === 'messages') {
-      content = this.messagesContent();
     } else if (this.props.tab === 'notifs') {
       content = this.notifsContent();
     }
