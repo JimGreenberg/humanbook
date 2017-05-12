@@ -5,11 +5,10 @@ import {Link} from 'react-router';
 import {placeTooltip} from './tooltip';
 
 
-  const mapStateToProps = state => {
-
-    return {currentUser: state.session.currentUser,
-            users: state.search.users};
-};
+  const mapStateToProps = state => ({
+    currentUser: state.session.currentUser,
+    users: state.search.users
+  });
 
   const mapDispatchToProps = dispatch => ({
     fetchAllUsers: () => dispatch(fetchAllUsers())

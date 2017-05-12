@@ -94,7 +94,17 @@ class ProfileContainer extends React.Component {
   }
 
   render() {
-    const {fname, lname, birthday, work, school, relationship, from, where} = this.props.user;
+    const {
+      fname,
+      lname,
+      birthday,
+      work,
+      school,
+      relationship,
+      fromPlace,
+      LivesAt
+    } = this.props.user;
+
     const friends = this.props.friends;
     const friendTiles = (friends) => {
       if (!friends) {return;}
@@ -165,9 +175,9 @@ class ProfileContainer extends React.Component {
                 <ul>
                   <li><i className='fa fa-mortar-board'></i><p>Studied at</p><p>{school}</p></li>
                   <li><i className='fa fa-briefcase'></i><p>Works at</p><p>{work}</p></li>
-                  <li><i className='fa fa-home'></i><p>Lives in</p><p>{where}</p></li>
+                  <li><i className='fa fa-home'></i><p>Lives in</p><p>{livesAt}</p></li>
                   <li><i className='fa fa-heart'></i><p>Relationship</p><p>{relationship}</p></li>
-                  <li><i className='fa fa-map-marker'></i><p>From</p><p>{from}</p></li>
+                  <li><i className='fa fa-map-marker'></i><p>From</p><p>{fromPlace}</p></li>
                   <li><i className='fa fa-birthday-cake'></i><p>Born on</p><p>{birthday}</p></li>
                 </ul>
               </div>

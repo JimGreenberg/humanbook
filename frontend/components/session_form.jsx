@@ -80,7 +80,7 @@ class SessionForm extends React.Component {
               value={this.state.username}
               className="field"
               onChange={this.update("username")}/>
-            {placeTooltip(this.props.errors.session, "error", "session", this.state.sessionFlag)}
+            {placeTooltip(this.props.errors.session, "error", this.state.sessionFlag)}
             </div>
 
             <div className="field-grp">
@@ -96,7 +96,7 @@ class SessionForm extends React.Component {
               <a className={this.state.demoBtn}
                  onClick={() => this.setState({ forgotFlag: !this.state.forgotFlag })}
               >Forgot Account?</a>
-            {placeTooltip("Why not use the demo log in?", "mainsplash-tt",'key',this.state.forgotFlag, "Okay", () => this.setState({forgotFlag: !this.state.forgotFlag}))}
+            {placeTooltip("Why not use the demo log in?", "mainsplash-tt",this.state.forgotFlag, "Okay", () => this.setState({forgotFlag: !this.state.forgotFlag}))}
             </div>
           </div>
 

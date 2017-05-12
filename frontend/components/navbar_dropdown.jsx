@@ -11,11 +11,10 @@ import {fetchTimeline} from '../actions/user_actions';
     currentUser: state.session.currentUser,
     friendships: state.friendships,
     friends: state.friends,
-    notifs: state.posts//replace with notifications later
+    notifs: state.posts //replace with real notifications later
   });
 
   const mapDispatchToProps = dispatch => ({
-    // fetchFriends: id => dispatch(fetchFriends(id)),
     confirmRequest: id => dispatch(confirmRequest(id)),
     deFriend: id => dispatch(deFriend(id))
   });
@@ -34,8 +33,6 @@ class NavDropdown extends React.Component {
     } else if (this.props.tab === 'friends') {
       fetchFriends(this.props.currentUser.id)
       .then(data => this.setState(data));
-    } else if (this.props.tab === 'messages') {
-      //messages implemented later
     }
     this.pickTitle(this.props.tab);
   }
@@ -59,8 +56,6 @@ class NavDropdown extends React.Component {
       this.title = 'Notifications';
     } else if (tab === 'friends') {
       this.title = 'Friend Requests';
-    } else if (tab === 'messages') {
-      this.title = 'Messages';
     }
   }
 
@@ -70,18 +65,24 @@ class NavDropdown extends React.Component {
       if (!this.state.friendships[id].completed && this.state.friendships[id].receiver_id === currentUser.id) {
         let userId = this.state.friendships[id].friender_id;
         if (this.state.friends[userId]) {
-        listItems.push(
-          <li key={id}>
-            <Link to= {`users/${userId}`}>
-              <img className='pp-mini' src={this.state.friends[userId].profile_pic_url}/>
-            </Link>
-            <Link to= {`users/${this.state.friends[userId].id}`}>
-              {`${this.state.friends[userId].fname} ${this.state.friends[userId].lname}`}
-            </Link>
-            <button className='nav-button blue' onClick={() => this.confirmRequest(id) }>Confirm</button>
-            <button className='nav-button white' onClick={() => this.deFriend(id) }>Delete Request</button>
-          </li>
-        );
+          listItems.push(
+            <li key={id}>
+              <Link to= {`users/${userId}`}>
+                <img className='pp-mini' src={this.state.friends[userId].profile_pic_url}/>
+              </Link>
+              <Link to= {`users/${this.state.friends[userId].id}`}>
+                {`${this.state.friends[userId].fname} ${this.state.friends[userId].lname}`}
+              </Link>
+              <button className='nav-button blue' onClick={() => this.confirmRequest(id) }>Confirm</button>
+              <button className='nav-button white' onClick={() => this.deFriend(id) }>Delete Request</button>
+            </li>
+          );
+        } else {
+          listItems.push(
+            <li>
+              <p>You have no pending friend requests</p>
+            </li>
+          );
         }
       }
     });
@@ -90,16 +91,6 @@ class NavDropdown extends React.Component {
         <div className='tt-nib'></div>
         <li>{this.title}</li>
         {listItems}
-      </ul>
-    );
-  }
-
-  messagesContent() {
-    return (
-      <ul className='messages nav-tt-content'>
-        <div className='tt-nib'></div>
-        <li>{this.title}</li>
-        <li>Messaging coming soon!</li>
       </ul>
     );
   }
@@ -133,8 +124,6 @@ class NavDropdown extends React.Component {
     let content = null;
     if (this.props.tab === 'friends') {
       content = this.friendsContent();
-    } else if (this.props.tab === 'messages') {
-      content = this.messagesContent();
     } else if (this.props.tab === 'notifs') {
       content = this.notifsContent();
     }
